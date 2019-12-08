@@ -1,22 +1,17 @@
 import {Meteor} from 'meteor/meteor'
-import Links from '/imports/api/links'
+import Notes from '/imports/api/notes'
 
-function insertLink(title, url) {
-  Links.insert({title, url, createdAt: new Date()})
+function insertNote(title, content) {
+  Notes.insert({title, content, createdAt: new Date()})
 }
 
 Meteor.startup(() => {
-  // If the Links collection is empty, add some data.
-  if (Links.find().count() === 0) {
-    insertLink(
-      'Do the Tutorial',
-      'https://www.meteor.com/tutorials/react/creating-an-app',
-    )
+  // if no notes, add dummy data
+  if (Notes.find().count() === 0) {
+    insertNote('My first note', 'bla bla')
 
-    insertLink('Follow the Guide', 'http://guide.meteor.com')
+    insertNote('My second note', 'bla bla')
 
-    insertLink('Read the Docs', 'https://docs.meteor.com')
-
-    insertLink('Discussions', 'https://forums.meteor.com')
+    insertNote('My third note', 'bla bla')
   }
 })
