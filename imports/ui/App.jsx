@@ -1,14 +1,12 @@
 import React from 'react'
-import Hello from './Hello.jsx'
-import Info from './Info.jsx'
-import AuthForm from './AuthForm'
+import Notes from './Notes.jsx'
+import NewItemForm from './NewNoteForm.jsx'
 
 const App = () => (
   <div>
     <h1>Welcome to Meteor!</h1>
-    <Hello />
-    <Info />
-    <AuthForm />
+    <Notes />
+    <NewItemForm />
   </div>
 )
 
