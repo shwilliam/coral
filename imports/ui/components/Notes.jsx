@@ -6,8 +6,10 @@ export default withTracker(() => ({
   notes: Notes.find().fetch(),
 }))(({notes, ...props}) => (
   <ul {...props}>
-    {notes.map(({_id, title}) => (
-      <li key={_id}>{title}</li>
+    {notes.map(({_id, title, author}) => (
+      <li key={_id}>
+        {title} [{author}]
+      </li>
     ))}
   </ul>
 ))
