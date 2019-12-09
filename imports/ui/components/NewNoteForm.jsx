@@ -1,11 +1,8 @@
 import React, {useState} from 'react'
-import {Meteor} from 'meteor/meteor'
-import {withTracker} from 'meteor/react-meteor-data'
 import Notes from '../../api/notes'
+import {withUser} from '../hocs'
 
-export default withTracker(() => ({
-  user: Meteor.user(),
-}))(({user, ...props}) => {
+const NewNoteForm = ({user, ...props}) => {
   const [title, setTitle] = useState('')
   const handleSubmit = e => {
     e.preventDefault()
@@ -22,4 +19,6 @@ export default withTracker(() => ({
       <button type="submit">create</button>
     </form>
   )
-})
+}
+
+export default withUser(NewNoteForm)

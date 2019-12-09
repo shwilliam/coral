@@ -1,10 +1,7 @@
 import React from 'react'
-import {withTracker} from 'meteor/react-meteor-data'
-import Notes from '../../api/notes'
+import {withNotes} from '../hocs'
 
-export default withTracker(() => ({
-  notes: Notes.find().fetch(),
-}))(({notes, ...props}) => (
+const Notes = ({notes, ...props}) => (
   <ul {...props}>
     {notes.map(({_id, title, author}) => (
       <li key={_id}>
@@ -12,4 +9,6 @@ export default withTracker(() => ({
       </li>
     ))}
   </ul>
-))
+)
+
+export default withNotes(Notes)
