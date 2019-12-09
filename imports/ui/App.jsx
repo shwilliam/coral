@@ -1,13 +1,19 @@
 import React from 'react'
-import Notes from './Notes.jsx'
-import NewItemForm from './NewNoteForm.jsx'
+import {Meteor} from 'meteor/meteor'
+import {withTracker} from 'meteor/react-meteor-data'
+import {AuthForm, NewNoteForm, Notes} from './components'
 
-const App = () => (
-  <div>
-    <h1>Welcome to Meteor!</h1>
-    <Notes />
-    <NewItemForm />
-  </div>
-)
-
-export default App
+// TODO: refactor user HOC
+export default withTracker(() => ({
+  user: Meteor.user(),
+}))(({user}) => (
+  <>
+    <AuthForm />
+    {user ? (
+      <>
+        <NewNoteForm />
+        <Notes />
+      </>
+    ) : null}
+  </>
+))
