@@ -1,13 +1,12 @@
 import React from 'react'
-import Notes from './Notes.jsx'
-import NewItemForm from './NewNoteForm.jsx'
+import {AuthForm, NewNoteForm, Notes} from './components'
 
 const App = () => (
-  <div>
-    <h1>Welcome to Meteor!</h1>
+  <>
+    <AuthForm />
+    <NewNoteForm />
     <Notes />
-    <NewItemForm />
-  </div>
+  </>
 )
 
 export default App

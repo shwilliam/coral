@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import Notes from '../api/notes'
+import Notes from '../../api/notes'
 
 const NewNoteForm = props => {
   const [title, setTitle] = useState('')
