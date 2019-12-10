@@ -1,6 +1,6 @@
 import React from 'react'
 import { Router, Route, Switch } from 'react-router'
-import createBrowserHistory from 'history/createBrowserHistory'
+const createBrowserHistory = require('history').createBrowserHistory
 import Home from '../pages/Home'
 import FourOhFour from '../pages/FourOhFour'
 
