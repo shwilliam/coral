@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Notes from '../../api/notes'
 import {withUser} from '../hocs'
+import NoteTemplate from './NoteTemplate'
 
 const NewNoteForm = ({user, ...props}) => {
   const [title, setTitle] = useState('')
@@ -10,6 +11,7 @@ const NewNoteForm = ({user, ...props}) => {
   }
 
   return (
+    
     <form onSubmit={handleSubmit} {...props}>
       <input
         value={title}

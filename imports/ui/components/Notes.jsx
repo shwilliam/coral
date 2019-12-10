@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { Link } from 'react'
 import {withNotes} from '../hocs'
 
 const Notes = ({notes, ...props}) => (
   <ul {...props}>
     {notes.map(({_id, title, author}) => (
-      <li key={_id}>
-        {title} [{author}]
-      </li>
+        <li key={_id}>
+          {title} [{author}]
+        </li>
     ))}
   </ul>
 )
