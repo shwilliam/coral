@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import { createEditor } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
 
-const TextEditor = () => {
+const NoteTemplate = () => {
   const [value, setValue] = useState(initialValue);
   const [selection, setSelection] = useState(null);
   const editor = useMemo(() => withReact(createEditor()), []);
@@ -16,15 +16,15 @@ const TextEditor = () => {
         setSelection(selection);
       }}
     >
-      <Editable placeholder="Enter some plain text..." />
+      <Editable placeholder="Write on me boys..." />
     </Slate>
   );
 };
 
 const initialValue = [
   {
-    children: [{ text: "write on me boys!" }]
+    children: [{ text: "" }]
   }
 ];
 
-export default TextEditor;
+export default NoteTemplate;
