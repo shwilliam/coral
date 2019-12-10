@@ -1,12 +1,11 @@
 import React, {useState} from 'react'
-import Notes from '../../api/notes'
-import {withUser} from '../hocs'
+import {Meteor} from 'meteor/meteor'
 
-const NewNoteForm = ({user, ...props}) => {
+const NewNoteForm = props => {
   const [title, setTitle] = useState('')
   const handleSubmit = e => {
     e.preventDefault()
-    Notes.insert({title, author: user._id})
+    Meteor.call('notes.insert', title)
   }
 
   return (
@@ -21,4 +20,4 @@ const NewNoteForm = ({user, ...props}) => {
   )
 }
 
-export default withUser(NewNoteForm)
+export default NewNoteForm
