@@ -14,6 +14,8 @@
     "meteor-node-stubs": "^1.0.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "slate": "^0.52.5",
+    "slate-react": "^0.52.6",
     "react-router": "^5.1.2"
   },
   "meteor": {

@@ -9,6 +9,7 @@ const NewNoteForm = props => {
   }
 
   return (
+    
     <form onSubmit={handleSubmit} {...props}>
       <input
         value={title}
