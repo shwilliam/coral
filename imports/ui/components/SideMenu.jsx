@@ -1,10 +1,8 @@
 import React from 'react'
-import Notes from './Notes'
+// import Notes from './Notes'
 import 'antd/dist/antd.css' // TODO: use modularized styles
 import { Menu, Icon, Layout } from 'antd'
-import AuthForm from './AuthForm'
 
-const { SubMenu } = Menu
 const { Sider } = Layout
 
 const SideMenu = () => {
@@ -14,30 +12,29 @@ const SideMenu = () => {
 
   return (
     <Layout>
-      <Sider>
-        <Menu
-          onClick={handleClick}
-          style={{ width: 256 }}
-          defaultSelectedKeys={['1']}
-          defaultOpenKeys={['sub1']}
-          mode="inline"
-        >
-          <SubMenu
-            key="sub1"
-            title={
-              <span>
-                <Icon type="book" theme='twoTone' />
-                <span>Notes</span>
-              </span>
-            }
-          >
-            <Menu.Item>
-              <h1>fake note</h1>
-            </Menu.Item>
-            <Menu.Item>
-              <h1>fake note #2  </h1>
-            </Menu.Item>
-          </SubMenu>
+      <Sider
+        /* theme='light' */
+        style={{
+          overflow: 'auto',
+          height: '100vh',
+          position: 'fixed',
+          left: 0,
+        }}
+      >
+        <div className="logo" />
+        <Menu theme='dark' mode="inline" defaultSelectedKeys={['4']}>
+          <Menu.Item key="1">
+            <Icon type="user" />
+            <span className="nav-text">Notes</span>
+          </Menu.Item>
+          <Menu.Item key="1">
+            <Icon type="user" />
+            <span className="nav-text">nav 1</span>
+          </Menu.Item>
+          <Menu.Item key="1">
+            <Icon type="user" />
+            <span className="nav-text">nav 1</span>
+          </Menu.Item>
         </Menu>
       </Sider>
     </Layout>
