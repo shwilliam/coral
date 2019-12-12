@@ -6,9 +6,6 @@ import { Menu, Icon, Layout } from 'antd'
 const { Sider } = Layout
 
 const SideMenu = () => {
-  const handleClick = e => {
-    console.log('click ', e)
-  }
 
   return (
     <Layout>
@@ -27,11 +24,11 @@ const SideMenu = () => {
             <Icon type="user" />
             <span className="nav-text">Notes</span>
           </Menu.Item>
-          <Menu.Item key="1">
+          <Menu.Item key="2">
             <Icon type="user" />
             <span className="nav-text">nav 1</span>
           </Menu.Item>
-          <Menu.Item key="1">
+          <Menu.Item key="3">
             <Icon type="user" />
             <span className="nav-text">nav 1</span>
           </Menu.Item>
