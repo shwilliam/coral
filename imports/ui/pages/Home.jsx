@@ -1,6 +1,6 @@
 import React from 'react'
 import { withUser } from '../hocs'
-import { AuthForm, NewNoteForm, Notes } from '../components'
+import { AuthForm, NewNoteForm } from '../components'
 import SideMenu from '../components/SideMenu'
 
 const Home = ({ user }) => (
