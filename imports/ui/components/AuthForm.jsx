@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState, forwardRef} from 'react'
 import {Meteor} from 'meteor/meteor'
 import {Accounts} from 'meteor/accounts-base'
-import {useFormik} from 'formik'
+import useForm from 'react-hook-form'
 
 const onAuth = e => {
   if (e) alert(e)
@@ -9,68 +9,84 @@ const onAuth = e => {
   // TODO: clear form
 }
 
-const Field = ({id, label, name, type, ...props}) => (
-  <>
-    <label htmlFor={name}>{label}</label>
-    <input id={id} name={name} type={type} {...props} />
-  </>
+// TODO: handle error message in Field
+const Field = forwardRef(
+  ({label, name, type = 'text', ...props}, ref) => (
+    <label>
+      {label}
+      <input name={name} type={type} ref={ref} {...props} />
+    </label>
+  ),
 )
 
 const AuthForm = props => {
   const [isSignUp, setIsSignUp] = useState(false)
-  const formik = useFormik({
-    initialValues: {
-      username: '',
-      email: '',
-      password: '',
-      passwordConfirm: '',
-    },
-    onSubmit: ({username, email, password}) => {
-      isSignUp
-        ? Accounts.createUser({username, email, password}, onAuth)
-        : Meteor.loginWithPassword(email, password, onAuth)
-    },
-    // TODO: validate
-  })
+  const {handleSubmit, register, errors, getValues} = useForm()
+
+  const onSubmit = ({username, email, password}) => {
+    isSignUp
+      ? Accounts.createUser({username, email, password}, onAuth)
+      : Meteor.loginWithPassword(email, password, onAuth)
+  }
+
   return (
-    <form onSubmit={formik.handleSubmit} {...props}>
+    <form onSubmit={handleSubmit(onSubmit)} {...props}>
       {isSignUp ? (
-        <Field
-          label="Username"
-          id="username"
-          name="username"
-          type="text"
-          onChange={formik.handleChange}
-          value={formik.values.username}
-        />
+        <>
+          <Field
+            label="Username"
+            name="username"
+            ref={register({required: true})}
+          />
+          {errors.username && errors.username.message}
+        </>
       ) : null}
 
       <Field
         label="Email"
         name="email"
-        type="email"
-        onChange={formik.handleChange}
-        value={formik.values.email}
+        ref={register({
+          required: true,
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+            message: 'Invalid email',
+          },
+        })}
       />
+      {errors.email && errors.email.message}
 
       <Field
         label="Password"
-        id="password"
         name="password"
         type="password"
-        onChange={formik.handleChange}
-        value={formik.values.password}
+        ref={register({
+          required: true,
+        })}
       />
+      {errors.password && errors.password.message}
 
       {isSignUp ? (
-        <Field
-          label="Confirm password"
-          id="passwordConfirm"
-          name="passwordConfirm"
-          type="password"
-          onChange={formik.handleChange}
-          value={formik.values.passwordConfirm}
-        />
+        <>
+          <Field
+            label="Confirm password"
+            name="passwordConfirm"
+            type="password"
+            ref={register({
+              required: true,
+              validate: value => {
+                const values = getValues()
+                if (
+                  value &&
+                  values &&
+                  values.password &&
+                  value !== values.password
+                )
+                  return 'Ensure your passwords match'
+              },
+            })}
+          />
+          {errors.passwordConfirm && errors.passwordConfirm.message}
+        </>
       ) : null}
 
       <button type="submit">Submit</button>
