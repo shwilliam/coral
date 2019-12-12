@@ -1,6 +1,7 @@
 import React from 'react'
 import { withUser } from '../hocs'
 import { AuthForm, NewNoteForm, Notes } from '../components'
+import SideMenu from '../components/SideMenu'
 
 const Home = ({ user }) => (
   <>
@@ -8,7 +9,7 @@ const Home = ({ user }) => (
     {user ? (
       <>
         <NewNoteForm />
-        <Notes />
+        <SideMenu />
       </>
     ) : null}
   </>
