@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { withUser } from '../hocs'
 import SideMenu from '../components/SideMenu'
 import NoteTemplate from '../components/NoteTemplate'
