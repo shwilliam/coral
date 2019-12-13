@@ -8,10 +8,7 @@ const Note = ({note, user}) => {
   const {username, id} = useParams()
   const history = useHistory()
 
-  useEffect(() => {
-    activeNote.set(id)
-  }, [])
-
+  // TODO: refactor to custom hook
   useEffect(() => {
     if (!note) return
 
@@ -19,9 +16,18 @@ const Note = ({note, user}) => {
       if (e) console.error('author not found')
 
       if (author !== username)
-        window.history.pushState('Editing...', '', `/${author}/${id}`)
+        window &&
+          window.history.pushState(
+            'Editing...',
+            '',
+            `/${author}/${id}`,
+          )
     })
   }, [note])
+
+  useEffect(() => {
+    activeNote.set(id)
+  }, [])
 
   console.log(note)
 
