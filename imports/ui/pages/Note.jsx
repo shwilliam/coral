@@ -1,17 +1,23 @@
 import React from 'react'
-import { useParams } from 'react-router'
-import withUser from '../hocs/withUser'
+
+import { withUser } from '../hocs'
+import SideMenu from '../components/SideMenu'
 import NoteTemplate from '../components/NoteTemplate'
-
-const Note = ({ user }) => {
-  let { username, id } = useParams()
-  return (
-    <h1>
-      {/* hello {username} | {id} */}
-      <NoteTemplate />
-
-    </h1>
-  )
-}
+import { Layout } from 'antd'
+import Copyright from '../components/Copyright'
+const { Content } = Layout
+const Note = ({ user }) => (
+  <Layout>
+    <SideMenu />
+    {user ? (
+      <Layout>
+        <Content>
+          <NoteTemplate />
+        </Content>
+        <Copyright />
+      </Layout>
+    ) : null}
+  </Layout>
+)
 
 export default withUser(Note)
