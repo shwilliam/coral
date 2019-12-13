@@ -1,14 +1,14 @@
 import React, {useEffect} from 'react'
 import {Meteor} from 'meteor/meteor'
 import {useParams, useHistory} from 'react-router'
-import { Layout } from 'antd'
+import {Layout} from 'antd'
 import {withNote, withUser} from '../hocs'
 import SideMenu from '../components/SideMenu'
-import NoteTemplate from '../components/NoteTemplate'
+import NoteEditor from '../components/NoteEditor'
 import Copyright from '../components/Copyright'
 import {activeNote} from '../../api/notes'
 
-const { Content } = Layout
+const {Content} = Layout
 
 const Note = ({note, user}) => {
   const {username, id} = useParams()
@@ -35,15 +35,13 @@ const Note = ({note, user}) => {
     activeNote.set(id)
   }, [])
 
-  console.log(note)
-
   return (
     <Layout>
       <SideMenu />
       {user ? (
         <Layout>
           <Content>
-            <NoteTemplate />
+            <NoteEditor />
           </Content>
           <Copyright />
         </Layout>

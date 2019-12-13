@@ -1,9 +1,9 @@
-import React, { useState, useMemo, useCallback } from 'react'
-import { createEditor, Editor } from 'slate'
+import React, {useState, useMemo, useCallback} from 'react'
+import {createEditor, Editor as SlateEditor} from 'slate'
 import isHotkey from 'is-hotkey'
-import { useSlate, Slate, Editable, withReact } from 'slate-react'
-import { withHistory } from 'slate-history'
-import { Button, Icon, Toolbar } from './SlateComponents'
+import {useSlate, Slate, Editable, withReact} from 'slate-react'
+import {withHistory} from 'slate-history'
+import {Button, Icon, Toolbar} from './Editor.styles'
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -14,24 +14,29 @@ const HOTKEYS = {
 
 const LIST_TYPES = ['numbered-list', 'bulleted-list']
 
-const NoteTemplate = () => {
-  const [value, setValue] = useState(initialValue)
+const Editor = ({value, onChange, ...props}) => {
   const [selection, setSelection] = useState(null)
-  const renderElement = useCallback(props => <Element {...props} />, [])
+  const renderElement = useCallback(
+    props => <Element {...props} />,
+    [],
+  )
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
 
-  const editor = useMemo(() => withHistory(withRichText(withReact(createEditor()))), [])
+  const editor = useMemo(
+    () => withHistory(withRichText(withReact(createEditor()))),
+    [],
+  )
 
   return (
-
     <Slate
       editor={editor}
       value={value}
       selection={selection}
       onChange={(value, selection) => {
-        setValue(value)
+        onChange(value)
         setSelection(selection)
       }}
+      {...props}
     >
       <Toolbar>
         <MarkButton format="bold" icon="format_bold" />
@@ -41,13 +46,19 @@ const NoteTemplate = () => {
         <BlockButton format="heading-one" icon="looks_one" />
         <BlockButton format="heading-two" icon="looks_two" />
         <BlockButton format="block-quote" icon="format_quote" />
-        <BlockButton format="numbered-list" icon="format_list_numbered" />
-        <BlockButton format="bulleted-list" icon="format_list_bulleted" />
+        <BlockButton
+          format="numbered-list"
+          icon="format_list_numbered"
+        />
+        <BlockButton
+          format="bulleted-list"
+          icon="format_list_bulleted"
+        />
       </Toolbar>
       <Editable
         renderElement={renderElement}
         renderLeaf={renderLeaf}
-        placeholder="Enter some rich text…"
+        placeholder="What's on your mind?"
         spellCheck
         autoFocus
         onKeyDown={event => {
@@ -57,7 +68,7 @@ const NoteTemplate = () => {
               const mark = HOTKEYS[hotkey]
               editor.exec({
                 type: 'format_text',
-                properties: { [mark]: true },
+                properties: {[mark]: true},
               })
             }
           }
@@ -68,24 +79,27 @@ const NoteTemplate = () => {
 }
 
 const withRichText = editor => {
-  const { exec } = editor
+  const {exec} = editor
 
   editor.exec = command => {
     if (command.type === 'format_block') {
-      const { format } = command
+      const {format} = command
       const isActive = isBlockActive(editor, format)
       const isList = LIST_TYPES.includes(format)
 
       for (const f of LIST_TYPES) {
-        Editor.unwrapNodes(editor, { match: { type: f }, split: true })
+        SlateEditor.unwrapNodes(editor, {
+          match: {type: f},
+          split: true,
+        })
       }
 
-      Editor.setNodes(editor, {
+      SlateEditor.setNodes(editor, {
         type: isActive ? 'paragraph' : isList ? 'list-item' : format,
       })
 
       if (!isActive && isList) {
-        Editor.wrapNodes(editor, { type: format, children: [] })
+        SlateEditor.wrapNodes(editor, {type: format, children: []})
       }
     } else {
       exec(command)
@@ -95,10 +109,9 @@ const withRichText = editor => {
   return editor
 }
 
-
 const isBlockActive = (editor, format) => {
-  const [match] = Editor.nodes(editor, {
-    match: { type: format },
+  const [match] = SlateEditor.nodes(editor, {
+    match: {type: format},
     mode: 'all',
   })
 
@@ -107,11 +120,11 @@ const isBlockActive = (editor, format) => {
 
 // TODO fix isMarkActive to work
 const isMarkActive = (editor, format) => {
-  const marks = Editor.marks && Editor.marks(editor)
+  const marks = SlateEditor.marks && SlateEditor.marks(editor)
   return marks ? marks[format] === true : false
 }
 
-const Element = ({ attributes, children, element }) => {
+const Element = ({attributes, children, element}) => {
   switch (element.type) {
     case 'block-quote':
       return <blockquote {...attributes}>{children}</blockquote>
@@ -130,7 +143,7 @@ const Element = ({ attributes, children, element }) => {
   }
 }
 
-const Leaf = ({ attributes, children, leaf }) => {
+const Leaf = ({attributes, children, leaf}) => {
   if (leaf.bold) {
     children = <strong>{children}</strong>
   }
@@ -150,14 +163,14 @@ const Leaf = ({ attributes, children, leaf }) => {
   return <span {...attributes}>{children}</span>
 }
 
-const BlockButton = ({ format, icon }) => {
+const BlockButton = ({format, icon}) => {
   const editor = useSlate()
   return (
     <Button
       active={isBlockActive(editor, format)}
       onMouseDown={event => {
         event.preventDefault()
-        editor.exec({ type: 'format_block', format })
+        editor.exec({type: 'format_block', format})
       }}
     >
       <Icon>{icon}</Icon>
@@ -165,33 +178,22 @@ const BlockButton = ({ format, icon }) => {
   )
 }
 
-const MarkButton = ({ format, icon }) => {
+const MarkButton = ({format, icon}) => {
   const editor = useSlate()
   return (
     <Button
       active={isMarkActive(editor, format)}
       onMouseDown={event => {
         event.preventDefault()
-        editor.exec({ type: 'format_text', properties: { [format]: true } })
+        editor.exec({
+          type: 'format_text',
+          properties: {[format]: true},
+        })
       }}
     >
       <Icon>{icon}</Icon>
     </Button>
   )
-
 }
 
-const initialValue = [
-  {
-    type: 'paragraph',
-    children: [
-      { text: 'Hey dude ' },
-      { text: 'are', bold: true },
-      { text: ' you, ' },
-      { text: 'lost', italic: true },
-      { text: ' or what? ' },
-    ],
-  },
-]
-
-export default NoteTemplate
+export default Editor
