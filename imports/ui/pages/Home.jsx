@@ -3,7 +3,7 @@ import { withUser } from '../hocs'
 import { AuthForm, NewNoteForm } from '../components'
 import SideMenu from '../components/SideMenu'
 import Header from '../components/Header'
-
+import Copyright from '../components/Copyright'
 const Home = ({ user }) => (
   <>
     <AuthForm />
@@ -12,8 +12,9 @@ const Home = ({ user }) => (
         <NewNoteForm />
         <Header />
         <SideMenu />
+        <Copyright />
       </>
-    ) : null}
+    ) : <div>loading...</div>}
   </>
 )
 
