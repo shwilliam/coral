@@ -23,6 +23,7 @@ const NoteTemplate = () => {
   const editor = useMemo(() => withHistory(withRichText(withReact(createEditor()))), [])
 
   return (
+
     <Slate
       editor={editor}
       value={value}
@@ -112,20 +113,20 @@ const isMarkActive = (editor, format) => {
 
 const Element = ({ attributes, children, element }) => {
   switch (element.type) {
-  case 'block-quote':
-    return <blockquote {...attributes}>{children}</blockquote>
-  case 'bulleted-list':
-    return <ul {...attributes}>{children}</ul>
-  case 'heading-one':
-    return <h1 {...attributes}>{children}</h1>
-  case 'heading-two':
-    return <h2 {...attributes}>{children}</h2>
-  case 'list-item':
-    return <li {...attributes}>{children}</li>
-  case 'numbered-list':
-    return <ol {...attributes}>{children}</ol>
-  default:
-    return <p {...attributes}>{children}</p>
+    case 'block-quote':
+      return <blockquote {...attributes}>{children}</blockquote>
+    case 'bulleted-list':
+      return <ul {...attributes}>{children}</ul>
+    case 'heading-one':
+      return <h1 {...attributes}>{children}</h1>
+    case 'heading-two':
+      return <h2 {...attributes}>{children}</h2>
+    case 'list-item':
+      return <li {...attributes}>{children}</li>
+    case 'numbered-list':
+      return <ol {...attributes}>{children}</ol>
+    default:
+      return <p {...attributes}>{children}</p>
   }
 }
 
@@ -184,36 +185,12 @@ const initialValue = [
   {
     type: 'paragraph',
     children: [
-      { text: 'This is editable ' },
-      { text: 'rich', bold: true },
-      { text: ' text, ' },
-      { text: 'much', italic: true },
-      { text: ' better than a ' },
-      { text: '<textarea>', code: true },
-      { text: '!' },
+      { text: 'Hey dude ' },
+      { text: 'are', bold: true },
+      { text: ' you, ' },
+      { text: 'lost', italic: true },
+      { text: ' or what? ' },
     ],
-  },
-  {
-    type: 'paragraph',
-    children: [
-      {
-        text:
-          'Since it\'s rich text, you can do things like turn a selection of text ',
-      },
-      { text: 'bold', bold: true },
-      {
-        text:
-          ', or add a semantically rendered block quote in the middle of the page, like this:',
-      },
-    ],
-  },
-  {
-    type: 'block-quote',
-    children: [{ text: 'A wise quote.' }],
-  },
-  {
-    type: 'paragraph',
-    children: [{ text: 'Try it out for yourself!' }],
   },
 ]
 
