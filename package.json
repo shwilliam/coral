@@ -15,7 +15,6 @@
     "meteor-node-stubs": "^1.0.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-hook-form": "^3.28.15",
     "react-router": "^5.1.2",
     "slate": "^0.52.5",
     "slate-react": "^0.52.6"

@@ -1,7 +1,7 @@
-import React, {useState, forwardRef} from 'react'
+import React, {useState} from 'react'
 import {Meteor} from 'meteor/meteor'
 import {Accounts} from 'meteor/accounts-base'
-import useForm from 'react-hook-form'
+import {Form, Icon, Input, Button} from 'antd'
 
 const onAuth = e => {
   if (e) alert(e)
@@ -9,93 +9,128 @@ const onAuth = e => {
   // TODO: clear form
 }
 
-// TODO: handle error message in Field
-const Field = forwardRef(
-  ({label, name, type = 'text', ...props}, ref) => (
-    <label>
-      {label}
-      <input name={name} type={type} ref={ref} {...props} />
-    </label>
-  ),
+const FormField = ({
+  label,
+  name,
+  type = 'text',
+  form,
+  rules,
+  Icon,
+  ...props
+}) => (
+  <Form.Item label={label}>
+    {form.getFieldDecorator(name, {
+      rules,
+    })(
+      <Input
+        name={name}
+        type={type}
+        prefix={Icon}
+        placeholder="Username"
+        {...props}
+      />,
+    )}
+  </Form.Item>
 )
 
-const AuthForm = props => {
+const AuthForm = ({form, ...props}) => {
   const [isSignUp, setIsSignUp] = useState(false)
-  const {handleSubmit, register, errors, getValues} = useForm()
 
-  const onSubmit = ({username, email, password}) => {
-    isSignUp
-      ? Accounts.createUser({username, email, password}, onAuth)
-      : Meteor.loginWithPassword(email, password, onAuth)
+  const onSubmit = e => {
+    e.preventDefault()
+    form.validateFields((err, {username, email, password}) => {
+      if (!err) {
+        isSignUp
+          ? Accounts.createUser({username, email, password}, onAuth)
+          : Meteor.loginWithPassword(email, password, onAuth)
+      }
+    })
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} {...props}>
+    <Form onSubmit={onSubmit} {...props}>
       {isSignUp ? (
-        <>
-          <Field
-            label="Username"
-            name="username"
-            ref={register({required: true})}
-          />
-          {errors.username && errors.username.message}
-        </>
+        <FormField
+          label="Username"
+          name="username"
+          rules={[
+            {required: true, message: 'Please choose a username'},
+          ]}
+          Icon={
+            <Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />
+          }
+          form={form}
+        />
       ) : null}
 
-      <Field
+      <FormField
         label="Email"
         name="email"
-        ref={register({
-          required: true,
-          pattern: {
-            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-            message: 'Invalid email',
+        rules={[
+          {
+            type: 'email',
+            message: 'Please enter a valid email',
           },
-        })}
+          {
+            required: true,
+            message: 'Please enter your email',
+          },
+        ]}
+        Icon={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}} />}
+        form={form}
       />
-      {errors.email && errors.email.message}
 
-      <Field
+      <FormField
         label="Password"
         name="password"
         type="password"
-        ref={register({
-          required: true,
-        })}
+        rules={[
+          {required: true, message: 'Please enter your password'},
+        ]}
+        Icon={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}} />}
+        form={form}
       />
-      {errors.password && errors.password.message}
 
       {isSignUp ? (
-        <>
-          <Field
-            label="Confirm password"
-            name="passwordConfirm"
-            type="password"
-            ref={register({
+        <FormField
+          label="Confirm password"
+          name="passwordConfirm"
+          type="password"
+          rules={[
+            {
               required: true,
-              validate: value => {
-                const values = getValues()
+              message: 'Please confirm your password',
+            },
+            {
+              validator: (rule, value, callback) => {
                 if (
                   value &&
-                  values &&
-                  values.password &&
-                  value !== values.password
-                )
-                  return 'Ensure your passwords match'
+                  value !== form.getFieldValue('password')
+                ) {
+                  callback('Ensure your passwords match')
+                } else {
+                  callback()
+                }
               },
-            })}
-          />
-          {errors.passwordConfirm && errors.passwordConfirm.message}
-        </>
+            },
+          ]}
+          Icon={
+            <Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}} />
+          }
+          form={form}
+        />
       ) : null}
 
-      <button type="submit">Submit</button>
-
-      <button onClick={() => setIsSignUp(s => !s)} type="button">
-        {isSignUp ? 'Already have an account' : 'Create an account'}
-      </button>
-    </form>
+      <Form.Item>
+        <Button type="link" onClick={() => setIsSignUp(s => !s)}>
+          {isSignUp ? 'Already have an account' : 'Create an account'}
+        </Button>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
+    </Form>
   )
 }
 
-export default AuthForm
+export default Form.create({name: 'auth-form'})(AuthForm)
