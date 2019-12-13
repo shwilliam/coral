@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import Notes from './Notes'
 import 'antd/dist/antd.css' // TODO: use modularized styles
 import { Menu, Icon, Layout } from 'antd'
@@ -7,9 +7,14 @@ const { Sider } = Layout
 
 const SideMenu = () => {
 
+  const [collapsed, setCollapsed] = useState(false)
+
   return (
     <Layout>
       <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={() => setCollapsed(!collapsed)}
         /* theme='light' */
         style={{
           overflow: 'auto',
@@ -26,11 +31,11 @@ const SideMenu = () => {
           </Menu.Item>
           <Menu.Item key="2">
             <Icon type="user" />
-            <span className="nav-text">nav 1</span>
+            <span className="nav-text">Notes</span>
           </Menu.Item>
           <Menu.Item key="3">
             <Icon type="user" />
-            <span className="nav-text">nav 1</span>
+            <span className="nav-text">Notes</span>
           </Menu.Item>
         </Menu>
       </Sider>
