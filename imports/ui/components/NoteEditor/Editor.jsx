@@ -58,7 +58,7 @@ const Editor = ({value, onChange, ...props}) => {
       <Editable
         renderElement={renderElement}
         renderLeaf={renderLeaf}
-        placeholder="Enter some rich text…"
+        placeholder="What's on your mind?"
         spellCheck
         autoFocus
         onKeyDown={event => {

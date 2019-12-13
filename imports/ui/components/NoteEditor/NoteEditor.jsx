@@ -1,14 +1,33 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import {Meteor} from 'meteor/meteor'
 import {withNote} from '../../hocs'
 import Editor from './Editor.jsx'
 
-const NoteEditor = ({note, ...props}) => {
-  const [content, setContent] = useState((note && note.content) || [])
+// TODO: refresh content from db
 
-  console.log(note && note._id)
+const NoteEditor = ({note, ...props}) => {
+  const [content, setContent] = useState([
+    {
+      type: 'paragraph',
+      children: [{text: ''}],
+    },
+  ])
+
+  useEffect(() => {
+    if (note && note.content) setContent(JSON.parse(note.content))
+  }, [note])
 
   if (!note) return null
-  return <Editor value={content} onChange={setContent} {...props} />
+  return (
+    <Editor
+      value={content}
+      onChange={d =>
+        Meteor.call('notes.edit', note._id, JSON.stringify(d)) ||
+        setContent(d)
+      }
+      {...props}
+    />
+  )
 }
 
 export default withNote(NoteEditor)

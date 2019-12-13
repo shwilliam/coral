@@ -58,6 +58,28 @@ Meteor.methods({
       },
     })
   },
+  'notes.edit'(id, content) {
+    check(id, String)
+    check(content, String)
+
+    if (!this.userId) throw new Meteor.Error('not-authorized')
+
+    const note = Notes.findOne(id)
+    if (!note) throw new Meteor.Error('note-not-found')
+
+    if (
+      (note.collaborators &&
+        !note.collaborators.includes(this.userId)) ||
+      note.author !== this.userId
+    )
+      throw new Meteor.Error('not-authorized')
+
+    Notes.update(id, {
+      $set: {
+        content,
+      },
+    })
+  },
 })
 
 export default Notes
