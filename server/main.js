@@ -1,6 +1,10 @@
 import {Meteor} from 'meteor/meteor'
 import Notes from '/imports/api/notes'
 
+// ensure Meteor methods are available
+import * as _ from '../imports/api/users'
+import * as __ from '../imports/api/notes'
+
 function insertNote(title, content) {
   Notes.insert({title, content, createdAt: new Date()})
 }

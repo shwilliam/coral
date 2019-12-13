@@ -1,9 +1,12 @@
 import {Meteor} from 'meteor/meteor'
 import {Mongo} from 'meteor/mongo'
 import {Accounts} from 'meteor/accounts-base'
+import {ReactiveVar} from 'meteor/reactive-var'
 import {check} from 'meteor/check'
 
 const Notes = new Mongo.Collection('notes')
+
+export const activeNote = new ReactiveVar()
 
 if (Meteor.isServer) {
   Meteor.publish('notes', function notesPub() {
