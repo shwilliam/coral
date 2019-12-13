@@ -1,3 +1,3 @@
-import Editor from './Editor.jsx'
+import NoteEditor from './NoteEditor.jsx'
 
-export default Editor
+export default NoteEditor

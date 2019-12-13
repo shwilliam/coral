@@ -35,8 +35,6 @@ const Note = ({note, user}) => {
     activeNote.set(id)
   }, [])
 
-  console.log(note)
-
   return (
     <Layout>
       <SideMenu />

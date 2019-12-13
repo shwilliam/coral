@@ -14,8 +14,7 @@ const HOTKEYS = {
 
 const LIST_TYPES = ['numbered-list', 'bulleted-list']
 
-const Editor = () => {
-  const [value, setValue] = useState(initialValue)
+const Editor = ({value, onChange, ...props}) => {
   const [selection, setSelection] = useState(null)
   const renderElement = useCallback(
     props => <Element {...props} />,
@@ -34,9 +33,10 @@ const Editor = () => {
       value={value}
       selection={selection}
       onChange={(value, selection) => {
-        setValue(value)
+        onChange(value)
         setSelection(selection)
       }}
+      {...props}
     >
       <Toolbar>
         <MarkButton format="bold" icon="format_bold" />
@@ -195,18 +195,5 @@ const MarkButton = ({format, icon}) => {
     </Button>
   )
 }
-
-const initialValue = [
-  {
-    type: 'paragraph',
-    children: [
-      {text: 'Hey dude '},
-      {text: 'are', bold: true},
-      {text: ' you, '},
-      {text: 'lost', italic: true},
-      {text: ' or what? '},
-    ],
-  },
-]
 
 export default Editor
