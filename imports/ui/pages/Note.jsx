@@ -3,6 +3,7 @@ import { withUser } from '../hocs'
 import SideMenu from '../components/SideMenu'
 import NoteTemplate from '../components/NoteTemplate'
 import { Layout } from 'antd'
+import Copyright from '../components/Copyright'
 const { Content } = Layout
 const Note = ({ user }) => (
   <Layout>
@@ -12,6 +13,7 @@ const Note = ({ user }) => (
         <Content>
           <NoteTemplate />
         </Content>
+        <Copyright />
       </Layout>
     ) : null}
   </Layout>
