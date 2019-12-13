@@ -9,14 +9,15 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.6.0",
-    "history": "^4.10.1",
     "antd": "^3.26.1",
+    "history": "^4.10.1",
     "meteor-node-stubs": "^1.0.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-router": "^5.1.2",
     "slate": "^0.52.5",
-    "slate-react": "^0.52.6",
-    "react-router": "^5.1.2"
+    "slate-history": "^0.54.2",
+    "slate-react": "^0.52.6"
   },
   "meteor": {
     "mainModule": {
@@ -28,6 +29,7 @@
   "devDependencies": {
     "eslint": "^6.7.2",
     "eslint-plugin-react": "^7.17.0",
-    "emotion": "^10.0.9"
+    "emotion": "^10.0.9",
+    "is-hotkey": "^0.1.6"
   }
 }

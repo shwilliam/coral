@@ -2,6 +2,7 @@ import React, { useState, useMemo, useCallback } from 'react'
 import { createEditor, Editor } from 'slate'
 import isHotkey from 'is-hotkey'
 import { useSlate, Slate, Editable, withReact } from 'slate-react'
+import { withHistory } from 'slate-history'
 import { Button, Icon, Toolbar } from './SlateComponents'
 
 const HOTKEYS = {
@@ -19,7 +20,7 @@ const NoteTemplate = () => {
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
 
-  const editor = useMemo(() => withRichText(withReact(createEditor())), [])
+  const editor = useMemo(() => withHistory(withRichText(withReact(createEditor()))), [])
 
   return (
     <Slate
@@ -32,10 +33,10 @@ const NoteTemplate = () => {
       }}
     >
       <Toolbar>
-        {/* <MarkButton format="bold" icon="format_bold" />
+        <MarkButton format="bold" icon="format_bold" />
         <MarkButton format="italic" icon="format_italic" />
         <MarkButton format="underline" icon="format_underlined" />
-        <MarkButton format="code" icon="code" /> */}
+        <MarkButton format="code" icon="code" />
         <BlockButton format="heading-one" icon="looks_one" />
         <BlockButton format="heading-two" icon="looks_two" />
         <BlockButton format="block-quote" icon="format_quote" />
@@ -103,10 +104,11 @@ const isBlockActive = (editor, format) => {
   return !!match
 }
 
-// const isMarkActive = (editor, format) => {
-//   const marks = Editor.marks(editor)
-//   return marks ? marks[format] === true : false
-// }
+// TODO fix isMarkActive to work
+const isMarkActive = (editor, format) => {
+  const marks = Editor.marks && Editor.marks(editor)
+  return marks ? marks[format] === true : false
+}
 
 const Element = ({ attributes, children, element }) => {
   switch (element.type) {
