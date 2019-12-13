@@ -1,12 +1,20 @@
 import React from 'react'
 import Copyright from '../components/Copyright'
-import { Link } from 'react-router'
+import {Button} from 'antd'
+import {useHistory} from 'react-router'
+
 const FourOhFour = () => {
+  const history = useHistory()
   return (
-    <div>
-      <h1>Ooops wrong url. You might wanna go <Link to="/">back</Link></h1>
+    <>
+      <h1>
+        Ooops wrong url.{' '}
+        <Button onClick={() => history.push('/')} type="primary">
+          Go back
+        </Button>
+      </h1>
       <Copyright />
-    </div>
+    </>
   )
 }
 
