@@ -1,5 +1,5 @@
 import React from 'react'
-import {Router, Route, Switch} from 'react-router'
+import { Router, Route, Switch } from 'react-router'
 const createBrowserHistory = require('history').createBrowserHistory
 
 import Home from '../pages/Home'
@@ -7,6 +7,7 @@ import FourOhFour from '../pages/FourOhFour'
 import Note from '../pages/Note'
 import Notes from '../pages/Notes'
 import Profile from '../pages/Profile'
+import Welcome from '../pages/Welcome'
 
 const browserHistory = createBrowserHistory()
 
@@ -15,6 +16,7 @@ const Routes = () => (
     <Switch>
       {/* TODO: delete notes page */}
       <Route exact path="/notes" component={Notes} />
+      <Route exact path="/welcome" component={Welcome} />
       <Route exact path="/" component={Home} />
       <Route exact path="/:username/:id" component={Note} />
       <Route exact path="/profile" component={Profile} />
