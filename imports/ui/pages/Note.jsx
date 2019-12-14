@@ -5,7 +5,7 @@ import {Layout} from 'antd'
 import {withNote, withUser} from '../hocs'
 import SideMenu from '../components/SideMenu'
 import NoteEditor from '../components/NoteEditor'
-import Copyright from '../components/Copyright'
+import Footer from '../components/Footer'
 import {activeNote} from '../../api/notes'
 
 const {Content} = Layout
@@ -43,7 +43,7 @@ const Note = ({note, user}) => {
           <Content>
             <NoteEditor />
           </Content>
-          <Copyright />
+          <Footer />
         </Layout>
       ) : null}
     </Layout>

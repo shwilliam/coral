@@ -1,5 +1,5 @@
 import React from 'react'
-import Copyright from '../components/Copyright'
+import Footer from '../components/Footer'
 import {Button} from 'antd'
 import {useHistory} from 'react-router'
 
@@ -13,7 +13,7 @@ const FourOhFour = () => {
           Go back
         </Button>
       </h1>
-      <Copyright />
+      <Footer />
     </>
   )
 }
