@@ -11,7 +11,7 @@ const SideMenu = ({notes, ...props}) => {
       collapsible
       collapsed={open}
       onCollapse={toggleMenu}
-      style={{height: '100vh'}}
+      style={{minHeight: '100vh'}}
       {...props}
     >
       <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
