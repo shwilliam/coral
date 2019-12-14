@@ -1,7 +1,7 @@
 import React from 'react'
 import {Layout as AntLayout} from 'antd'
 import SideMenu from '../components/SideMenu'
-import Copyright from '../components/Copyright'
+import Footer from '../components/Footer'
 const {Content} = AntLayout
 
 const Layout = ({children, ...props}) => (
@@ -9,7 +9,7 @@ const Layout = ({children, ...props}) => (
     <SideMenu />
     <AntLayout>
       <Content>{children}</Content>
-      <Copyright />
+      <Footer />
     </AntLayout>
   </AntLayout>
 )

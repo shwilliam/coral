@@ -1,10 +1,10 @@
 import React from 'react'
-import { withUser } from '../hocs'
-import { AuthForm, NewNoteForm } from '../components'
+import {withUser} from '../hocs'
+import {AuthForm, NewNoteForm} from '../components'
 import SideMenu from '../components/SideMenu'
 import Header from '../components/Header'
-import Copyright from '../components/Copyright'
-const Home = ({ user }) => (
+import Footer from '../components/Footer'
+const Home = ({user}) => (
   <>
     <AuthForm />
     {user ? (
@@ -12,9 +12,11 @@ const Home = ({ user }) => (
         <NewNoteForm />
         <Header />
         <SideMenu />
-        <Copyright />
+        <Footer />
       </>
-    ) : <div>loading...</div>}
+    ) : (
+      <div>loading...</div>
+    )}
   </>
 )
 
