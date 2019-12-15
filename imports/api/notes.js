@@ -11,7 +11,7 @@ export const activeNote = new ReactiveVar()
 if (Meteor.isServer) {
   Meteor.publish('notes', function notesPub() {
     return Notes.find({
-      author: this.userId,
+      $or: [{author: this.userId}, {collaborators: this.userId}],
     })
   })
 }

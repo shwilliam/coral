@@ -6,7 +6,8 @@ const withNotes = withTracker(() => {
   Meteor.subscribe('notes')
 
   return {
-    notes: Notes.find().fetch(),
+    notes: Notes.find({author: Meteor.userId()}).fetch(),
+    sharedNotes: Notes.find({collaborators: Meteor.userId()}).fetch(),
   }
 })
 

@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {Menu, Icon, Layout} from 'antd'
 import {withNotes} from '../hocs'
 
-const SideMenu = ({notes, ...props}) => {
+const SideMenu = ({notes, sharedNotes, ...props}) => {
   const [open, setOpen] = useState(false)
   const toggleMenu = () => setOpen(s => !s)
 
@@ -26,7 +26,9 @@ const SideMenu = ({notes, ...props}) => {
         >
           {notes.map(({_id, title}) => (
             <Menu.Item key={_id}>
-              <span>{title}</span>
+              <span>
+                <a href={`/note/${_id}`}>{title}</a>
+              </span>
             </Menu.Item>
           ))}
         </Menu.SubMenu>
@@ -39,7 +41,13 @@ const SideMenu = ({notes, ...props}) => {
             </span>
           }
         >
-          hello
+          {sharedNotes.map(({_id, title}) => (
+            <Menu.Item key={_id}>
+              <span>
+                <a href={`/note/${_id}`}>{title}</a>
+              </span>
+            </Menu.Item>
+          ))}
         </Menu.SubMenu>
         <Menu.Item key="side-menu-settings">Settings</Menu.Item>
       </Menu>
