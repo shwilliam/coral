@@ -6,15 +6,14 @@ import MobileMenu from './MobileMenu'
 const {Content} = AntLayout
 const isMobile = window.innerWidth < 480
 
-const Layout = ({children, ...props}) =>
-  console.log(isMobile) || (
+const Layout = ({children, ...props}) => (
+  <AntLayout>
+    {isMobile ? <MobileMenu /> : <SideMenu />}
     <AntLayout>
-      {isMobile ? <MobileMenu /> : <SideMenu />}
-      <AntLayout>
-        <Content>{children}</Content>
-        <Footer />
-      </AntLayout>
+      <Content>{children}</Content>
+      <Footer />
     </AntLayout>
-  )
+  </AntLayout>
+)
 
 export default Layout
