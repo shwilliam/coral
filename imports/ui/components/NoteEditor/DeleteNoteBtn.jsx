@@ -1,9 +1,9 @@
 import React from 'react'
 import {Icon} from 'antd'
 
-const DeleteNoteBtn = () => {
+const DeleteNoteBtn = ({onClick, ...props}) => {
   return (
-    <button onClick={() => console.log('clicked')}>
+    <button onClick={onClick}>
       <Icon type="delete" />
     </button>
   )
