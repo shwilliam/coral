@@ -81,7 +81,7 @@ Meteor.methods({
     })
   },
   'notes.remove'(id) {
-    check(id)
+    check(id, String)
 
     if (!this.userId) throw new Meteor.Error('not-authorized')
 
@@ -89,7 +89,7 @@ Meteor.methods({
     if (!note) throw new Meteor.Error('note-not-found')
 
     Notes.remove(id)
-  }
+  },
 })
 
 export default Notes
