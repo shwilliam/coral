@@ -68,9 +68,8 @@ Meteor.methods({
     if (!note) throw new Meteor.Error('note-not-found')
 
     if (
-      (note.collaborators &&
-        !note.collaborators.includes(this.userId)) ||
-      note.author !== this.userId
+      note.author !== this.userId &&
+      note.collaborators && !note.collaborators.includes(this.userId)
     )
       throw new Meteor.Error('not-authorized')
 
