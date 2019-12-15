@@ -1,4 +1,4 @@
-import React, { Link } from 'react'
+import React, {Link} from 'react'
 import {withNotes} from '../hocs'
 import ShareNoteForm from './ShareNoteForm'
 

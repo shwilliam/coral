@@ -1,36 +1,58 @@
 import React, {useState} from 'react'
-// import Notes from './Notes'
 import {Menu, Icon, Layout} from 'antd'
+import {withNotes} from '../hocs'
 
-const {Sider} = Layout
-
-const SideMenu = () => {
-  const [collapsed, setCollapsed] = useState(false)
+const SideMenu = ({notes, sharedNotes, ...props}) => {
+  const [open, setOpen] = useState(false)
+  const toggleMenu = () => setOpen(s => !s)
 
   return (
-    <Sider
+    <Layout.Sider
       collapsible
-      collapsed={collapsed}
-      onCollapse={() => setCollapsed(!collapsed)}
-      style={{ height: '100vh' }}
+      collapsed={open}
+      onCollapse={toggleMenu}
+      style={{minHeight: '100vh'}}
+      {...props}
     >
-      <div className="logo" />
-      <Menu theme='dark' mode="inline" defaultSelectedKeys={['4']}>
-        <Menu.Item key="1">
-          <Icon type="user" />
-          <span className="nav-text">Notes</span>
-        </Menu.Item>
-        <Menu.Item key="2">
-          <Icon type="user" />
-          <span className="nav-text">Notes</span>
-        </Menu.Item>
-        <Menu.Item key="3">
-          <Icon type="user" />
-          <span className="nav-text">Notes</span>
-        </Menu.Item>
+      <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+        <Menu.SubMenu
+          key="side-menu-notes"
+          title={
+            <span>
+              <Icon type="edit" />
+              <span>My Notes</span>
+            </span>
+          }
+        >
+          {notes.map(({_id, title}) => (
+            <Menu.Item key={_id}>
+              <span>
+                <a href={`/note/${_id}`}>{title}</a>
+              </span>
+            </Menu.Item>
+          ))}
+        </Menu.SubMenu>
+        <Menu.SubMenu
+          key="side-menu-shared"
+          title={
+            <span>
+              <Icon type="team" />
+              <span>Shared Notes</span>
+            </span>
+          }
+        >
+          {sharedNotes.map(({_id, title}) => (
+            <Menu.Item key={_id}>
+              <span>
+                <a href={`/note/${_id}`}>{title}</a>
+              </span>
+            </Menu.Item>
+          ))}
+        </Menu.SubMenu>
+        <Menu.Item key="side-menu-settings">Settings</Menu.Item>
       </Menu>
-    </Sider >
+    </Layout.Sider>
   )
 }
 
-export default SideMenu
+export default withNotes(SideMenu)

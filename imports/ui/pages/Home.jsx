@@ -1,23 +1,9 @@
 import React from 'react'
 import {withUser} from '../hocs'
-import {AuthForm, NewNoteForm} from '../components'
-import SideMenu from '../components/SideMenu'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import {NewNoteForm, Layout} from '../components'
+
 const Home = ({user}) => (
-  <>
-    <AuthForm />
-    {user ? (
-      <>
-        <NewNoteForm />
-        <Header />
-        <SideMenu />
-        <Footer />
-      </>
-    ) : (
-      <div>loading...</div>
-    )}
-  </>
+  <Layout>{user ? <NewNoteForm /> : <div>loading...</div>}</Layout>
 )
 
 export default withUser(Home)
