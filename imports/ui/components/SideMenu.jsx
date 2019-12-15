@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 // import Notes from './Notes'
-import {Menu, Icon, Layout} from 'antd'
+import { Menu, Icon, Layout } from 'antd'
 
-const {Sider} = Layout
+const { Sider } = Layout
 
 const SideMenu = () => {
   const [collapsed, setCollapsed] = useState(false)
