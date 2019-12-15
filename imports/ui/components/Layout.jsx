@@ -2,20 +2,19 @@ import React from 'react'
 import {Layout as AntLayout} from 'antd'
 import SideMenu from '../components/SideMenu'
 import Footer from '../components/Footer'
-import MobileMenu from './NoteEditor/MobileMenu'
+import MobileMenu from './MobileMenu'
 const {Content} = AntLayout
+const isMobile = window.innerWidth < 480
 
-const mobile = '414px'
-
-const Layout = ({children, ...props}) => (
-  <AntLayout>
-    {/* <SideMenu /> */}
-    <MobileMenu />
+const Layout = ({children, ...props}) =>
+  console.log(isMobile) || (
     <AntLayout>
-      <Content>{children}</Content>
-      <Footer />
+      {isMobile ? <MobileMenu /> : <SideMenu />}
+      <AntLayout>
+        <Content>{children}</Content>
+        <Footer />
+      </AntLayout>
     </AntLayout>
-  </AntLayout>
-)
+  )
 
 export default Layout
