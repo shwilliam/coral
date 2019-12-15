@@ -11,7 +11,7 @@ export const activeNote = new ReactiveVar()
 if (Meteor.isServer) {
   Meteor.publish('notes', function notesPub() {
     return Notes.find({
-      author: this.userId,
+      $or: [{author: this.userId}, {collaborators: this.userId}],
     })
   })
 }
@@ -68,9 +68,8 @@ Meteor.methods({
     if (!note) throw new Meteor.Error('note-not-found')
 
     if (
-      (note.collaborators &&
-        !note.collaborators.includes(this.userId)) ||
-      note.author !== this.userId
+      note.author !== this.userId &&
+      note.collaborators && !note.collaborators.includes(this.userId)
     )
       throw new Meteor.Error('not-authorized')
 

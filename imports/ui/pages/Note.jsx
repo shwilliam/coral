@@ -1,26 +1,18 @@
 import React, {useEffect} from 'react'
 import {Meteor} from 'meteor/meteor'
-import {useParams, useHistory} from 'react-router'
-import {Layout} from 'antd'
+import {useParams} from 'react-router'
 import {withNote, withUser} from '../hocs'
-import SideMenu from '../components/SideMenu'
-import NoteEditor from '../components/NoteEditor'
-import Footer from '../components/Footer'
 import {activeNote} from '../../api/notes'
-
-const {Content} = Layout
+import {Layout, NoteEditor} from '../components'
 
 const Note = ({note, user}) => {
   const {username, id} = useParams()
-  const history = useHistory()
 
   // TODO: refactor to custom hook
   useEffect(() => {
     if (!note) return
 
-    Meteor.call('users.findUsername', note.author, (e, author) => {
-      if (e) console.error('author not found')
-
+    Meteor.call('users.findUsername', note.author, (_, author) => {
       if (author !== username)
         window &&
           window.history.pushState(
@@ -35,19 +27,7 @@ const Note = ({note, user}) => {
     activeNote.set(id)
   }, [])
 
-  return (
-    <Layout>
-      <SideMenu />
-      {user ? (
-        <Layout>
-          <Content>
-            <NoteEditor />
-          </Content>
-          <Footer />
-        </Layout>
-      ) : null}
-    </Layout>
-  )
+  return <Layout>{user ? <NoteEditor /> : null}</Layout>
 }
 
 export default withUser(withNote(Note))
