@@ -66,6 +66,7 @@ const AuthForm = ({form, ...props}) => {
       <FormField
         label="Email"
         name="email"
+        placeholder="Email"
         rules={[
           {
             type: 'email',
@@ -84,6 +85,7 @@ const AuthForm = ({form, ...props}) => {
         label="Password"
         name="password"
         type="password"
+        placeholder="Password"
         rules={[
           {required: true, message: 'Please enter your password'},
         ]}
@@ -96,6 +98,7 @@ const AuthForm = ({form, ...props}) => {
           label="Confirm password"
           name="passwordConfirm"
           type="password"
+          placeholder="Confirm Password"
           rules={[
             {
               required: true,
