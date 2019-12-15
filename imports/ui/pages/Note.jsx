@@ -12,9 +12,7 @@ const Note = ({note, user}) => {
   useEffect(() => {
     if (!note) return
 
-    Meteor.call('users.findUsername', note.author, (e, author) => {
-      if (e) console.error('author not found')
-
+    Meteor.call('users.findUsername', note.author, (_, author) => {
       if (author !== username)
         window &&
           window.history.pushState(
