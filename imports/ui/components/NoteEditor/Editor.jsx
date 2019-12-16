@@ -45,17 +45,14 @@ const Editor = ({value, onChange, ...props}) => {
         <MarkButton format="italic" icon={'fas fa-italic'} />
         <MarkButton format="underline" icon={'fas fa-underline'} />
         <MarkButton format="code" icon={'fas fa-code'} />
-        <BlockButton format="heading-one" icon="looks_one" />
-        <BlockButton format="heading-two" icon="looks_two" />
-        <BlockButton format="block-quote" icon="format_quote" />
+        <BlockButton format="heading-one" icon={'fas fa-heading'} />
+        <BlockButton format="heading-two" icon={'fas fa-heading'} />
         <BlockButton
-          format="numbered-list"
-          icon="format_list_numbered"
+          format="block-quote"
+          icon={'fas fa-quote-right'}
         />
-        <BlockButton
-          format="bulleted-list"
-          icon="format_list_bulleted"
-        />
+        <BlockButton format="numbered-list" icon={'fas fa-list-ol'} />
+        <BlockButton format="bulleted-list" icon={'fas fa-list-ul'} />
       </Toolbar>
       <Editable
         renderElement={renderElement}
