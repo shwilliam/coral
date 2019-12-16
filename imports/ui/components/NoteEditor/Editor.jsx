@@ -167,6 +167,12 @@ const Leaf = ({attributes, children, leaf}) => {
 
 const BlockButton = ({format, icon}) => {
   const editor = useSlate()
+  useEffect(() => {
+    loadCSS(
+      'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
+      document.querySelector('#font-awesome-css'),
+    )
+  }, [])
   return (
     <Button
       active={isBlockActive(editor, format)}
@@ -175,7 +181,7 @@ const BlockButton = ({format, icon}) => {
         editor.exec({type: 'format_block', format})
       }}
     >
-      <Icon>{icon}</Icon>
+      <Icon className={icon} style={{color: '696969'}} />
     </Button>
   )
 }
