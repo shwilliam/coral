@@ -1,10 +1,10 @@
 import React from 'react'
 import {Modal, Button} from 'antd'
-
+import DeleteNoteModal from './DeleteNoteModal'
 const {confirm} = Modal
 import {Icon} from 'antd'
 
-const DeleteNoteModal = ({onClick, ...props}) => {
+const DeleteNoteModal = ({notes}) => {
   const showDeleteConfirm = () => {
     confirm({
       title: 'Are you sure you want to delete this note?',
@@ -13,7 +13,7 @@ const DeleteNoteModal = ({onClick, ...props}) => {
       okType: 'danger',
       cancelText: 'No',
       onOk() {
-        console.log(onClick)
+
       },
     })
   }
@@ -24,4 +24,4 @@ const DeleteNoteModal = ({onClick, ...props}) => {
   )
 }
 
-export default DeleteNoteModal
+export default withNotes(DeleteNoteModal)
