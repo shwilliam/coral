@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Meteor} from 'meteor/meteor'
 import {withNote} from '../../hocs'
 import Editor from './Editor.jsx'
-import DeleteNoteBtn from './DeleteNoteBtn'
+import DeleteNoteModal from './DeleteNoteModal'
 
 // TODO: refresh content from db
 
@@ -21,9 +21,7 @@ const NoteEditor = ({note, ...props}) => {
   if (!note) return null
   return (
     <>
-      <DeleteNoteBtn
-        onClick={() => Meteor.call('notes.remove', note._id)}
-      />
+      <DeleteNoteModal />
       <Editor
         value={content}
         onChange={d =>
