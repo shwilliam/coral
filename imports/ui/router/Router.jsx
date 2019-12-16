@@ -14,32 +14,15 @@ import {Meteor} from 'meteor/meteor'
 const browserHistory = createBrowserHistory()
 
 const Routes = ({...props}) => {
-  // const history = useHistory()
-  // const refresh = () => {
-  //   history.push('/notes')
-  // }
-  // function requireAuth(nextState, replace) {
-  //   if (!userExists()) {
-  //     replace({
-  //       pathname: '/welcome',
-  //       state: {nextPathname: nextState.location.pathname},
-  //     })
-  //   }
-  // }
-
   return (
     <Router history={browserHistory}>
       <Switch>
         {/* TODO: delete notes page */}
-        {/* {Meteor.loggingIn() === true ? (
-          {refresh}
-        ) : ( */}
         <Route exact path="/welcome" component={Welcome}>
           {Meteor.loggingIn() === true ? (
             <Redirect to="/notes" />
           ) : null}
         </Route>
-        {/* )} */}
         <ProtectedRoute exact path="/notes" component={Notes} />
         <ProtectedRoute exact path="/" component={Home} />
         <ProtectedRoute
