@@ -1,11 +1,17 @@
-
 import React, {useState} from 'react'
+import {Meteor} from 'meteor/meteor'
+import {useHistory} from 'react-router'
 import {Menu, Icon, Layout} from 'antd'
 import {withNotes} from '../hocs'
 
 const SideMenu = ({notes, sharedNotes, ...props}) => {
+  const history = useHistory()
   const [open, setOpen] = useState(false)
   const toggleMenu = () => setOpen(s => !s)
+  const logout = () => {
+    Meteor.logout()
+    history.push('/welcome')
+  }
 
   return (
     <Layout.Sider
@@ -50,7 +56,19 @@ const SideMenu = ({notes, sharedNotes, ...props}) => {
             </Menu.Item>
           ))}
         </Menu.SubMenu>
-        <Menu.Item key="side-menu-settings">Settings</Menu.Item>
+        <Menu.SubMenu
+          key="side-menu-settings"
+          title={
+            <span>
+              <Icon type="user" />
+              <span>Settings</span>
+            </span>
+          }
+        >
+          <Menu.Item key="logout" onClick={logout}>
+            <span>Logout</span>
+          </Menu.Item>
+        </Menu.SubMenu>
       </Menu>
     </Layout.Sider>
   )
