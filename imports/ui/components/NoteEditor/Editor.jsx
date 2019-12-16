@@ -1,9 +1,12 @@
-import React, {useState, useMemo, useCallback} from 'react'
+import React, {useState, useEffect, useMemo, useCallback} from 'react'
 import {createEditor, Editor as SlateEditor} from 'slate'
 import isHotkey from 'is-hotkey'
 import {useSlate, Slate, Editable, withReact} from 'slate-react'
 import {withHistory} from 'slate-history'
-import {Button, Icon, Toolbar} from './Editor.styles'
+import {Button, Toolbar} from './Editor.styles'
+import {loadCSS} from 'fg-loadcss'
+
+import Icon from '@material-ui/core/Icon'
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -39,7 +42,7 @@ const Editor = ({value, onChange, ...props}) => {
       {...props}
     >
       <Toolbar>
-        <MarkButton format="bold" icon={'format_bold'} />
+        <MarkButton format="bold" icon="format_bold" />
         <MarkButton format="italic" icon="format_italic" />
         <MarkButton format="underline" icon="format_underlined" />
         <MarkButton format="code" icon="code" />
@@ -180,6 +183,12 @@ const BlockButton = ({format, icon}) => {
 
 const MarkButton = ({format, icon}) => {
   const editor = useSlate()
+  useEffect(() => {
+    loadCSS(
+      'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
+      document.querySelector('#font-awesome-css'),
+    )
+  }, [])
   return (
     <Button
       active={isMarkActive(editor, format)}
@@ -191,7 +200,7 @@ const MarkButton = ({format, icon}) => {
         })
       }}
     >
-      <Icon>{icon}</Icon>
+      <Icon className={icon} style={{color: '#d7d7d7'}} />{' '}
     </Button>
   )
 }
