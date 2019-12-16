@@ -1,7 +1,6 @@
 import React from 'react'
 import {Router, Route, Switch, Redirect} from 'react-router'
 const createBrowserHistory = require('history').createBrowserHistory
-import {useHistory} from 'react-router'
 import Home from '../pages/Home'
 import FourOhFour from '../pages/FourOhFour'
 import Note from '../pages/Note'
@@ -12,7 +11,7 @@ import {Meteor} from 'meteor/meteor'
 
 const browserHistory = createBrowserHistory()
 
-const Routes = ({...props}) => {
+const Routes = () => {
   return (
     <Router history={browserHistory}>
       <Switch>

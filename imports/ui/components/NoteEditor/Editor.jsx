@@ -39,7 +39,7 @@ const Editor = ({value, onChange, ...props}) => {
       {...props}
     >
       <Toolbar>
-        <MarkButton format="bold" icon="format_bold" />
+        <MarkButton format="bold" icon={'format_bold'} />
         <MarkButton format="italic" icon="format_italic" />
         <MarkButton format="underline" icon="format_underlined" />
         <MarkButton format="code" icon="code" />
