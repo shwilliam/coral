@@ -5,7 +5,6 @@ const createBrowserHistory = require('history').createBrowserHistory
 import Home from '../pages/Home'
 import FourOhFour from '../pages/FourOhFour'
 import Note from '../pages/Note'
-import Notes from '../pages/Notes'
 import Profile from '../pages/Profile'
 import Welcome from '../pages/Welcome'
 import ProtectedRoute from './ProtectedRoute'
@@ -16,9 +15,7 @@ const Routes = () => {
   return (
     <Router history={browserHistory}>
       <Switch>
-        {/* TODO: delete notes page */}
         <Route exact path="/welcome" component={Welcome} />
-        <ProtectedRoute exact path="/notes" component={Notes} />
         <ProtectedRoute exact path="/" component={Home} />
         <ProtectedRoute
           exact

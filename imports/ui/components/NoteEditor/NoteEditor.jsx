@@ -22,7 +22,7 @@ const NoteEditor = ({note, ...props}) => {
   return (
     <>
       <DeleteNoteBtn
-        onClick={Meteor.call('notes.remove', note._id)}
+        onClick={() => Meteor.call('notes.remove', note._id)}
       />
       <Editor
         value={content}
