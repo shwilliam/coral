@@ -35,7 +35,6 @@ const FormField = ({
 
 const AuthForm = ({form, ...props}) => {
   const [isSignUp, setIsSignUp] = useState(false)
-
   const onSubmit = e => {
     e.preventDefault()
     form.validateFields((err, {username, email, password}) => {
