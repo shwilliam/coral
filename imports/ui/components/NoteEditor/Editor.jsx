@@ -5,7 +5,6 @@ import {useSlate, Slate, Editable, withReact} from 'slate-react'
 import {withHistory} from 'slate-history'
 import {Button, Toolbar} from './Editor.styles'
 import {loadCSS} from 'fg-loadcss'
-
 import Icon from '@material-ui/core/Icon'
 
 const HOTKEYS = {
@@ -42,10 +41,10 @@ const Editor = ({value, onChange, ...props}) => {
       {...props}
     >
       <Toolbar>
-        <MarkButton format="bold" icon="format_bold" />
-        <MarkButton format="italic" icon="format_italic" />
-        <MarkButton format="underline" icon="format_underlined" />
-        <MarkButton format="code" icon="code" />
+        <MarkButton format="bold" icon={'fas fa-bold'} />
+        <MarkButton format="italic" icon={'fas fa-italic'} />
+        <MarkButton format="underline" icon={'fas fa-underline'} />
+        <MarkButton format="code" icon={'fas fa-code'} />
         <BlockButton format="heading-one" icon="looks_one" />
         <BlockButton format="heading-two" icon="looks_two" />
         <BlockButton format="block-quote" icon="format_quote" />
