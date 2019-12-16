@@ -1,5 +1,5 @@
 import React from 'react'
-import {Router, Route, Switch} from 'react-router'
+import {Router, Route, Switch, Redirect} from 'react-router'
 const createBrowserHistory = require('history').createBrowserHistory
 
 import Home from '../pages/Home'
@@ -17,7 +17,11 @@ const Routes = () => {
     <Router history={browserHistory}>
       <Switch>
         {/* TODO: delete notes page */}
-        <Route exact path="/welcome" component={Welcome} />
+        {Meteor.loggingIn() === true ? (
+          browserHistory.push('/notes')
+        ) : (
+          <Route exact path="/welcome" component={Welcome} />
+        )}
         <ProtectedRoute exact path="/notes" component={Notes} />
         <ProtectedRoute exact path="/" component={Home} />
         <ProtectedRoute

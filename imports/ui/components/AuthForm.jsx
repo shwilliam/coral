@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {Meteor} from 'meteor/meteor'
 import {Accounts} from 'meteor/accounts-base'
 import {Form, Icon, Input, Button} from 'antd'
+import {useHistory} from 'react-router-dom'
 
 const onAuth = e => {
   if (e) alert(e)
@@ -35,13 +36,16 @@ const FormField = ({
 
 const AuthForm = ({form, ...props}) => {
   const [isSignUp, setIsSignUp] = useState(false)
-
+  const history = useHistory()
   const onSubmit = e => {
     e.preventDefault()
     form.validateFields((err, {username, email, password}) => {
       if (!err) {
         isSignUp
-          ? Accounts.createUser({username, email, password}, onAuth)
+          ? Accounts.createUser(
+              {username, email, password},
+              onAuth /* && history.push('/notes') */,
+            )
           : Meteor.loginWithPassword(email, password, onAuth)
       }
     })
