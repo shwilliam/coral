@@ -1,9 +1,11 @@
-import React, {useState, useMemo, useCallback} from 'react'
+import React, {useState, useEffect, useMemo, useCallback} from 'react'
 import {createEditor, Editor as SlateEditor} from 'slate'
 import isHotkey from 'is-hotkey'
 import {useSlate, Slate, Editable, withReact} from 'slate-react'
 import {withHistory} from 'slate-history'
-import {Button, Icon, Toolbar} from './Editor.styles'
+import {Button, Toolbar} from './Editor.styles'
+import {loadCSS} from 'fg-loadcss'
+import Icon from '@material-ui/core/Icon'
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -39,21 +41,18 @@ const Editor = ({value, onChange, ...props}) => {
       {...props}
     >
       <Toolbar>
-        <MarkButton format="bold" icon="format_bold" />
-        <MarkButton format="italic" icon="format_italic" />
-        <MarkButton format="underline" icon="format_underlined" />
-        <MarkButton format="code" icon="code" />
-        <BlockButton format="heading-one" icon="looks_one" />
-        <BlockButton format="heading-two" icon="looks_two" />
-        <BlockButton format="block-quote" icon="format_quote" />
+        <MarkButton format="bold" icon={'fas fa-bold'} />
+        <MarkButton format="italic" icon={'fas fa-italic'} />
+        <MarkButton format="underline" icon={'fas fa-underline'} />
+        <MarkButton format="code" icon={'fas fa-code'} />
+        <BlockButton format="heading-one" icon={'fas fa-heading'} />
+        <BlockButton format="heading-two" icon={'fas fa-heading'} />
         <BlockButton
-          format="numbered-list"
-          icon="format_list_numbered"
+          format="block-quote"
+          icon={'fas fa-quote-right'}
         />
-        <BlockButton
-          format="bulleted-list"
-          icon="format_list_bulleted"
-        />
+        <BlockButton format="numbered-list" icon={'fas fa-list-ol'} />
+        <BlockButton format="bulleted-list" icon={'fas fa-list-ul'} />
       </Toolbar>
       <Editable
         renderElement={renderElement}
@@ -165,6 +164,12 @@ const Leaf = ({attributes, children, leaf}) => {
 
 const BlockButton = ({format, icon}) => {
   const editor = useSlate()
+  useEffect(() => {
+    loadCSS(
+      'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
+      document.querySelector('#font-awesome-css'),
+    )
+  }, [])
   return (
     <Button
       active={isBlockActive(editor, format)}
@@ -173,13 +178,19 @@ const BlockButton = ({format, icon}) => {
         editor.exec({type: 'format_block', format})
       }}
     >
-      <Icon>{icon}</Icon>
+      <Icon className={icon} style={{color: '696969'}} />
     </Button>
   )
 }
 
 const MarkButton = ({format, icon}) => {
   const editor = useSlate()
+  useEffect(() => {
+    loadCSS(
+      'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
+      document.querySelector('#font-awesome-css'),
+    )
+  }, [])
   return (
     <Button
       active={isMarkActive(editor, format)}
@@ -191,7 +202,7 @@ const MarkButton = ({format, icon}) => {
         })
       }}
     >
-      <Icon>{icon}</Icon>
+      <Icon className={icon} style={{color: '#d7d7d7'}} />{' '}
     </Button>
   )
 }
