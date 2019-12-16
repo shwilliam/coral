@@ -1,10 +1,11 @@
 import React from 'react'
 import {Modal, Button} from 'antd'
-import DeleteNoteModal from './DeleteNoteModal'
+import {Meteor} from 'meteor/meteor'
 const {confirm} = Modal
+import {withNote} from '../../hocs'
 import {Icon} from 'antd'
 
-const DeleteNoteModal = ({notes}) => {
+const DeleteNoteModal = ({note, ...props}) => {
   const showDeleteConfirm = () => {
     confirm({
       title: 'Are you sure you want to delete this note?',
@@ -13,15 +14,15 @@ const DeleteNoteModal = ({notes}) => {
       okType: 'danger',
       cancelText: 'No',
       onOk() {
-
+        Meteor.call('notes.remove', note._id)
       },
     })
   }
   return (
-    <Button onClick={showDeleteConfirm} type="dashed">
+    <Button onClick={showDeleteConfirm} type="dashed" {...props}>
       <Icon type="delete" />
     </Button>
   )
 }
 
-export default withNotes(DeleteNoteModal)
+export default withNote(DeleteNoteModal)

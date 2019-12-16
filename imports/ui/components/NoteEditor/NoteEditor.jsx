@@ -21,9 +21,7 @@ const NoteEditor = ({note, ...props}) => {
   if (!note) return null
   return (
     <>
-      <DeleteNoteModal
-        onClick={() => Meteor.call('notes.remove', note._id)}
-      />
+      <DeleteNoteModal />
       <Editor
         value={content}
         onChange={d =>
