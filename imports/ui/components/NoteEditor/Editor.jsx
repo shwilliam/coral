@@ -44,15 +44,12 @@ const Editor = ({value, onChange, ...props}) => {
         <MarkButton format="bold" icon="bold" />
         <MarkButton format="italic" icon="italic" />
         <MarkButton format="underline" icon="underline" />
-        <MarkButton format="code" icon="" />
-        <BlockButton format="heading-one" icon={'fas fa-heading'} />
-        <BlockButton format="heading-two" icon={'fas fa-heading'} />
-        <BlockButton
-          format="block-quote"
-          icon={'fas fa-quote-right'}
-        />
-        <BlockButton format="numbered-list" icon={'fas fa-list-ol'} />
-        <BlockButton format="bulleted-list" icon={'fas fa-list-ul'} />
+        <MarkButton format="code" icon="code" />
+        <BlockButton format="heading-one" icon="font-size" />
+        <BlockButton format="heading-two" icon="font-size" />
+        <BlockButton format="block-quote" icon="file-text" />
+        <BlockButton format="numbered-list" icon="ordered-list" />
+        <BlockButton format="bulleted-list" icon="unordered-list" />
       </Toolbar>
       <Editable
         renderElement={renderElement}
@@ -178,7 +175,7 @@ const BlockButton = ({format, icon}) => {
         editor.exec({type: 'format_block', format})
       }}
     >
-      <Icon type={icon} style={{color: '696969'}} />
+      <Icon type={icon} />
     </Button>
   )
 }
@@ -202,7 +199,7 @@ const MarkButton = ({format, icon}) => {
         })
       }}
     >
-      <Icon type={icon} style={{color: '#d7d7d7'}} />{' '}
+      <Icon type={icon} />{' '}
     </Button>
   )
 }
