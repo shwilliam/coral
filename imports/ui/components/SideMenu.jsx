@@ -1,9 +1,13 @@
 import React, {useState} from 'react'
 import {Meteor} from 'meteor/meteor'
+import {useHistory, useParams} from 'react-router'
 import {Menu, Icon, Layout} from 'antd'
 import {withNotes} from '../hocs'
+import {activeNote} from '../../api/notes'
 
 const SideMenu = ({notes, sharedNotes, ...props}) => {
+  const history = useHistory()
+  const {username, id} = useParams()
   const [open, setOpen] = useState(false)
   const toggleMenu = () => setOpen(s => !s)
   const logout = () =>
@@ -28,10 +32,14 @@ const SideMenu = ({notes, sharedNotes, ...props}) => {
           }
         >
           {notes.map(({_id, title}) => (
-            <Menu.Item key={_id}>
-              <span>
-                <a href={`/note/${_id}`}>{title}</a>
-              </span>
+            <Menu.Item
+              key={_id}
+              onClick={() => {
+                activeNote.set(`/note/${_id}`)
+                history.push(`/note/${_id}`)
+              }}
+            >
+              <span>{title}</span>
             </Menu.Item>
           ))}
         </Menu.SubMenu>
@@ -45,10 +53,11 @@ const SideMenu = ({notes, sharedNotes, ...props}) => {
           }
         >
           {sharedNotes.map(({_id, title}) => (
-            <Menu.Item key={_id}>
-              <span>
-                <a href={`/note/${_id}`}>{title}</a>
-              </span>
+            <Menu.Item
+              key={_id}
+              onClick={() => history.push(`/note/${_id}`)}
+            >
+              <span>{title}</span>
             </Menu.Item>
           ))}
         </Menu.SubMenu>

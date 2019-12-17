@@ -25,7 +25,7 @@ const Note = ({note, user}) => {
 
   useEffect(() => {
     activeNote.set(id)
-  }, [])
+  }, [id])
 
   return <Layout>{user ? <NoteEditor /> : null}</Layout>
 }
