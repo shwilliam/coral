@@ -18,7 +18,6 @@ const MobileMenu = ({notes, sharedNotes, ...props}) => {
         width: '100%',
         textAlign: 'center',
       }}
-      onClick={() => console.log('hey')}
       mode="horizontal"
     >
       <SubMenu
