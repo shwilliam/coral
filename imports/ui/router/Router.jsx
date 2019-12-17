@@ -7,30 +7,19 @@ import Note from '../pages/Note'
 import Profile from '../pages/Profile'
 import Welcome from '../pages/Welcome'
 import ProtectedRoute from './ProtectedRoute'
-import {Meteor} from 'meteor/meteor'
 
 const browserHistory = createBrowserHistory()
 
-const Routes = () => {
-  return (
-    <Router history={browserHistory}>
-      <Switch>
-        <Route exact path="/welcome" component={Welcome}>
-          {Meteor.loggingIn() === true ? (
-            <Redirect to="/" component={Home} />
-          ) : null}
-        </Route>
-        <ProtectedRoute exact path="/" component={Home} />
-        <ProtectedRoute
-          exact
-          path="/:username/:id"
-          component={Note}
-        />
-        <ProtectedRoute exact path="/profile" component={Profile} />
-        <ProtectedRoute component={FourOhFour} />
-      </Switch>
-    </Router>
-  )
-}
+const Routes = () => (
+  <Router history={browserHistory}>
+    <Switch>
+      <ProtectedRoute exact path="/" component={Home} />
+      <Route exact path="/welcome" component={Welcome} />
+      <ProtectedRoute exact path="/:username/:id" component={Note} />
+      <ProtectedRoute exact path="/profile" component={Profile} />
+      <ProtectedRoute component={FourOhFour} />
+    </Switch>
+  </Router>
+)
 
 export default Routes

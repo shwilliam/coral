@@ -5,8 +5,7 @@ import {Form, Icon, Input, Button} from 'antd'
 
 const onAuth = e => {
   if (e) alert(e)
-  alert('logged in')
-  // TODO: clear form
+  location.replace('/')
 }
 
 const FormField = ({
