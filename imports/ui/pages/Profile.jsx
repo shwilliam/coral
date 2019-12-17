@@ -3,12 +3,12 @@ import {Descriptions} from 'antd'
 import withUser from '../hocs/withUser'
 import Footer from '../components/Footer'
 
-const Profile = ({user, email}) =>
+const Profile = ({user, username, email}) =>
   user ? (
     <>
       <Descriptions title="User Info">
         <Descriptions.Item label="UserName">
-          [username]
+          {username}
         </Descriptions.Item>
         <Descriptions.Item label="Email">{email}</Descriptions.Item>
       </Descriptions>
