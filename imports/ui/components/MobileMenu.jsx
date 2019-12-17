@@ -12,7 +12,12 @@ const MobileMenu = ({notes, sharedNotes, ...props}) => {
   return (
     <Menu
       theme="dark"
-      style={{textAlign: 'center'}}
+      style={{
+        position: 'absolute',
+        bottom: '0',
+        width: '100%',
+        textAlign: 'center',
+      }}
       onClick={() => console.log('hey')}
       mode="horizontal"
     >
