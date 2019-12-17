@@ -2,13 +2,15 @@ import React from 'react'
 import withUser from '../hocs/withUser'
 import {Descriptions} from 'antd'
 import Gravatar from 'react-gravatar'
+import {Layout} from '../components'
+import ProfileUpdate from '../components/ProfileUpdate'
 import Footer from '../components/Footer'
 
-const Profile = ({user, username, email}) =>
-  user ? (
-    <>
+const Profile = ({user, username, email}) => {
+  return user ? (
+    <Layout>
       <Descriptions title="User Info">
-        <Descriptions.Item label="User Name">
+        <Descriptions.Item label="Avatar">
           <Gravatar default="monsterid" email={email} />
         </Descriptions.Item>
         <Descriptions.Item label="User Name">
@@ -16,10 +18,11 @@ const Profile = ({user, username, email}) =>
         </Descriptions.Item>
         <Descriptions.Item label="Email">{email}</Descriptions.Item>
       </Descriptions>
+      <ProfileUpdate />
       <Footer />
-    </>
+    </Layout>
   ) : (
     <p>loading...</p>
   )
-
+}
 export default withUser(Profile)
