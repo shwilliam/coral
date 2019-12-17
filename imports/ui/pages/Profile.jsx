@@ -4,7 +4,6 @@ import {Descriptions} from 'antd'
 import Gravatar from 'react-gravatar'
 import {Layout} from '../components'
 import ProfileUpdate from '../components/ProfileUpdate'
-import Footer from '../components/Footer'
 
 const Profile = ({user, username, email}) => {
   return user ? (
@@ -19,7 +18,6 @@ const Profile = ({user, username, email}) => {
         <Descriptions.Item label="Email">{email}</Descriptions.Item>
       </Descriptions>
       <ProfileUpdate />
-      <Footer />
     </Layout>
   ) : (
     <p>loading...</p>
