@@ -18,7 +18,7 @@ const Footer = () => (
       target="_blank"
       rel="noopener"
     >
-      EdinK1
+      @EdinK1
     </a>{' '}
     and{' '}
     <a
@@ -26,7 +26,7 @@ const Footer = () => (
       target="_blank"
       rel="noopener"
     >
-      robhhr
+      @robhhr
     </a>
   </AntFooter>
 )
