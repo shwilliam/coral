@@ -1,18 +1,20 @@
 import React, {useState, useEffect} from 'react'
 import {Meteor} from 'meteor/meteor'
 import {withNote} from '../../hocs'
-import Editor from './Editor.jsx'
+// import Editor from './Editor.jsx'
+import Editor from './DraftEditor.jsx'
 import DeleteNoteModal from './DeleteNoteModal'
 
 // TODO: refresh content from db
 
 const NoteEditor = ({note, ...props}) => {
-  const [content, setContent] = useState([
-    {
-      type: 'paragraph',
-      children: [{text: ''}],
-    },
-  ])
+  const [content, setContent] = useState()
+  // const [content, setContent] = useState([
+  //   {
+  //     type: 'paragraph',
+  //     children: [{text: ''}],
+  //   },
+  // ])
 
   useEffect(() => {
     if (note && note.content) setContent(JSON.parse(note.content))
@@ -26,7 +28,8 @@ const NoteEditor = ({note, ...props}) => {
         value={content}
         onChange={d =>
           Meteor.call('notes.edit', note._id, JSON.stringify(d)) ||
-          setContent(d)
+          setContent(d) ||
+          console.log(JSON.stringify(d))
         }
         {...props}
       />
