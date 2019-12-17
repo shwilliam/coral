@@ -17,7 +17,7 @@ const Routes = () => {
       <Switch>
         <Route exact path="/welcome" component={Welcome}>
           {Meteor.loggingIn() === true ? (
-            <Redirect to="/notes" />
+            <Redirect to="/" component={Home} />
           ) : null}
         </Route>
         <ProtectedRoute exact path="/" component={Home} />
