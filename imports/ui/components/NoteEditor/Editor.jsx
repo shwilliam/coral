@@ -5,7 +5,7 @@ import {useSlate, Slate, Editable, withReact} from 'slate-react'
 import {withHistory} from 'slate-history'
 import {Button, Toolbar} from './Editor.styles'
 import {loadCSS} from 'fg-loadcss'
-import Icon from '@material-ui/core/Icon'
+import {Icon} from 'antd'
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -41,10 +41,10 @@ const Editor = ({value, onChange, ...props}) => {
       {...props}
     >
       <Toolbar>
-        <MarkButton format="bold" icon={'fas fa-bold'} />
-        <MarkButton format="italic" icon={'fas fa-italic'} />
-        <MarkButton format="underline" icon={'fas fa-underline'} />
-        <MarkButton format="code" icon={'fas fa-code'} />
+        <MarkButton format="bold" icon="bold" />
+        <MarkButton format="italic" icon="italic" />
+        <MarkButton format="underline" icon="underline" />
+        <MarkButton format="code" icon="" />
         <BlockButton format="heading-one" icon={'fas fa-heading'} />
         <BlockButton format="heading-two" icon={'fas fa-heading'} />
         <BlockButton
@@ -178,7 +178,7 @@ const BlockButton = ({format, icon}) => {
         editor.exec({type: 'format_block', format})
       }}
     >
-      <Icon className={icon} style={{color: '696969'}} />
+      <Icon type={icon} style={{color: '696969'}} />
     </Button>
   )
 }
@@ -202,7 +202,7 @@ const MarkButton = ({format, icon}) => {
         })
       }}
     >
-      <Icon className={icon} style={{color: '#d7d7d7'}} />{' '}
+      <Icon type={icon} style={{color: '#d7d7d7'}} />{' '}
     </Button>
   )
 }
