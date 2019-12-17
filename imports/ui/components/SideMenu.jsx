@@ -65,13 +65,19 @@ const SideMenu = ({notes, sharedNotes, ...props}) => {
           key="side-menu-settings"
           title={
             <span>
-              <Icon type="user" />
+              <Icon type="setting" />
               <span>Settings</span>
             </span>
           }
         >
           <Menu.Item key="logout" onClick={logout}>
-            <span>Logout</span>
+            <Icon type="logout" /> Logout
+          </Menu.Item>
+          <Menu.Item
+            key="profile"
+            onClick={() => history.push('/profile')}
+          >
+            <Icon type="user" /> Profile
           </Menu.Item>
         </Menu.SubMenu>
       </Menu>
