@@ -1,20 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import {Meteor} from 'meteor/meteor'
 import {withNote} from '../../hocs'
-// import Editor from './Editor.jsx'
-import Editor from './DraftEditor.jsx'
-import DeleteNoteModal from './DeleteNoteModal'
-
-// TODO: refresh content from db
+import Editor from './Editor.jsx'
+import DeleteButton from './DeleteButton.jsx'
 
 const NoteEditor = ({note, ...props}) => {
   const [content, setContent] = useState()
-  // const [content, setContent] = useState([
-  //   {
-  //     type: 'paragraph',
-  //     children: [{text: ''}],
-  //   },
-  // ])
 
   useEffect(() => {
     if (note && note.content) setContent(JSON.parse(note.content))
@@ -23,7 +14,7 @@ const NoteEditor = ({note, ...props}) => {
   if (!note) return null
   return (
     <>
-      <DeleteNoteModal />
+      <DeleteButton />
       <Editor
         value={content}
         onChange={d =>
