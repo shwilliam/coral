@@ -13,3 +13,9 @@ Meteor.methods({
     return user.username
   },
 })
+
+Meteor.users.allow({
+  update: function(userId, user) {
+    return true
+  },
+})
