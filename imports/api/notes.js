@@ -69,7 +69,8 @@ Meteor.methods({
 
     if (
       note.author !== this.userId &&
-      note.collaborators && !note.collaborators.includes(this.userId)
+      note.collaborators &&
+      !note.collaborators.includes(this.userId)
     )
       throw new Meteor.Error('not-authorized')
 
@@ -88,6 +89,28 @@ Meteor.methods({
     if (!note) throw new Meteor.Error('note-not-found')
 
     Notes.remove(id)
+  },
+  'notes.updateTitle'(id, title) {
+    check(id, String)
+    check(title, String)
+
+    if (!this.userId) throw new Meteor.Error('not-authorized')
+
+    const note = Notes.findOne(id)
+    if (!note) throw new Meteor.Error('note-not-found')
+
+    if (
+      note.author !== this.userId &&
+      note.collaborators &&
+      !note.collaborators.includes(this.userId)
+    )
+      throw new Meteor.Error('not-authorized')
+
+    Notes.update(id, {
+      $set: {
+        title,
+      },
+    })
   },
 })
 
