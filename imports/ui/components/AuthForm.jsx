@@ -32,6 +32,10 @@ const FormField = ({
   </Form.Item>
 )
 
+const ForgotPassword = () => {
+  console.log('password forget')
+}
+
 const AuthForm = ({form, ...props}) => {
   const [isSignUp, setIsSignUp] = useState(false)
   const onSubmit = e => {
@@ -128,6 +132,9 @@ const AuthForm = ({form, ...props}) => {
         </Button>
         <Button type="primary" htmlType="submit">
           Submit
+        </Button>
+        <Button type="link" onClick={ForgotPassword}>
+          tacos
         </Button>
       </Form.Item>
     </Form>
