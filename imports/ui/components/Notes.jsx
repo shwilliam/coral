@@ -1,6 +1,5 @@
 import React, {Link} from 'react'
 import {withNotes} from '../hocs'
-import ShareNoteForm from './ShareNoteForm'
 
 const Notes = ({notes, ...props}) => (
   <ul {...props}>
@@ -9,7 +8,6 @@ const Notes = ({notes, ...props}) => (
         <p>
           {title} [{author}]
         </p>
-        <ShareNoteForm noteId={_id} />
         {collaborators ? (
           <ul>
             {collaborators.map(id => (

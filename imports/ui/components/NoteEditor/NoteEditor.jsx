@@ -4,6 +4,7 @@ import {withNote} from '../../hocs'
 import Editor from './Editor.jsx'
 import EditableTitle from './EditableTitle.jsx'
 import DeleteButton from './DeleteButton.jsx'
+import ShareForm from './ShareForm'
 
 const NoteEditor = ({note, ...props}) => {
   const [content, setContent] = useState()
@@ -16,6 +17,11 @@ const NoteEditor = ({note, ...props}) => {
   return (
     <>
       <EditableTitle noteId={note._id} value={note.title} />
+      <ShareForm
+        noteId={note._id}
+        collaborators={note.collaborators}
+        author={note.author}
+      />
       <DeleteButton />
       <Editor
         value={content}
