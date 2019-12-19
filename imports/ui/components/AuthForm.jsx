@@ -3,6 +3,26 @@ import {Meteor} from 'meteor/meteor'
 import {Accounts} from 'meteor/accounts-base'
 import {Form, Icon, Input, Button} from 'antd'
 
+const styledForm = {
+  width: '20%',
+  margin: '0 auto',
+  height: '100vh',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  textAlign: 'center',
+}
+
+const styledButton = {
+  width: '100%',
+  height: '40px',
+  marginBottom: '20px',
+}
+
+const styledInput = {
+  height: '40px',
+}
+
 const onAuth = e => {
   if (e) alert(e)
   location.replace('/')
@@ -46,10 +66,17 @@ const AuthForm = ({form, ...props}) => {
   }
 
   return (
-    <Form onSubmit={onSubmit} {...props}>
+    <Form
+      style={styledForm}
+      onSubmit={onSubmit}
+      {...props}
+      className="test"
+    >
       {isSignUp ? (
         <FormField
-          label="Username"
+          // label="Username"
+          aria-label="Username"
+          title="Username"
           name="username"
           rules={[
             {required: true, message: 'Please choose a username'},
@@ -58,11 +85,14 @@ const AuthForm = ({form, ...props}) => {
             <Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />
           }
           form={form}
+          style={styledInput}
         />
       ) : null}
 
       <FormField
-        label="Email"
+        // label="Email"
+        aria-label="Email"
+        title="Email"
         name="email"
         placeholder="Email"
         rules={[
@@ -77,10 +107,13 @@ const AuthForm = ({form, ...props}) => {
         ]}
         Icon={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}} />}
         form={form}
+        style={styledInput}
       />
 
       <FormField
-        label="Password"
+        // label="Password"
+        aria-label="Password"
+        title="Password"
         name="password"
         type="password"
         placeholder="Password"
@@ -89,11 +122,14 @@ const AuthForm = ({form, ...props}) => {
         ]}
         Icon={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}} />}
         form={form}
+        style={styledInput}
       />
 
       {isSignUp ? (
         <FormField
-          label="Confirm password"
+          // label="Confirm password"
+          aria-label="Confirm password"
+          title="Confirm password"
           name="passwordConfirm"
           type="password"
           placeholder="Confirm Password"
@@ -119,15 +155,28 @@ const AuthForm = ({form, ...props}) => {
             <Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}} />
           }
           form={form}
+          style={styledInput}
         />
       ) : null}
 
       <Form.Item>
-        <Button type="link" onClick={() => setIsSignUp(s => !s)}>
-          {isSignUp ? 'Already have an account' : 'Create an account'}
+        <Button style={styledButton} type="primary" htmlType="submit">
+          {!isSignUp ? 'Log in' : 'Sign up'}
         </Button>
-        <Button type="primary" htmlType="submit">
-          Submit
+        <div
+          style={{
+            borderBottom: '1px solid #dbdee0',
+            margin: '15px 10px',
+          }}
+        ></div>
+        {!isSignUp ? (
+          <span>Don't have an account?</span>
+        ) : (
+          <span>Already have an account?</span>
+        )}
+
+        <Button type="link" onClick={() => setIsSignUp(s => !s)}>
+          {isSignUp ? 'Log in' : 'Sign up'}
         </Button>
       </Form.Item>
     </Form>
