@@ -8,11 +8,11 @@ const EditableProfileInfo = ({value, onSave, type = 'text'}) => {
   const toggleUpdate = () => setIsUpdating(s => !s)
 
   const onUpdate = e => {
+    e.preventDefault()
     if (!input.length) return
 
     Meteor.call(onSave, input)
     toggleUpdate()
-    e.preventDefault()
   }
 
   return isUpdating ? (
