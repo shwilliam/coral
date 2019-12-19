@@ -17,6 +17,10 @@ const onAuth = e => {
   location.replace('/')
 }
 
+const styledField = {
+  display: 'none',
+}
+
 const FormField = ({
   label,
   name,
@@ -142,7 +146,7 @@ const AuthForm = ({form, ...props}) => {
           {isSignUp ? 'Already have an account' : 'Create an account'}
         </Button>
         <Button type="primary" htmlType="submit">
-          Submit
+          {!isSignUp ? 'Log in' : 'Sign up'}
         </Button>
       </Form.Item>
     </Form>
