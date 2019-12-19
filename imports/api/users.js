@@ -1,6 +1,12 @@
 import {Meteor} from 'meteor/meteor'
 import {check} from 'meteor/check'
 
+if (Meteor.isServer) {
+  Meteor.publish('users', function() {
+    return Meteor.users.find({})
+  })
+}
+
 Meteor.methods({
   'users.findUsername'(id) {
     check(id, String)

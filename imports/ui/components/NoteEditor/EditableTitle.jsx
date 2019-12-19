@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import {Input, PageHeader, Button} from 'antd'
 import DeleteButton from './DeleteButton.jsx'
 
+// TODO: refactor to NoteHeader component
+
 const EditableTitle = ({noteId, value, ...props}) => {
   const [isEditing, setIsEditing] = useState(false)
   const [input, setInput] = useState(value)
