@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Meteor} from 'meteor/meteor'
 import {Input, Icon, Button} from 'antd'
+import {message} from 'antd'
 
 const EditableProfileInfo = ({value, onSave, type = 'text'}) => {
   const [isUpdating, setIsUpdating] = useState(false)
@@ -12,6 +13,7 @@ const EditableProfileInfo = ({value, onSave, type = 'text'}) => {
     if (!input.length) return
 
     Meteor.call(onSave, input)
+    message.success('Success')
     toggleUpdate()
   }
 
