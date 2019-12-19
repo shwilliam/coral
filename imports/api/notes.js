@@ -1,6 +1,5 @@
 import {Meteor} from 'meteor/meteor'
 import {Mongo} from 'meteor/mongo'
-import {Accounts} from 'meteor/accounts-base'
 import {ReactiveVar} from 'meteor/reactive-var'
 import {check} from 'meteor/check'
 
@@ -96,6 +95,32 @@ Meteor.methods({
     Notes.update(id, {
       $set: {
         title,
+      },
+    })
+  },
+  'notes.favorite'(id) {
+    check(id, String)
+
+    if (!this.userId) throw new Meteor.Error('not-authorized')
+
+    const note = Notes.findOne(id)
+    if (!note) throw new Meteor.Error('note-not-found')
+
+    if (
+      note.author !== this.userId &&
+      note.collaborators &&
+      !note.collaborators.includes(this.userId)
+    )
+      throw new Meteor.Error('not-authorized')
+
+    const favorites = Meteor.user.favorites || []
+
+    if (favorites.includes(id))
+      throw new Meteor.Error('already-favorite')
+
+    Meteor.users.update(this.userId, {
+      $set: {
+        favorites: [...favorites, id],
       },
     })
   },
