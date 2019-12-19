@@ -3,8 +3,7 @@ import {Meteor} from 'meteor/meteor'
 import {withNote} from '../../hocs'
 import Editor from './Editor.jsx'
 import EditableTitle from './EditableTitle.jsx'
-import DeleteButton from './DeleteButton.jsx'
-import ShareForm from './ShareForm'
+import ShareForm from './ShareForm.jsx'
 
 const NoteEditor = ({note, ...props}) => {
   const [content, setContent] = useState()
@@ -22,7 +21,6 @@ const NoteEditor = ({note, ...props}) => {
         collaborators={note.collaborators}
         author={note.author}
       />
-      <DeleteButton />
       <Editor
         value={content}
         onChange={d =>

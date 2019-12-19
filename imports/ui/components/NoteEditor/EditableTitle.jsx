@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Input, PageHeader, Button} from 'antd'
-import DeleteButton from './DeleteButton.jsx'
+import DeleteNoteButton from '../DeleteNoteButton.jsx'
 
 // TODO: refactor to NoteHeader component
 
@@ -41,7 +41,7 @@ const EditableTitle = ({noteId, value, ...props}) => {
         </Button>
       }
       extra={[
-        <DeleteButton key="note-delete" />,
+        <DeleteNoteButton key="note-delete" noteId={noteId} />,
         <Button key="note-share" onClick={() => console.log('share')}>
           Share
         </Button>,
