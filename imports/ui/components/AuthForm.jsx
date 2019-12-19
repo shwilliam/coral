@@ -75,6 +75,8 @@ const AuthForm = ({form, ...props}) => {
       {isSignUp ? (
         <FormField
           // label="Username"
+          aria-label="Username"
+          title="Username"
           name="username"
           rules={[
             {required: true, message: 'Please choose a username'},
@@ -89,6 +91,8 @@ const AuthForm = ({form, ...props}) => {
 
       <FormField
         // label="Email"
+        aria-label="Email"
+        title="Email"
         name="email"
         placeholder="Email"
         rules={[
@@ -108,6 +112,8 @@ const AuthForm = ({form, ...props}) => {
 
       <FormField
         // label="Password"
+        aria-label="Password"
+        title="Password"
         name="password"
         type="password"
         placeholder="Password"
@@ -122,6 +128,8 @@ const AuthForm = ({form, ...props}) => {
       {isSignUp ? (
         <FormField
           // label="Confirm password"
+          aria-label="Confirm password"
+          title="Confirm password"
           name="passwordConfirm"
           type="password"
           placeholder="Confirm Password"
@@ -163,9 +171,7 @@ const AuthForm = ({form, ...props}) => {
                 margin: '15px 10px',
               }}
             ></div>
-            <span style={{textAlign: 'center'}}>
-              Don't have an account?
-            </span>
+            <span>Don't have an account?</span>
           </>
         ) : null}
         <Button type="link" onClick={() => setIsSignUp(s => !s)}>
