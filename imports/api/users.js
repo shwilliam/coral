@@ -1,5 +1,6 @@
 import {Meteor} from 'meteor/meteor'
 import {check} from 'meteor/check'
+import {Accounts} from 'meteor/accounts-base'
 
 Meteor.methods({
   'users.findUsername'(id) {
@@ -34,6 +35,17 @@ Meteor.methods({
       {_id: Meteor.userId()},
       {$set: {emails: [{address: email}]}},
     )
+  },
+  'users.changePassword'(newPassword) {
+    if (!Meteor.isServer) return
+    check(newPassword, String)
+
+    if (!this.userId) throw new Meteor.Error('not-authorized')
+
+    const user = Meteor.users.findOne({_id: this.userId})
+    if (!user) throw new Meteor.Error('not-found')
+
+    Accounts.setPassword(this.userId, newPassword, {logout: false})
   },
 })
 
