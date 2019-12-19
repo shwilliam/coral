@@ -3,6 +3,10 @@ import {Meteor} from 'meteor/meteor'
 import {Accounts} from 'meteor/accounts-base'
 import {Form, Icon, Input, Button} from 'antd'
 
+const styledForm = {
+  width: '25%',
+}
+
 const onAuth = e => {
   if (e) alert(e)
   location.replace('/')
@@ -46,7 +50,12 @@ const AuthForm = ({form, ...props}) => {
   }
 
   return (
-    <Form onSubmit={onSubmit} {...props}>
+    <Form
+      style={styledForm}
+      onSubmit={onSubmit}
+      {...props}
+      className="test"
+    >
       {isSignUp ? (
         <FormField
           label="Username"
