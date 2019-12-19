@@ -12,6 +12,29 @@ Meteor.methods({
 
     return user.username
   },
+  'users.updateUserName'(username) {
+    check(username, String)
+
+    if (!this.userId) throw new Meteor.Error('not-authorized')
+
+    const user = Meteor.users.findOne({_id: this.userId})
+    if (!user) throw new Meteor.Error('not-found')
+
+    Meteor.users.update({_id: Meteor.userId()}, {$set: {username}})
+  },
+  'users.updateEmail'(email) {
+    check(email, String)
+
+    if (!this.userId) throw new Meteor.Error('not-authorized')
+
+    const user = Meteor.users.findOne({_id: this.userId})
+    if (!user) throw new Meteor.Error('not-found')
+
+    Meteor.users.update(
+      {_id: Meteor.userId()},
+      {$set: {emails: [{address: email}]}},
+    )
+  },
 })
 
 Meteor.users.allow({
