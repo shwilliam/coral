@@ -10,15 +10,16 @@ const styledForm = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
+  textAlign: 'center',
+}
+
+const styledButton = {
+  width: '100%',
 }
 
 const onAuth = e => {
   if (e) alert(e)
   location.replace('/')
-}
-
-const styledField = {
-  display: 'none',
 }
 
 const FormField = ({
@@ -59,7 +60,6 @@ const AuthForm = ({form, ...props}) => {
   }
 
   return (
-    // <div style={styledDiv}>
     <Form
       style={styledForm}
       onSubmit={onSubmit}
@@ -68,7 +68,7 @@ const AuthForm = ({form, ...props}) => {
     >
       {isSignUp ? (
         <FormField
-          label="Username"
+          // label="Username"
           name="username"
           rules={[
             {required: true, message: 'Please choose a username'},
@@ -81,7 +81,7 @@ const AuthForm = ({form, ...props}) => {
       ) : null}
 
       <FormField
-        label="Email"
+        // label="Email"
         name="email"
         placeholder="Email"
         rules={[
@@ -99,7 +99,7 @@ const AuthForm = ({form, ...props}) => {
       />
 
       <FormField
-        label="Password"
+        // label="Password"
         name="password"
         type="password"
         placeholder="Password"
@@ -112,7 +112,7 @@ const AuthForm = ({form, ...props}) => {
 
       {isSignUp ? (
         <FormField
-          label="Confirm password"
+          // label="Confirm password"
           name="passwordConfirm"
           type="password"
           placeholder="Confirm Password"
@@ -142,15 +142,27 @@ const AuthForm = ({form, ...props}) => {
       ) : null}
 
       <Form.Item>
-        <Button type="link" onClick={() => setIsSignUp(s => !s)}>
-          {isSignUp ? 'Already have an account' : 'Create an account'}
-        </Button>
-        <Button type="primary" htmlType="submit">
+        <Button style={styledButton} type="primary" htmlType="submit">
           {!isSignUp ? 'Log in' : 'Sign up'}
+        </Button>
+        {!isSignUp ? (
+          <>
+            <div
+              style={{
+                borderBottom: '1px solid #dbdee0',
+                margin: '25px 10px',
+              }}
+            ></div>
+            <span style={{textAlign: 'center'}}>
+              Don't have an account?
+            </span>
+          </>
+        ) : null}
+        <Button type="link" onClick={() => setIsSignUp(s => !s)}>
+          {isSignUp ? 'Already have an account' : 'Sign up'}
         </Button>
       </Form.Item>
     </Form>
-    // </div>
   )
 }
 
