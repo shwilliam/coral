@@ -163,19 +163,20 @@ const AuthForm = ({form, ...props}) => {
         <Button style={styledButton} type="primary" htmlType="submit">
           {!isSignUp ? 'Log in' : 'Sign up'}
         </Button>
+        <div
+          style={{
+            borderBottom: '1px solid #dbdee0',
+            margin: '15px 10px',
+          }}
+        ></div>
         {!isSignUp ? (
-          <>
-            <div
-              style={{
-                borderBottom: '1px solid #dbdee0',
-                margin: '15px 10px',
-              }}
-            ></div>
-            <span>Don't have an account?</span>
-          </>
-        ) : null}
+          <span>Don't have an account?</span>
+        ) : (
+          <span>Already have an account?</span>
+        )}
+
         <Button type="link" onClick={() => setIsSignUp(s => !s)}>
-          {isSignUp ? 'Already have an account' : 'Sign up'}
+          {isSignUp ? 'Log in' : 'Sign up'}
         </Button>
       </Form.Item>
     </Form>
