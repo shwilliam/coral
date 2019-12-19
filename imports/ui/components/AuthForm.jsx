@@ -32,71 +32,6 @@ const FormField = ({
   </Form.Item>
 )
 
-const forgotPassword = email => {
-  const user = Accounts.findUserByEmail(email)
-  // TODO handle error
-  if (!user) return console.error('you need a user')
-
-  console.log(user)
-}
-
-const Somethibg = props => {
-  const [email, setEmail] = useState('')
-
-  return (
-    <>
-      <input
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-        {...props}
-      />
-      <button onClick={() => forgotPassword(email)} type="button">
-        forgotr
-      </button>
-    </>
-  )
-}
-
-// Accounts.forgotPassword = (options, callback) => {
-//   if (!options.email) {
-//     return reportError(new Meteor.Error(400, "Must pass options.email"), callback);
-//   }
-
-//   if (callback) {
-//     Accounts.connection.call("forgotPassword", options, callback);
-//   } else {
-//     Accounts.connection.call("forgotPassword", options);
-//   }
-// };
-
-// Accounts.resetPassword = (token, newPassword, callback) => {
-//   if (!token instanceof String) {
-//     return reportError(new Meteor.Error(400, "Token must be a string"), callback);
-//   }
-
-//   if (!newPassword instanceof String) {
-//     return reportError(new Meteor.Error(400, "Password must be a string"), callback);
-//   }
-
-//   if (!newPassword) {
-//     return reportError(new Meteor.Error(400, "Password may not be empty"), callback);
-//   }
-
-//   Accounts.callLoginMethod({
-//     methodName: 'resetPassword',
-//     methodArguments: [token, Accounts._hashPassword(newPassword)],
-//     userCallback: callback});
-// };
-
-// Accounts.onResetPasswordLink(callback) {
-//   if (this._accountsCallbacks["reset-password"]) {
-//     Meteor._debug("Accounts.onResetPasswordLink was called more than once. " +
-//       "Only one callback added will be executed.");
-//   }
-
-//   this._accountsCallbacks["reset-password"] = callback;
-// };
-
 const AuthForm = ({form, ...props}) => {
   const [isSignUp, setIsSignUp] = useState(false)
   const onSubmit = e => {
@@ -194,10 +129,6 @@ const AuthForm = ({form, ...props}) => {
         <Button type="primary" htmlType="submit">
           Submit
         </Button>
-        <Button type="link" onClick={() => forgotPassword()}>
-          tacos
-        </Button>
-        <Somethibg />
       </Form.Item>
     </Form>
   )
