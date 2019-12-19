@@ -6,7 +6,7 @@ import {Form, Icon, Input, Button} from 'antd'
 const styledForm = {
   width: '20%',
   margin: '0 auto',
-  height: '100%',
+  height: '100vh',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
