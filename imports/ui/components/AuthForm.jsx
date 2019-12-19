@@ -4,7 +4,7 @@ import {Accounts} from 'meteor/accounts-base'
 import {Form, Icon, Input, Button} from 'antd'
 
 const styledForm = {
-  width: '25%',
+  width: '20%',
   margin: '0 auto',
   height: '100%',
   display: 'flex',
@@ -15,6 +15,12 @@ const styledForm = {
 
 const styledButton = {
   width: '100%',
+  height: '40px',
+  marginBottom: '20px',
+}
+
+const styledInput = {
+  height: '40px',
 }
 
 const onAuth = e => {
@@ -77,6 +83,7 @@ const AuthForm = ({form, ...props}) => {
             <Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />
           }
           form={form}
+          style={styledInput}
         />
       ) : null}
 
@@ -96,6 +103,7 @@ const AuthForm = ({form, ...props}) => {
         ]}
         Icon={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}} />}
         form={form}
+        style={styledInput}
       />
 
       <FormField
@@ -108,6 +116,7 @@ const AuthForm = ({form, ...props}) => {
         ]}
         Icon={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}} />}
         form={form}
+        style={styledInput}
       />
 
       {isSignUp ? (
@@ -138,6 +147,7 @@ const AuthForm = ({form, ...props}) => {
             <Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}} />
           }
           form={form}
+          style={styledInput}
         />
       ) : null}
 
@@ -150,7 +160,7 @@ const AuthForm = ({form, ...props}) => {
             <div
               style={{
                 borderBottom: '1px solid #dbdee0',
-                margin: '25px 10px',
+                margin: '15px 10px',
               }}
             ></div>
             <span style={{textAlign: 'center'}}>
