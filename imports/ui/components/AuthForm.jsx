@@ -5,6 +5,11 @@ import {Form, Icon, Input, Button} from 'antd'
 
 const styledForm = {
   width: '25%',
+  margin: '0 auto',
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
 }
 
 const onAuth = e => {
@@ -50,6 +55,7 @@ const AuthForm = ({form, ...props}) => {
   }
 
   return (
+    // <div style={styledDiv}>
     <Form
       style={styledForm}
       onSubmit={onSubmit}
@@ -140,6 +146,7 @@ const AuthForm = ({form, ...props}) => {
         </Button>
       </Form.Item>
     </Form>
+    // </div>
   )
 }
 
