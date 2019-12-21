@@ -4,7 +4,7 @@ const createBrowserHistory = require('history').createBrowserHistory
 import Home from '../pages/Home'
 import FourOhFour from '../pages/FourOhFour'
 import Note from '../pages/Note'
-import Profile from '../pages/Profile'
+import Profile from '../pages/Profile/Profile'
 import Welcome from '../pages/Welcome'
 import ProtectedRoute from './ProtectedRoute'
 
