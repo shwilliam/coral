@@ -1,43 +1,35 @@
 import React, {useState} from 'react'
 import {Meteor} from 'meteor/meteor'
-import {Input, Icon, Button} from 'antd'
+import {Input, Icon, Button, Typography} from 'antd'
+const {Paragraph} = Typography
 import {message} from 'antd'
 
-const EditableProfileInfo = ({value, onSave, type = 'text'}) => {
-  const [isUpdating, setIsUpdating] = useState(false)
-  const [input, setInput] = useState(value)
-  const toggleUpdate = () => setIsUpdating(s => !s)
-
-  const onUpdate = e => {
-    e.preventDefault()
-    if (!input.length) return
-
-    Meteor.call(onSave, input)
-    message.success('Success')
-    toggleUpdate()
+const EditableProfileInfo = ({
+  style,
+  value,
+  onSave,
+  type = 'text',
+}) => {
+  const onUpdate = newValue => {
+    if (!newValue.length) {
+      message.error("This field can't be empty!")
+      return
+    } else if (type === 'email' && !newValue.includes('@')) {
+      message.error('Please include a valid email address')
+      return
+    } else {
+      Meteor.call(onSave, newValue)
+      message.success('Success!')
+    }
   }
-
-  return isUpdating ? (
-    <form onSubmit={onUpdate}>
-      <Input
-        type={type}
-        value={input}
-        onChange={e => setInput(e.target.value)}
-      />
-      <Button htmlType="submit">
-        <Icon type="save" />
-      </Button>
-      <Button onClick={toggleUpdate}>
-        <Icon type="close" />
-      </Button>
-    </form>
-  ) : (
-    <>
+  return (
+    <Paragraph
+      style={style}
+      type={type}
+      editable={{onChange: onUpdate}}
+    >
       {value}
-      <Button onClick={toggleUpdate}>
-        <Icon type="edit" />
-      </Button>
-    </>
+    </Paragraph>
   )
 }
 

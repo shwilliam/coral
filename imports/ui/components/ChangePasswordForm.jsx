@@ -37,7 +37,7 @@ const CollectionCreateForm = Form.create({name: 'change-password'})(
                   message: 'Please input the new password',
                 },
               ],
-            })(<Input />)}
+            })(<Input.Password />)}
           </Form.Item>
           <Form.Item label="Confirm Password">
             {getFieldDecorator('confirmPassword', {
@@ -59,7 +59,7 @@ const CollectionCreateForm = Form.create({name: 'change-password'})(
                   },
                 },
               ],
-            })(<Input />)}
+            })(<Input.Password />)}
           </Form.Item>
         </Form>
       </Modal>
