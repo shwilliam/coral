@@ -113,7 +113,7 @@ Meteor.methods({
     )
       throw new Meteor.Error('not-authorized')
 
-    const favorites = Meteor.user.favorites || []
+    const favorites = Meteor.user().favorites || []
 
     if (favorites.includes(id))
       throw new Meteor.Error('already-favorite')
@@ -123,6 +123,34 @@ Meteor.methods({
         favorites: [...favorites, id],
       },
     })
+  },
+  'notes.unfavorite'(id) {
+    check(id, String)
+
+    if (!this.userId) throw new Meteor.Error('not-authorized')
+
+    const note = Notes.findOne(id)
+    if (!note) throw new Meteor.Error('note-not-found')
+
+    if (
+      note.author !== this.userId &&
+      note.collaborators &&
+      !note.collaborators.includes(this.userId)
+    )
+      throw new Meteor.Error('not-authorized')
+
+    const favorites = Meteor.user().favorites || []
+
+    if (!favorites.includes(id))
+      throw new Meteor.Error('not-favorite')
+
+    Meteor.users.update(this.userId, {
+      $set: {
+        favorites: favorites.splice(1, favorites.indexOf(id)),
+      },
+    })
+
+    console.log(Meteor.user().favorites)
   },
 })
 
