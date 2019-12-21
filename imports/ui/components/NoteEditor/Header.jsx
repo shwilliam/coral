@@ -2,13 +2,14 @@ import React, {useState} from 'react'
 import {Input, PageHeader, Button} from 'antd'
 import DeleteNoteButton from '../DeleteNoteButton.jsx'
 import FavoriteNoteButton from '../FavoriteNoteButton.jsx'
+import {useHistory} from 'react-router'
 
 // TODO: refactor EditableTitle component
 
 const Header = ({noteId, value, ...props}) => {
   const [isEditing, setIsEditing] = useState(false)
   const [input, setInput] = useState(value)
-
+  const history = useHistory()
   const toggleEdit = () => setIsEditing(s => !s)
   const onSave = e => {
     if (!input.length) return
@@ -23,6 +24,7 @@ const Header = ({noteId, value, ...props}) => {
       style={{
         border: '1px solid rgb(235, 237, 240)',
       }}
+      onBack={() => history.push('/')}
       title={
         isEditing ? (
           <form onSubmit={onSave}>
