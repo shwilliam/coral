@@ -3,9 +3,9 @@ import {Input, PageHeader, Button} from 'antd'
 import DeleteNoteButton from '../DeleteNoteButton.jsx'
 import FavoriteNoteButton from '../FavoriteNoteButton.jsx'
 
-// TODO: refactor to NoteHeader component
+// TODO: refactor EditableTitle component
 
-const EditableTitle = ({noteId, value, ...props}) => {
+const Header = ({noteId, value, ...props}) => {
   const [isEditing, setIsEditing] = useState(false)
   const [input, setInput] = useState(value)
 
@@ -60,4 +60,4 @@ const EditableTitle = ({noteId, value, ...props}) => {
   )
 }
 
-export default EditableTitle
+export default Header
