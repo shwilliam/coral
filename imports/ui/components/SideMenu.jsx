@@ -1,13 +1,12 @@
 import React, {useState} from 'react'
 import {Meteor} from 'meteor/meteor'
-import {useHistory, useParams} from 'react-router'
+import {useHistory} from 'react-router'
 import {Menu, Icon, Layout} from 'antd'
 import {withNotes} from '../hocs'
 import {activeNote} from '../../api/notes'
 
-const SideMenu = ({notes, sharedNotes, ...props}) => {
+const SideMenu = ({notes, sharedNotes, favoriteNotes, ...props}) => {
   const history = useHistory()
-  const {username, id} = useParams()
   const [open, setOpen] = useState(false)
   const toggleMenu = () => setOpen(s => !s)
   const logout = () =>
@@ -22,6 +21,24 @@ const SideMenu = ({notes, sharedNotes, ...props}) => {
       {...props}
     >
       <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+        <Menu.SubMenu
+          key="side-menu-favorites"
+          title={
+            <span>
+              <Icon type="star" />
+              <span>Favorites</span>
+            </span>
+          }
+        >
+          {favoriteNotes.map(({_id, title}) => (
+            <Menu.Item
+              key={_id}
+              onClick={() => history.push(`/note/${_id}`)}
+            >
+              <span>{title}</span>
+            </Menu.Item>
+          ))}
+        </Menu.SubMenu>
         <Menu.SubMenu
           key="side-menu-notes"
           title={

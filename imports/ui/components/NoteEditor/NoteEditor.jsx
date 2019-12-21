@@ -2,9 +2,8 @@ import React, {useState, useEffect} from 'react'
 import {Meteor} from 'meteor/meteor'
 import {withNote} from '../../hocs'
 import Editor from './Editor.jsx'
-import EditableTitle from './EditableTitle.jsx'
-import DeleteButton from './DeleteButton.jsx'
-import ShareForm from './ShareForm'
+import Header from './Header.jsx'
+import ShareForm from './ShareForm.jsx'
 
 const NoteEditor = ({note, ...props}) => {
   const [content, setContent] = useState()
@@ -16,13 +15,12 @@ const NoteEditor = ({note, ...props}) => {
   if (!note) return null
   return (
     <>
-      <EditableTitle noteId={note._id} value={note.title} />
+      <Header noteId={note._id} value={note.title} />
       <ShareForm
         noteId={note._id}
         collaborators={note.collaborators}
         author={note.author}
       />
-      <DeleteButton />
       <Editor
         value={content}
         onChange={d =>
