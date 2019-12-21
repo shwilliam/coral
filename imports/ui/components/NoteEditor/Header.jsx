@@ -23,7 +23,6 @@ const Header = ({noteId, value, ...props}) => {
       style={{
         border: '1px solid rgb(235, 237, 240)',
       }}
-      onBack={window.history.back}
       title={
         isEditing ? (
           <form onSubmit={onSave}>
