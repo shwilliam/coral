@@ -149,8 +149,6 @@ Meteor.methods({
         favorites: favorites.splice(1, favorites.indexOf(id)),
       },
     })
-
-    console.log(Meteor.user().favorites)
   },
 })
 
