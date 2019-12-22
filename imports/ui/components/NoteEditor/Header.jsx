@@ -48,7 +48,11 @@ const Header = ({noteId, noteContent, title, ...props}) => {
         </Button>
       }
       extra={[
-        <DeleteNoteButton key="note-delete" noteId={noteId} />,
+        <DeleteNoteButton
+          key="note-delete"
+          noteId={noteId}
+          type="default"
+        />,
         <FavoriteNoteButton key="note-favorite" noteId={noteId} />,
         <Button
           key="note-download"

@@ -2,7 +2,13 @@ import React from 'react'
 import {Meteor} from 'meteor/meteor'
 import {Modal, Button, Icon} from 'antd'
 
-const DeleteNoteButton = ({noteId, ...props}) => {
+const DeleteNoteButton = ({
+  noteId,
+  type = 'danger',
+  icon = 'delete',
+  children,
+  ...props
+}) => {
   const showDeleteConfirm = () => {
     Modal.confirm({
       title: 'Are you sure you want to delete this note?',
@@ -15,9 +21,15 @@ const DeleteNoteButton = ({noteId, ...props}) => {
       },
     })
   }
+
   return (
-    <Button onClick={showDeleteConfirm} {...props}>
-      <Icon type="delete" />
+    <Button
+      onClick={showDeleteConfirm}
+      type={type}
+      icon={icon}
+      {...props}
+    >
+      {children}
     </Button>
   )
 }
