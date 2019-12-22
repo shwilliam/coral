@@ -24,10 +24,12 @@ const Profile = ({
   email,
   notes,
   favoriteNotes,
+  sharedNotes,
   author,
 }) => {
   const [loading, setLoading] = useState(false)
   console.log('notes', notes)
+  console.log('fav', favoriteNotes)
   console.log('users', users)
   return user ? (
     console.log(user) || (
@@ -103,7 +105,31 @@ const Profile = ({
                 })}
             </TabPane>
             <TabPane tab="Shared notes" key="2">
-              Shared Notes
+              {sharedNotes &&
+                sharedNotes.length &&
+                sharedNotes.map(sharedNote => {
+                  const content = sharedNote.content
+                    ? sharedNote.content.replace(/(<([^>]+)>)/gi, '')
+                    : 'no content provided'
+                  const date = sharedNote.createdAt.toDateString()
+                  return (
+                    <List
+                      style={notesList}
+                      key={sharedNote._id}
+                      itemLayout="horizontal"
+                    >
+                      <List.Item>
+                        <List.Item.Meta
+                          title={sharedNote.title}
+                          description={content}
+                        />
+                      </List.Item>
+                      <List.Item>
+                        <Text type="secondary">{date}</Text>
+                      </List.Item>
+                    </List>
+                  )
+                })}
             </TabPane>
           </Tabs>
         </Card>
