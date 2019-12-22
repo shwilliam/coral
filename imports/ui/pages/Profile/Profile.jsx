@@ -3,24 +3,31 @@ import withUser from '../../hocs/withUser'
 import {Meteor} from 'meteor/meteor'
 import {withUsers, withNotes} from '../../hocs'
 import {Skeleton, Icon, List, Card, Typography, Tabs} from 'antd'
-const {Text} = Typography
+const {Title, Text} = Typography
 const {TabPane} = Tabs
 import Gravatar from 'react-gravatar'
 import {Layout} from '../../components'
 import EditableProfileInfo from '../../components/EditableProfileInfo'
 import ChangePasswordForm from '../../components/ChangePasswordForm'
-import {card, info, gravatar, dashed} from './Profile.styles'
-import { Notes } from '/imports/api/notes';
+import {
+  card,
+  info,
+  gravatar,
+  dashed,
+  notesList,
+} from './Profile.styles'
 
 const Profile = ({
-  user,
   users,
-  author,
+  user,
   username: profileUsername,
-  favoriteNotes,
   email,
+  notes,
+  favoriteNotes,
+  author,
 }) => {
   const [loading, setLoading] = useState(false)
+  console.log('notes', notes)
   console.log('users', users)
   return user ? (
     console.log(user) || (
@@ -67,9 +74,33 @@ const Profile = ({
           </section>
         </Card>
         <Card style={card}>
-          <Tabs defaultActiveKey="1" onChange={callback}>
+          <Tabs defaultActiveKey="1">
             <TabPane tab="Your notes" key="1">
-              Your Notes
+              {notes &&
+                notes.length &&
+                notes.map(note => {
+                  const content = note.content
+                    ? note.content.replace(/(<([^>]+)>)/gi, '')
+                    : 'no content provided'
+                  const date = note.createdAt.toDateString()
+                  return (
+                    <List
+                      style={notesList}
+                      key={note._id}
+                      itemLayout="horizontal"
+                    >
+                      <List.Item>
+                        <List.Item.Meta
+                          title={note.title}
+                          description={content}
+                        />
+                      </List.Item>
+                      <List.Item>
+                        <Text type="secondary">{date}</Text>
+                      </List.Item>
+                    </List>
+                  )
+                })}
             </TabPane>
             <TabPane tab="Shared notes" key="2">
               Shared Notes
