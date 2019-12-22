@@ -5,21 +5,38 @@ import {withNotes} from '../hocs'
 import {useHistory, useParams} from 'react-router'
 import {Meteor} from 'meteor/meteor'
 
-const MobileMenu = ({notes, sharedNotes, ...props}) => {
+const MobileMenu = ({
+  favoriteNotes,
+  notes,
+  sharedNotes,
+  ...props
+}) => {
   const history = useHistory()
   const logout = () =>
     Meteor.logout(() => location.replace('/welcome'))
   return (
     <Menu
       theme="dark"
-      style={{
-        position: 'absolute',
-        bottom: '0',
-        width: '100%',
-        textAlign: 'center',
-      }}
+      style={{textAlign: 'center'}}
       mode="horizontal"
     >
+      <Menu.SubMenu
+        key="side-menu-favorites"
+        title={
+          <span>
+            <Icon type="star" />
+          </span>
+        }
+      >
+        {favoriteNotes.map(({_id, title}) => (
+          <Menu.Item
+            key={_id}
+            onClick={() => history.push(`/note/${_id}`)}
+          >
+            <span>{title}</span>
+          </Menu.Item>
+        ))}
+      </Menu.SubMenu>
       <SubMenu
         title={
           <span className="submenu-title-wrapper">
