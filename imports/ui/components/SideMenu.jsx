@@ -21,6 +21,12 @@ const SideMenu = ({notes, sharedNotes, favoriteNotes, ...props}) => {
       {...props}
     >
       <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+        <Menu.Item key="new-note" title="new-note">
+          <span>
+            <Icon type="plus-circle" theme="outlined" />
+            <span>New Note</span>
+          </span>
+        </Menu.Item>
         <Menu.SubMenu
           key="side-menu-favorites"
           title={
@@ -97,15 +103,6 @@ const SideMenu = ({notes, sharedNotes, favoriteNotes, ...props}) => {
             <Icon type="user" /> Profile
           </Menu.Item>
         </Menu.SubMenu>
-        <Menu.SubMenu
-          key="new-note"
-          title={
-            <span>
-              <Icon type="plus-circle" />
-              <span>New Note</span>
-            </span>
-          }
-        ></Menu.SubMenu>
       </Menu>
     </Layout.Sider>
   )
