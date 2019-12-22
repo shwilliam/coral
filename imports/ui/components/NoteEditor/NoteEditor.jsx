@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import {Meteor} from 'meteor/meteor'
-import {withNote} from '../../hocs'
 import Editor from './Editor.jsx'
 import Header from './Header.jsx'
 import ShareForm from './ShareForm.jsx'
@@ -15,18 +14,22 @@ const NoteEditor = ({note, ...props}) => {
   if (!note) return null
   return (
     <>
-      <Header noteId={note._id} value={note.title} />
+      <Header
+        title={note.title}
+        noteId={note._id}
+        noteContent={content}
+      />
       <ShareForm
         noteId={note._id}
         collaborators={note.collaborators}
         author={note.author}
       />
       <Editor
+        id="note"
         value={content}
         onChange={d =>
           Meteor.call('notes.edit', note._id, JSON.stringify(d)) ||
-          setContent(d) ||
-          console.log(JSON.stringify(d))
+          setContent(d)
         }
         {...props}
       />
@@ -34,4 +37,4 @@ const NoteEditor = ({note, ...props}) => {
   )
 }
 
-export default withNote(NoteEditor)
+export default NoteEditor

@@ -1,16 +1,21 @@
 import React, {useState} from 'react'
+import Meteor from 'meteor/meteor'
+import {useHistory} from 'react-router'
 import {Input, PageHeader, Button} from 'antd'
+import {usePdfDownload} from '../../hooks'
 import DeleteNoteButton from '../DeleteNoteButton.jsx'
 import FavoriteNoteButton from '../FavoriteNoteButton.jsx'
-import {useHistory} from 'react-router'
 
 // TODO: refactor EditableTitle component
 
-const Header = ({noteId, value, ...props}) => {
+const Header = ({noteId, noteContent, title, ...props}) => {
   const [isEditing, setIsEditing] = useState(false)
-  const [input, setInput] = useState(value)
+  const [input, setInput] = useState(title)
   const history = useHistory()
+  const downloadPdf = usePdfDownload()
+
   const toggleEdit = () => setIsEditing(s => !s)
+
   const onSave = e => {
     if (!input.length) return
 
@@ -34,7 +39,7 @@ const Header = ({noteId, value, ...props}) => {
             />
           </form>
         ) : (
-          value
+          title
         )
       }
       subTitle={
@@ -43,17 +48,18 @@ const Header = ({noteId, value, ...props}) => {
         </Button>
       }
       extra={[
-        <DeleteNoteButton key="note-delete" noteId={noteId} />,
+        <DeleteNoteButton
+          key="note-delete"
+          noteId={noteId}
+          type="default"
+        />,
         <FavoriteNoteButton key="note-favorite" noteId={noteId} />,
-        <Button key="note-share" onClick={() => console.log('share')}>
-          Share
-        </Button>,
         <Button
-          key="note-save"
-          onClick={() => console.log('save')}
+          key="note-download"
+          onClick={() => downloadPdf(noteContent)}
           type="primary"
         >
-          Save
+          Save as PDF
         </Button>,
       ]}
       {...props}
