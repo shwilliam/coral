@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import withUser from '../../hocs/withUser'
 import {Meteor} from 'meteor/meteor'
-import {withUsers} from '../../hocs'
+import {withUsers, withNotes} from '../../hocs'
 import {Skeleton, Icon, List, Card, Typography} from 'antd'
 const {Text} = Typography
 import Gravatar from 'react-gravatar'
@@ -15,6 +15,7 @@ const Profile = ({
   users,
   author,
   username: profileUsername,
+  favoriteNotes,
   email,
 }) => {
   const [loading, setLoading] = useState(false)
@@ -62,6 +63,12 @@ const Profile = ({
           </section>
           <section style={dashed}>
             <Text strong>Your favorite notes</Text>
+            {favoriteNotes.map(({_id, title}) => (
+              <List.Item key={_id}>
+                <Icon style={{paddingRight: '0.5rem'}} type="star" />
+                {title}
+              </List.Item>
+            ))}
           </section>
         </Card>
       </Layout>
@@ -70,4 +77,4 @@ const Profile = ({
     <p>loading...</p>
   )
 }
-export default withUser(withUsers(Profile))
+export default withUser(withUsers(withNotes(Profile)))
