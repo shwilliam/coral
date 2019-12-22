@@ -21,6 +21,16 @@ const SideMenu = ({notes, sharedNotes, favoriteNotes, ...props}) => {
       {...props}
     >
       <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+        <Menu.Item
+          key="new-note"
+          title="new-note"
+          onClick={() => history.push('/')}
+        >
+          <span>
+            <Icon type="plus-circle" theme="outlined" />
+            <span>New Note</span>
+          </span>
+        </Menu.Item>
         <Menu.SubMenu
           key="side-menu-favorites"
           title={
