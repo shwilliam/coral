@@ -1,11 +1,12 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Meteor} from 'meteor/meteor'
-import {Input, Icon, Button, Typography} from 'antd'
+import {Icon, Typography} from 'antd'
 const {Paragraph} = Typography
 import {message} from 'antd'
 
 const EditableProfileInfo = ({
   style,
+  iconType,
   value,
   onSave,
   type = 'text',
@@ -28,6 +29,7 @@ const EditableProfileInfo = ({
       type={type}
       editable={{onChange: onUpdate}}
     >
+      <Icon style={{paddingRight: '0.5rem'}} type={iconType} />
       {value}
     </Paragraph>
   )
