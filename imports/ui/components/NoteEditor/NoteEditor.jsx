@@ -7,9 +7,7 @@ import ShareForm from './ShareForm.jsx'
 
 const NoteEditor = ({note, ...props}) => {
   const [content, setContent] = useState()
-  const [pdfDownloadError, downloadPdf] = usePdfDownload(
-    '#note .ql-editor',
-  )
+  const downloadPdf = usePdfDownload()
 
   useEffect(() => {
     if (note && note.content) setContent(JSON.parse(note.content))
@@ -18,9 +16,7 @@ const NoteEditor = ({note, ...props}) => {
   if (!note) return null
   return (
     <>
-      {pdfDownloadError ? null : (
-        <button onClick={downloadPdf}>download</button>
-      )}
+      <button onClick={() => downloadPdf(content)}>download</button>
       <Header noteId={note._id} value={note.title} />
       <ShareForm
         noteId={note._id}
