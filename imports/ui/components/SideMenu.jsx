@@ -97,6 +97,15 @@ const SideMenu = ({notes, sharedNotes, favoriteNotes, ...props}) => {
             <Icon type="user" /> Profile
           </Menu.Item>
         </Menu.SubMenu>
+        <Menu.SubMenu
+          key="new-note"
+          title={
+            <span>
+              <Icon type="plus-circle" />
+              <span>New Note</span>
+            </span>
+          }
+        ></Menu.SubMenu>
       </Menu>
     </Layout.Sider>
   )
