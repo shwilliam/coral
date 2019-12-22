@@ -15,6 +15,7 @@
     "antd": "^3.26.1",
     "bcrypt": "^3.0.7",
     "history": "^4.10.1",
+    "html2canvas": "^1.0.0-rc.5",
     "indexof": "0.0.1",
     "meteor-node-stubs": "^1.0.0",
     "react": "^16.9.0",
