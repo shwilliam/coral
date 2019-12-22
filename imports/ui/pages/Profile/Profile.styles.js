@@ -1,8 +1,7 @@
 const card = {
-  marginBottom: '24px',
-  width: '80%',
+  margin: '1rem auto 24px auto',
+  width: '90%',
   padding: '24px',
-  margin: '2rem',
   textAlign: 'center',
 }
 
