@@ -27,7 +27,7 @@ const Note = ({note, user}) => {
     activeNote.set(id)
   }, [id])
 
-  return <Layout>{user ? <NoteEditor /> : null}</Layout>
+  return <Layout>{user ? <NoteEditor note={note} /> : null}</Layout>
 }
 
 export default withUser(withNote(Note))
