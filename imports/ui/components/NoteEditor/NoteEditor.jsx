@@ -18,6 +18,7 @@ const NoteEditor = ({note, ...props}) => {
         title={note.title}
         noteId={note._id}
         noteContent={content}
+        collaborators={note.collaborators}
       />
       {note.author === Meteor.userId() ? (
         <ShareForm

@@ -7,7 +7,13 @@ import {usePdfDownload} from '../../hooks'
 import DeleteNoteButton from '../DeleteNoteButton.jsx'
 import FavoriteNoteButton from '../FavoriteNoteButton.jsx'
 
-const Header = ({noteId, noteContent, title, ...props}) => {
+const Header = ({
+  noteId,
+  noteContent,
+  title,
+  collaborators,
+  ...props
+}) => {
   const history = useHistory()
   const downloadPdf = usePdfDownload()
 
@@ -33,6 +39,7 @@ const Header = ({noteId, noteContent, title, ...props}) => {
         <DeleteNoteButton
           key="note-delete"
           noteId={noteId}
+          collaborators={collaborators}
           type="default"
         />,
         <FavoriteNoteButton key="note-favorite" noteId={noteId} />,

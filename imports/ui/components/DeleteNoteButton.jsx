@@ -1,14 +1,17 @@
 import React from 'react'
 import {Meteor} from 'meteor/meteor'
-import {Modal, Button, Icon} from 'antd'
+import {Modal, Button} from 'antd'
 
 const DeleteNoteButton = ({
   noteId,
+  collaborators,
   type = 'danger',
   icon = 'delete',
   children,
   ...props
 }) => {
+  const isCollaborator =
+    collaborators && collaborators.includes(Meteor.userId())
   const showDeleteConfirm = () => {
     Modal.confirm({
       title: 'Are you sure you want to delete this note?',
@@ -21,14 +24,14 @@ const DeleteNoteButton = ({
       },
     })
   }
+  const removeUserAsCollaborator = () => {
+    Meteor.call('notes.removeCollaborator', noteId)
+  }
+  const onDelete = () =>
+    isCollaborator ? removeUserAsCollaborator() : showDeleteConfirm()
 
   return (
-    <Button
-      onClick={showDeleteConfirm}
-      type={type}
-      icon={icon}
-      {...props}
-    >
+    <Button onClick={onDelete} type={type} icon={icon} {...props}>
       {children}
     </Button>
   )
