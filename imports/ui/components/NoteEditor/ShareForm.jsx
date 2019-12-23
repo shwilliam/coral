@@ -2,6 +2,7 @@ import React from 'react'
 import {Meteor} from 'meteor/meteor'
 import {Select, Form} from 'antd'
 import {withUsers} from '../../hocs'
+import {message} from 'antd'
 
 const ShareForm = ({
   noteId,
@@ -17,6 +18,7 @@ const ShareForm = ({
       noteId,
       d.map(val => val.split(' ')[0]),
     )
+    message.success('Note collaborators successfully updated')
   }
 
   return (
