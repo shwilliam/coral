@@ -31,24 +31,26 @@ const SideMenu = ({notes, sharedNotes, favoriteNotes, ...props}) => {
             <span>New Note</span>
           </span>
         </Menu.Item>
-        <Menu.SubMenu
-          key="side-menu-favorites"
-          title={
-            <span>
-              <Icon type="star" />
-              <span>Favorites</span>
-            </span>
-          }
-        >
-          {favoriteNotes.map(({_id, title}) => (
-            <Menu.Item
-              key={_id}
-              onClick={() => history.push(`/note/${_id}`)}
-            >
-              <span>{title}</span>
-            </Menu.Item>
-          ))}
-        </Menu.SubMenu>
+        {favoriteNotes.length > 0 ? (
+          <Menu.SubMenu
+            key="side-menu-favorites"
+            title={
+              <span>
+                <Icon type="star" />
+                <span>Favorites</span>
+              </span>
+            }
+          >
+            {favoriteNotes.map(({_id, title}) => (
+              <Menu.Item
+                key={_id}
+                onClick={() => history.push(`/note/${_id}`)}
+              >
+                <span>{title}</span>
+              </Menu.Item>
+            ))}
+          </Menu.SubMenu>
+        ) : null}
         <Menu.SubMenu
           key="side-menu-notes"
           title={
