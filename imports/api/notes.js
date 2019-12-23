@@ -33,10 +33,11 @@ Meteor.methods({
     check(id, String)
     check(collaborators, Array)
 
-    if (!this.userId) throw new Meteor.Error('not-authorized')
-
     const note = Notes.findOne(id)
     if (!note) throw new Meteor.Error('note-not-found')
+
+    if (!this.userId || note.author !== this.userId)
+      throw new Meteor.Error('not-authorized')
 
     Notes.update(id, {
       $set: {
