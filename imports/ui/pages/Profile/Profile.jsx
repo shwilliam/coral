@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import withUser from '../../hocs/withUser'
-import {Meteor} from 'meteor/meteor'
 import {withUsers, withNotes} from '../../hocs'
 import {Skeleton, Icon, List, Card, Typography, Tabs} from 'antd'
 const {Title, Text} = Typography
@@ -16,6 +15,7 @@ import {
   dashed,
   notesList,
 } from './Profile.styles'
+import ProfileTab from '../../components/ProfileTab'
 
 const Profile = ({
   users,
@@ -78,58 +78,10 @@ const Profile = ({
         <Card style={card}>
           <Tabs defaultActiveKey="1">
             <TabPane tab="Your notes" key="1">
-              {notes &&
-                notes.length &&
-                notes.map(note => {
-                  const content = note.content
-                    ? note.content.replace(/(<([^>]+)>)/gi, '')
-                    : 'no content provided'
-                  const date = note.createdAt.toDateString()
-                  return (
-                    <List
-                      style={notesList}
-                      key={note._id}
-                      itemLayout="horizontal"
-                    >
-                      <List.Item>
-                        <List.Item.Meta
-                          title={note.title}
-                          description={content}
-                        />
-                      </List.Item>
-                      <List.Item>
-                        <Text type="secondary">{date}</Text>
-                      </List.Item>
-                    </List>
-                  )
-                })}
+              <ProfileTab noteType={notes} style={notesList} />
             </TabPane>
             <TabPane tab="Shared notes" key="2">
-              {sharedNotes &&
-                sharedNotes.length &&
-                sharedNotes.map(sharedNote => {
-                  const content = sharedNote.content
-                    ? sharedNote.content.replace(/(<([^>]+)>)/gi, '')
-                    : 'no content provided'
-                  const date = sharedNote.createdAt.toDateString()
-                  return (
-                    <List
-                      style={notesList}
-                      key={sharedNote._id}
-                      itemLayout="horizontal"
-                    >
-                      <List.Item>
-                        <List.Item.Meta
-                          title={sharedNote.title}
-                          description={content}
-                        />
-                      </List.Item>
-                      <List.Item>
-                        <Text type="secondary">{date}</Text>
-                      </List.Item>
-                    </List>
-                  )
-                })}
+              <ProfileTab noteType={sharedNotes} style={notesList} />
             </TabPane>
           </Tabs>
         </Card>
