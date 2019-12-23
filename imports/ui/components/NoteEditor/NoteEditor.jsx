@@ -18,12 +18,19 @@ const NoteEditor = ({note, ...props}) => {
         title={note.title}
         noteId={note._id}
         noteContent={content}
-      />
-      <ShareForm
-        noteId={note._id}
         collaborators={note.collaborators}
-        author={note.author}
       />
+      {note.author === Meteor.userId() ? (
+        <ShareForm
+          noteId={note._id}
+          collaborators={note.collaborators}
+          author={note.author}
+        />
+      ) : (
+        `Shared between you and ${note.collaborators.length} other${
+          note.collaborators.length > 1 ? 's' : ''
+        }`
+      )}
       <Editor
         id="note"
         value={content}

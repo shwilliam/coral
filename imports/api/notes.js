@@ -33,10 +33,11 @@ Meteor.methods({
     check(id, String)
     check(collaborators, Array)
 
-    if (!this.userId) throw new Meteor.Error('not-authorized')
-
     const note = Notes.findOne(id)
     if (!note) throw new Meteor.Error('note-not-found')
+
+    if (!this.userId || note.author !== this.userId)
+      throw new Meteor.Error('not-authorized')
 
     Notes.update(id, {
       $set: {
@@ -75,6 +76,29 @@ Meteor.methods({
     if (!note) throw new Meteor.Error('note-not-found')
 
     Notes.remove(id)
+  },
+  'notes.removeCollaborator'(id) {
+    if (!Meteor.isServer) return
+
+    check(id, String)
+
+    const note = Notes.findOne(id)
+    if (!note) throw new Meteor.Error('note-not-found')
+
+    if (
+      note.collaborators &&
+      !note.collaborators.includes(this.userId)
+    )
+      throw new Meteor.Error('not-authorized')
+
+    Notes.update(id, {
+      $set: {
+        collaborators: note.collaborators.splice(
+          note.collaborators.indexOf(id),
+          1,
+        ),
+      },
+    })
   },
   'notes.updateTitle'(id, title) {
     check(id, String)
