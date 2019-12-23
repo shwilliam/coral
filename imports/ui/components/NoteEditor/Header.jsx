@@ -1,27 +1,23 @@
-import React, {useState} from 'react'
-import Meteor from 'meteor/meteor'
+import React from 'react'
+import {Meteor} from 'meteor/meteor'
 import {useHistory} from 'react-router'
-import {Input, PageHeader, Button} from 'antd'
+import {PageHeader, Button, Typography, message} from 'antd'
+const {Paragraph} = Typography
 import {usePdfDownload} from '../../hooks'
 import DeleteNoteButton from '../DeleteNoteButton.jsx'
 import FavoriteNoteButton from '../FavoriteNoteButton.jsx'
 
-// TODO: refactor EditableTitle component
-
 const Header = ({noteId, noteContent, title, ...props}) => {
-  const [isEditing, setIsEditing] = useState(false)
-  const [input, setInput] = useState(title)
   const history = useHistory()
   const downloadPdf = usePdfDownload()
 
-  const toggleEdit = () => setIsEditing(s => !s)
-
-  const onSave = e => {
-    if (!input.length) return
-
-    Meteor.call('notes.updateTitle', noteId, input)
-    toggleEdit()
-    e.preventDefault()
+  const onSave = newTitle => {
+    if (!newTitle.length) {
+      message.error("Title can't be blank")
+      return
+    }
+    Meteor.call('notes.updateTitle', noteId, newTitle)
+    message.success('Title successfully updated!')
   }
 
   return (
@@ -31,21 +27,7 @@ const Header = ({noteId, noteContent, title, ...props}) => {
       }}
       onBack={() => history.push('/')}
       title={
-        isEditing ? (
-          <form onSubmit={onSave}>
-            <Input
-              value={input}
-              onChange={e => setInput(e.target.value)}
-            />
-          </form>
-        ) : (
-          title
-        )
-      }
-      subTitle={
-        <Button onClick={isEditing ? onSave : toggleEdit} type="link">
-          {isEditing ? 'save' : 'edit'}
-        </Button>
+        <Paragraph editable={{onChange: onSave}}>{title}</Paragraph>
       }
       extra={[
         <DeleteNoteButton
