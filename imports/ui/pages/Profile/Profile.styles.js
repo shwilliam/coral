@@ -22,11 +22,17 @@ const info = {
   textAlign: 'left',
 }
 
+const notesList = {
+  padding: '0.75rem 0',
+  textAlign: 'left',
+}
+
 const gravatar = {
+  margin: '0 auto',
   borderRadius: '50%',
   width: '104px',
   height: '104px',
   marginBottom: '20px',
 }
 
-export {card, dashed, info, gravatar}
+export {card, dashed, info, gravatar, notesList}
