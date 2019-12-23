@@ -14,7 +14,7 @@ const ProfileTab = ({noteType, style}) => {
           const date = note.createdAt.toDateString()
           return (
             <List
-              style={style}
+              className={style}
               key={note._id}
               itemLayout="horizontal"
             >
