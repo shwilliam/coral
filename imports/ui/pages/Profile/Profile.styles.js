@@ -1,3 +1,8 @@
+const backButton = {
+  fontSize: '1.3rem',
+  margin: '2rem',
+}
+
 const card = {
   margin: '1rem auto 24px auto',
   width: '90%',
@@ -35,4 +40,4 @@ const gravatar = {
   marginBottom: '20px',
 }
 
-export {card, dashed, info, gravatar, notesList}
+export {backButton, card, dashed, info, gravatar, notesList}
