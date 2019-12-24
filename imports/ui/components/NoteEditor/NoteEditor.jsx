@@ -27,9 +27,17 @@ const NoteEditor = ({note, ...props}) => {
           author={note.author}
         />
       ) : (
-        `Shared between you and ${note.collaborators.length} other${
-          note.collaborators.length > 1 ? 's' : ''
-        }`
+        <p
+          style={{
+            width: '70%',
+            margin: '0 auto',
+            padding: '20px 0',
+            color: '#40a9ff',
+          }}
+        >
+          Shared between you and {note.collaborators.length} other
+          {note.collaborators.length > 1 ? 's' : ''}
+        </p>
       )}
       <Editor
         id="note"
