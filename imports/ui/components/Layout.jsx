@@ -11,12 +11,8 @@ const mainEditor = {
   minHeight: 'auto',
 }
 
-const test = {
-  height: '100%',
-}
-
 const Layout = ({children, ...props}) => (
-  <AntLayout style={test}>
+  <AntLayout>
     {isMobile ? <MobileMenu /> : <SideMenu />}
     <AntLayout style={mainEditor}>
       <Content>{children}</Content>
