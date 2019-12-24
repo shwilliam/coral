@@ -6,10 +6,15 @@ import MobileMenu from './MobileMenu'
 const {Content} = AntLayout
 const isMobile = window.innerWidth < 480
 
+const mainEditor = {
+  backgroundColor: '#fff',
+  minHeight: 'auto',
+}
+
 const Layout = ({children, ...props}) => (
   <AntLayout>
     {isMobile ? <MobileMenu /> : <SideMenu />}
-    <AntLayout>
+    <AntLayout style={mainEditor}>
       <Content>{children}</Content>
       <Footer />
     </AntLayout>

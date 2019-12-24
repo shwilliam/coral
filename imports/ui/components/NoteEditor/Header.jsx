@@ -6,6 +6,12 @@ const {Paragraph} = Typography
 import {usePdfDownload} from '../../hooks'
 import DeleteNoteButton from '../DeleteNoteButton.jsx'
 import FavoriteNoteButton from '../FavoriteNoteButton.jsx'
+const isMobile = window.innerWidth < 480
+
+const headerStyles = {
+  width: '95%',
+  margin: '0 auto',
+}
 
 const Header = ({
   noteId,
@@ -28,9 +34,7 @@ const Header = ({
 
   return (
     <PageHeader
-      style={{
-        border: '1px solid rgb(235, 237, 240)',
-      }}
+      style={headerStyles}
       onBack={() => history.push('/')}
       title={
         <Paragraph editable={{onChange: onSave}}>{title}</Paragraph>
@@ -48,7 +52,7 @@ const Header = ({
           onClick={() => downloadPdf(noteContent)}
           type="primary"
         >
-          Save as PDF
+          {isMobile ? 'PDF' : 'Save as PDF'}
         </Button>,
       ]}
       {...props}

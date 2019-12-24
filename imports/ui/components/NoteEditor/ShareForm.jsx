@@ -22,7 +22,11 @@ const ShareForm = ({
   }
 
   return (
-    <Form layout="horizontal" {...props}>
+    <Form
+      layout="horizontal"
+      {...props}
+      style={{width: '70%', margin: '0 auto', paddingTop: '20px'}}
+    >
       <Form.Item labelCol={{span: 6}} wrapperCol={{span: 16}}>
         {form.getFieldDecorator('collaborators', {
           initialValue: collaborators
