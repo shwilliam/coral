@@ -6,6 +6,7 @@ const {Paragraph} = Typography
 import {usePdfDownload} from '../../hooks'
 import DeleteNoteButton from '../DeleteNoteButton.jsx'
 import FavoriteNoteButton from '../FavoriteNoteButton.jsx'
+const isMobile = window.innerWidth < 480
 
 const headerStyles = {
   width: '95%',
@@ -51,7 +52,7 @@ const Header = ({
           onClick={() => downloadPdf(noteContent)}
           type="primary"
         >
-          Save as PDF
+          {isMobile ? 'PDF' : 'Save as PDF'}
         </Button>,
       ]}
       {...props}
