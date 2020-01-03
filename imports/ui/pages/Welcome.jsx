@@ -1,15 +1,12 @@
-import React, {useEffect} from 'react'
-import {Meteor} from 'meteor/meteor'
-import {useHistory} from 'react-router'
-import {AuthForm} from '../components'
+import React from 'react'
+import Landing from '../components/Landing'
 
 const Welcome = () => {
-  const history = useHistory()
-  useEffect(() => {
-    if (Meteor.user() || Meteor.loggingIn()) history.push('/')
-  }, [])
-
-  return <AuthForm />
+  return (
+    <>
+      <Landing />
+    </>
+  )
 }
 
 export default Welcome
