@@ -10,15 +10,6 @@ const isMobile = window.innerWidth < 480
 import styles from './Header.styles'
 import {css} from 'aphrodite'
 
-const headerStyles = {
-  width: '95%',
-  margin: '0 auto',
-}
-
-const changeTitle = {
-  margin: '0px 5px',
-}
-
 const Header = ({
   noteId,
   noteContent,
@@ -40,11 +31,13 @@ const Header = ({
 
   return (
     <PageHeader
-      style={headerStyles}
       className={css(styles.header)}
       onBack={() => history.push('/')}
       title={
-        <Paragraph editable={{onChange: onSave}} style={changeTitle}>
+        <Paragraph
+          editable={{onChange: onSave}}
+          className={css(styles.title)}
+        >
           {title}
         </Paragraph>
       }

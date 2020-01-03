@@ -5,6 +5,9 @@ const styles = StyleSheet.create({
     width: '95%',
     margin: '0 auto',
   },
+  title: {
+    margin: '0px 5px',
+  },
 })
 
 export default styles
