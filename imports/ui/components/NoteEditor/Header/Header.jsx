@@ -3,15 +3,12 @@ import {Meteor} from 'meteor/meteor'
 import {useHistory} from 'react-router'
 import {PageHeader, Button, Typography, message} from 'antd'
 const {Paragraph} = Typography
-import {usePdfDownload} from '../../hooks'
-import DeleteNoteButton from '../DeleteNoteButton.jsx'
-import FavoriteNoteButton from '../FavoriteNoteButton.jsx'
+import {usePdfDownload} from '../../../hooks'
+import DeleteNoteButton from '../../DeleteNoteButton.jsx'
+import FavoriteNoteButton from '../../FavoriteNoteButton.jsx'
 const isMobile = window.innerWidth < 480
-
-const headerStyles = {
-  width: '95%',
-  margin: '0 auto',
-}
+import styles from './Header.styles'
+import {css} from 'aphrodite'
 
 const Header = ({
   noteId,
@@ -34,10 +31,15 @@ const Header = ({
 
   return (
     <PageHeader
-      style={headerStyles}
+      className={css(styles.header)}
       onBack={() => history.push('/')}
       title={
-        <Paragraph editable={{onChange: onSave}}>{title}</Paragraph>
+        <Paragraph
+          editable={{onChange: onSave}}
+          className={css(styles.title)}
+        >
+          {title}
+        </Paragraph>
       }
       extra={[
         <DeleteNoteButton
