@@ -13,6 +13,10 @@ const headerStyles = {
   margin: '0 auto',
 }
 
+const changeTitle = {
+  margin: '0px 5px',
+}
+
 const Header = ({
   noteId,
   noteContent,
@@ -37,7 +41,9 @@ const Header = ({
       style={headerStyles}
       onBack={() => history.push('/')}
       title={
-        <Paragraph editable={{onChange: onSave}}>{title}</Paragraph>
+        <Paragraph editable={{onChange: onSave}} style={changeTitle}>
+          {title}
+        </Paragraph>
       }
       extra={[
         <DeleteNoteButton
