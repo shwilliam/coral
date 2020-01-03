@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meteor} from 'meteor/meteor'
 import {Select, Form} from 'antd'
-import {withUsers} from '../../hocs'
+import {withUsers} from '../../../hocs'
 import {message} from 'antd'
 
 const ShareForm = ({
