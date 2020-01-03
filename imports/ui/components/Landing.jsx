@@ -1,11 +1,16 @@
 import React from 'react'
+import LandingHeader from './LandingHeader'
+import {css} from 'aphrodite'
+import styles from './Landing.styles'
 
 const Landing = () => (
-  <main>
-    <h1>Welcome to coral!</h1>
-    <p>The best note taking app out there!</p>
-    <img src="https://4vector.com/i/free-vector-coral-clip-art_120450_coral-clip-art/Coral_clip_art_hight.png" />
-  </main>
+  <>
+    <LandingHeader />
+    <main className={css(styles.mainContent)}>
+      <h1 className={css(styles.heading)}>Welcome to coral!</h1>
+      <p>The best note taking app out there!</p>
+    </main>
+  </>
 )
 
 export default Landing
