@@ -3,9 +3,9 @@ import {Meteor} from 'meteor/meteor'
 import {useHistory} from 'react-router'
 import {PageHeader, Button, Typography, message} from 'antd'
 const {Paragraph} = Typography
-import {usePdfDownload} from '../../hooks'
-import DeleteNoteButton from '../DeleteNoteButton.jsx'
-import FavoriteNoteButton from '../FavoriteNoteButton.jsx'
+import {usePdfDownload} from '../../../hooks'
+import DeleteNoteButton from '../../DeleteNoteButton.jsx'
+import FavoriteNoteButton from '../../FavoriteNoteButton.jsx'
 const isMobile = window.innerWidth < 480
 import styles from './Header.styles'
 import {css} from 'aphrodite'

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Meteor} from 'meteor/meteor'
 import Editor from './Editor.jsx'
-import Header from './Header.jsx'
+import Header from './Header/Header.jsx'
 import ShareForm from './ShareForm.jsx'
 
 const NoteEditor = ({note, ...props}) => {
