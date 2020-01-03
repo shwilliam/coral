@@ -1,7 +1,7 @@
 import React from 'react'
 import {Button} from 'antd'
 import {css} from 'aphrodite'
-import styles from './LandingHeader.styles'
+import styles from './Landing.styles'
 
 const LandingHeader = () => (
   <header>
