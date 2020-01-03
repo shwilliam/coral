@@ -2,26 +2,15 @@ import React from 'react'
 import Editor from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import './Editor.css'
+import {css} from 'aphrodite'
+import styles from './Editor.styles'
 const isMobile = window.innerWidth < 480
-
-const styledEditor = {
-  width: '90%',
-  margin: '0 auto',
-  border: 0,
-  fontSize: '5px',
-}
-
-const mobileEditor = {
-  width: '70%',
-  margin: '0 auto',
-  border: 0,
-}
 
 const DraftEditor = ({value = '', onChange, ...props}) => (
   <>
     {isMobile ? (
       <Editor
-        style={styledEditor}
+        className={css(styles.fullEditor)}
         value={value}
         onChange={onChange}
         theme="snow"
@@ -29,7 +18,7 @@ const DraftEditor = ({value = '', onChange, ...props}) => (
       />
     ) : (
       <Editor
-        style={mobileEditor}
+        className={css(styles.mobileEditor)}
         value={value}
         onChange={onChange}
         theme="snow"
