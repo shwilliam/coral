@@ -4,7 +4,7 @@ import {Accounts} from 'meteor/accounts-base'
 import {Form, Icon, Input, Button} from 'antd'
 
 const styledForm = {
-  width: '200px',
+  maxWidth: '325px',
   margin: '0 auto',
   height: '100vh',
   display: 'flex',
