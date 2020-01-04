@@ -2,6 +2,9 @@ import {StyleSheet} from 'aphrodite'
 
 const styles = StyleSheet.create({
   form: {
+    '@media (max-width: 480px)': {
+      maxWidth: '280px',
+    },
     maxWidth: '325px',
     margin: '0 auto',
     height: '100vh',
