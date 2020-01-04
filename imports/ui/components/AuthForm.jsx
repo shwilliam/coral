@@ -2,26 +2,8 @@ import React, {useState} from 'react'
 import {Meteor} from 'meteor/meteor'
 import {Accounts} from 'meteor/accounts-base'
 import {Form, Icon, Input, Button} from 'antd'
-
-const styledForm = {
-  maxWidth: '325px',
-  margin: '0 auto',
-  height: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  textAlign: 'center',
-}
-
-const styledButton = {
-  width: '100%',
-  height: '40px',
-  marginBottom: '20px',
-}
-
-const styledInput = {
-  height: '40px',
-}
+import {css} from 'aphrodite'
+import styles from './AuthForm.styles'
 
 const onAuth = e => {
   if (e) alert(e)
@@ -66,12 +48,7 @@ const AuthForm = ({form, ...props}) => {
   }
 
   return (
-    <Form
-      style={styledForm}
-      onSubmit={onSubmit}
-      {...props}
-      className="test"
-    >
+    <Form onSubmit={onSubmit} {...props} className={css(styles.form)}>
       {isSignUp ? (
         <FormField
           // label="Username"
@@ -85,7 +62,7 @@ const AuthForm = ({form, ...props}) => {
             <Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />
           }
           form={form}
-          style={styledInput}
+          className={css(styles.input)}
         />
       ) : null}
 
@@ -107,7 +84,7 @@ const AuthForm = ({form, ...props}) => {
         ]}
         Icon={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}} />}
         form={form}
-        style={styledInput}
+        className={css(styles.input)}
       />
 
       <FormField
@@ -122,7 +99,7 @@ const AuthForm = ({form, ...props}) => {
         ]}
         Icon={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}} />}
         form={form}
-        style={styledInput}
+        className={css(styles.input)}
       />
 
       {isSignUp ? (
@@ -155,12 +132,16 @@ const AuthForm = ({form, ...props}) => {
             <Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}} />
           }
           form={form}
-          style={styledInput}
+          className={css(styles.input)}
         />
       ) : null}
 
       <Form.Item>
-        <Button style={styledButton} type="primary" htmlType="submit">
+        <Button
+          className={css(styles.button)}
+          type="primary"
+          htmlType="submit"
+        >
           {!isSignUp ? 'Log in' : 'Sign up'}
         </Button>
         <div
