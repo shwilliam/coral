@@ -8,7 +8,7 @@ const Header = () => {
   const history = useHistory()
 
   return (
-    <header>
+    <header className={css(styles.container)}>
       <nav>
         <ul className={css(styles.navBar)}>
           <li>coral</li>
