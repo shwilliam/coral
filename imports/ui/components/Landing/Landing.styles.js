@@ -2,14 +2,12 @@ import {StyleSheet} from 'aphrodite'
 
 const styles = StyleSheet.create({
   container: {
-    '@media (min-width: 480px)': {
-      width: '80%',
-      margin: '0 auto',
-      textAlign: 'center',
-    },
     width: '90%',
     margin: '0 auto',
     textAlign: 'center',
+    '@media (min-width: 480px)': {
+      width: '80%',
+    },
   },
   navBar: {
     display: 'flex',
@@ -18,10 +16,6 @@ const styles = StyleSheet.create({
     padding: '1rem',
   },
   mainContent: {
-    '@media (min-width: 480px)': {
-      width: '80%',
-      margin: '0 auto',
-    },
     width: '100%',
     backgroundImage: 'url("/coral_landing.png")',
     backgroundRepeat: 'no-repeat',
@@ -33,9 +27,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     marginBottom: '1rem',
+    '@media (min-width: 480px)': {
+      width: '80%',
+      margin: '0 auto',
+      justifyContent: 'center',
+    },
   },
   heading: {
     marginTop: '10rem',
+    fontWeight: '400',
+    '@media (min-width: 480px)': {
+      marginTop: '0',
+      fontSize: '2.15rem',
+    },
+  },
+  paragraph: {
+    '@media (min-width: 480px)': {
+      fontSize: '1.5rem',
+      fontWeight: '100',
+    },
   },
   landingImgs: {
     width: '100%',
@@ -43,9 +53,21 @@ const styles = StyleSheet.create({
     height: 'auto',
     textAlign: 'center',
   },
-  devContainer: {
-    paddingTop: '1rem',
+  features: {
+    '@media (min-width: 480px)': {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-evenly',
+    },
   },
+  feature: {
+    '@media (min-width: 480px)': {
+      width: '33%',
+      margin: '0 auto',
+      padding: '1.5rem 0',
+    },
+  },
+  developers: {},
   devImgs: {
     borderRadius: '50%',
     width: '80%',
