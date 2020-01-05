@@ -3,6 +3,8 @@ import {Meteor} from 'meteor/meteor'
 import {useHistory} from 'react-router'
 import {AuthForm} from '../components'
 import Logo from '../components/Logo'
+import {css} from 'aphrodite'
+import styles from '../components/AuthForm.styles'
 
 const Auth = () => {
   const history = useHistory()
@@ -11,14 +13,7 @@ const Auth = () => {
   }, [])
 
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-      }}
-    >
+    <div className={css(styles.formContainer)}>
       <Logo />
       <AuthForm />
     </div>
