@@ -1,7 +1,15 @@
 import React from 'react'
 import {Meteor} from 'meteor/meteor'
-import {Button} from 'antd'
+import {Button, Icon} from 'antd'
 import {withUser} from '../hocs'
+
+const FavoriteButton = () => {
+  return <Icon type="star" theme="twoTone" />
+}
+
+const noFavoriteButton = () => {
+  return <Icon type="star" />
+}
 
 const FavoriteNoteButton = ({user, noteId, ...props}) => {
   const isFavorite =
@@ -13,7 +21,11 @@ const FavoriteNoteButton = ({user, noteId, ...props}) => {
 
   return (
     <Button onClick={toggleFavorite} {...props}>
-      {isFavorite ? 'Remove from favorites' : 'Mark as favorite'}
+      {isFavorite ? (
+        <Icon type="star" theme="filled" style={{color: '#1890ff'}} />
+      ) : (
+        <Icon type="star" />
+      )}
     </Button>
   )
 }
