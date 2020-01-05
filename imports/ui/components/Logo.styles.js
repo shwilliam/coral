@@ -16,6 +16,12 @@ const blinkCursor = {
 }
 
 const styles = StyleSheet.create({
+  logoContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    height: '50px',
+    margin: '25px 0',
+  },
   logo: {
     fontSize: '38px',
     maxWidth: '120px',
