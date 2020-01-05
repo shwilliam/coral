@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
     },
     maxWidth: '325px',
     margin: '0 auto',
-    height: '100vh',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
