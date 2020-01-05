@@ -1,14 +1,12 @@
 import React from 'react'
-import LandingHeader from '../components/LandingHeader'
-import Landing from '../components/Landing'
-import LandingFeatures from '../components/LandingFeatures'
+import {Header, Showcase, Features} from '../components/Landing/'
 
 const Welcome = () => {
   return (
     <>
-      <LandingHeader />
-      <Landing />
-      <LandingFeatures />
+      <Header />
+      <Showcase />
+      <Features />
     </>
   )
 }
