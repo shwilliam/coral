@@ -11,7 +11,13 @@ const Auth = () => {
   }, [])
 
   return (
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }}
+    >
       <Logo />
       <AuthForm />
     </div>
