@@ -4,10 +4,12 @@ import {Button, Icon} from 'antd'
 import {withUser} from '../hocs'
 
 const FavoriteButton = () => {
-  return <Icon type="star" theme="twoTone" />
+  return (
+    <Icon type="star" theme="filled" style={{color: '#1890ff'}} />
+  )
 }
 
-const noFavoriteButton = () => {
+const NotFavoriteButton = () => {
   return <Icon type="star" />
 }
 
@@ -21,11 +23,7 @@ const FavoriteNoteButton = ({user, noteId, ...props}) => {
 
   return (
     <Button onClick={toggleFavorite} {...props}>
-      {isFavorite ? (
-        <Icon type="star" theme="filled" style={{color: '#1890ff'}} />
-      ) : (
-        <Icon type="star" />
-      )}
+      {isFavorite ? <FavoriteButton /> : <NotFavoriteButton />}
     </Button>
   )
 }
