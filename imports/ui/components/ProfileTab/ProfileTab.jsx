@@ -1,8 +1,12 @@
 import React from 'react'
+import {useTheme} from '../../hooks'
 import {List, Typography} from 'antd'
 const {Text} = Typography
+import {textDarkBg} from './ProfileTab.styles'
 
-const ProfileTab = ({noteType, style}) => {
+const ProfileTab = ({noteType, style, ...props}) => {
+  const [theme] = useTheme()
+
   return (
     <>
       {noteType &&
@@ -17,6 +21,7 @@ const ProfileTab = ({noteType, style}) => {
               className={style}
               key={note._id}
               itemLayout="horizontal"
+              {...props}
             >
               <List.Item>
                 <List.Item.Meta
@@ -25,7 +30,12 @@ const ProfileTab = ({noteType, style}) => {
                 />
               </List.Item>
               <List.Item>
-                <Text type="secondary">{date}</Text>
+                <Text
+                  type="secondary"
+                  style={theme === 'light' ? {} : textDarkBg}
+                >
+                  {date}
+                </Text>
               </List.Item>
             </List>
           )
