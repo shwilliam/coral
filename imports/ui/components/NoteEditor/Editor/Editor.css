@@ -3,6 +3,16 @@
   border-bottom: 1px solid #ececec;
 }
 
+.ql-toolbar.ql-snow > .ql-formats {
+  margin: 0;
+}
+
+@media (min-width: 480px) {
+  .ql-toolbar.ql-snow > .ql-formats {
+    margin-right: 20px;
+  }
+}
+
 .ql-toolbar.ql-snow > * {
   margin: 5px 0;
 }

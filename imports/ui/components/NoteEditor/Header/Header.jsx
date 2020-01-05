@@ -46,16 +46,26 @@ const Header = ({
         </Paragraph>
       }
       extra={[
-        <DeleteNoteButton
-          key="note-delete"
-          noteId={noteId}
-          collaborators={collaborators}
-        />,
-        <FavoriteNoteButton key="note-favorite" noteId={noteId} />,
-        <DownloadNoteButton
-          key="note-download"
-          noteContent={noteContent}
-        />,
+        <div className={css(styles.menu)}>
+          <DeleteNoteButton
+            key="note-delete"
+            noteId={noteId}
+            collaborators={collaborators}
+            type="default"
+            className={css(styles.menuButton)}
+          />
+
+          <FavoriteNoteButton
+            key="note-favorite"
+            noteId={noteId}
+            className={css(styles.menuButton)}
+          />
+          <DownloadNoteButton
+            key="note-download"
+            noteContent={noteContent}
+            className={css(styles.menuButton)}
+          />,
+        </div>,
       ]}
       {...props}
     />
