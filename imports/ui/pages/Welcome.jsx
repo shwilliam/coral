@@ -1,14 +1,26 @@
 import React from 'react'
-import LandingHeader from '../components/LandingHeader'
-import Landing from '../components/Landing'
-import LandingFeatures from '../components/LandingFeatures'
+import {
+  Header,
+  Showcase,
+  Features,
+  Developers,
+  Footer,
+} from '../components/Landing/'
+import {BackTop} from 'antd'
+import {Divider} from 'antd'
 
 const Welcome = () => {
   return (
     <>
-      <LandingHeader />
-      <Landing />
-      <LandingFeatures />
+      <BackTop />
+      <Header />
+      <Showcase />
+      <Divider />
+      <Features />
+      <Divider />
+      <Developers />
+      <Divider />
+      <Footer />
     </>
   )
 }

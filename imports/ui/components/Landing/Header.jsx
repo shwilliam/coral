@@ -4,16 +4,19 @@ import {css} from 'aphrodite'
 import styles from './Landing.styles'
 import {useHistory} from 'react-router'
 
-const LandingHeader = () => {
+const Header = () => {
   const history = useHistory()
 
   return (
-    <header>
+    <header className={css(styles.container)}>
       <nav>
         <ul className={css(styles.navBar)}>
           <li>coral</li>
           <li>
-            <Button onClick={() => history.push('/get-started')} type="primary">
+            <Button
+              onClick={() => history.push('/get-started')}
+              type="primary"
+            >
               Get Started
             </Button>
           </li>
@@ -23,4 +26,4 @@ const LandingHeader = () => {
   )
 }
 
-export default LandingHeader
+export default Header
