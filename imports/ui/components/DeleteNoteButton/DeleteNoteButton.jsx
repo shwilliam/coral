@@ -1,15 +1,21 @@
 import React from 'react'
 import {Meteor} from 'meteor/meteor'
+import {useTheme} from '../../hooks'
 import {Modal, Button} from 'antd'
+import {
+  buttonLightStyles,
+  buttonDarkStyles,
+} from './DeleteNoteButton.styles'
 
 const DeleteNoteButton = ({
   noteId,
   collaborators,
-  type = 'danger',
+  type = 'default',
   icon = 'delete',
   children,
   ...props
 }) => {
+  const [theme] = useTheme()
   const isCollaborator =
     collaborators && collaborators.includes(Meteor.userId())
   const showDeleteConfirm = () => {
@@ -31,7 +37,13 @@ const DeleteNoteButton = ({
     isCollaborator ? removeUserAsCollaborator() : showDeleteConfirm()
 
   return (
-    <Button onClick={onDelete} type={type} icon={icon} {...props}>
+    <Button
+      onClick={onDelete}
+      icon={icon}
+      type={type}
+      style={theme === 'light' ? buttonLightStyles : buttonDarkStyles}
+      {...props}
+    >
       {children}
     </Button>
   )
