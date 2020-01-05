@@ -50,6 +50,7 @@ const Profile = ({
             className={css(styles.info)}
             iconType="user"
             onSave={'users.updateUserName'}
+            value={profileUsername}
           />
           <EditableText
             className={css(styles.info)}
@@ -116,16 +117,24 @@ const Profile = ({
         >
           <Tabs defaultActiveKey="1">
             <TabPane tab="Your notes" key="1">
-              <ProfileTab
-                style={css(styles.notesList)}
-                noteType={notes}
-              />
+              {notes.length !== 0 ? (
+                <ProfileTab
+                  style={css(styles.notesList)}
+                  noteType={notes}
+                />
+              ) : (
+                'no notes'
+              )}
             </TabPane>
             <TabPane tab="Shared notes" key="2">
-              <ProfileTab
-                style={css(styles.notesList)}
-                noteType={sharedNotes}
-              />
+              {sharedNotes.length !== 0 ? (
+                <ProfileTab
+                  style={css(styles.notesList)}
+                  noteType={sharedNotes}
+                />
+              ) : (
+                'no shared notes'
+              )}
             </TabPane>
           </Tabs>
         </Card>
