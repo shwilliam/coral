@@ -1,5 +1,4 @@
 import React from 'react'
-import Footer from '../components/Footer'
 import {Button} from 'antd'
 import {useHistory} from 'react-router'
 
@@ -13,7 +12,6 @@ const FourOhFour = () => {
           Go back
         </Button>
       </h1>
-      <Footer />
     </>
   )
 }

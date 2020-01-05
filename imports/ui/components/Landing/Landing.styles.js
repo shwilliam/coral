@@ -48,10 +48,14 @@ const styles = StyleSheet.create({
     },
   },
   landingImgs: {
-    height: '250px',
-    width: 'auto',
+    height: 'auto',
+    width: '100%',
     margin: '2rem 0',
     textAlign: 'center',
+    '@media (min-width: 480px)' :{
+      height: '250px',
+      width: 'auto'
+    }
   },
   features: {
     '@media (min-width: 480px)': {
@@ -69,7 +73,9 @@ const styles = StyleSheet.create({
   },
   devImgs: {
     borderRadius: '50%',
-    width: '80%',
+    '@media (max-width: 480px)': {
+      width: '80%'
+    }
   },
   devLinks: {
     fontSize: '2.25rem',
