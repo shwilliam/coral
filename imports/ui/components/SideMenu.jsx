@@ -99,14 +99,14 @@ const SideMenu = ({notes, sharedNotes, favoriteNotes, ...props}) => {
             </span>
           }
         >
-          <Menu.Item key="logout" onClick={logout}>
-            <Icon type="logout" /> Logout
-          </Menu.Item>
           <Menu.Item
             key="profile"
             onClick={() => history.push('/profile')}
           >
             <Icon type="user" /> Profile
+          </Menu.Item>
+          <Menu.Item key="logout" onClick={logout}>
+            <Icon type="logout" /> Logout
           </Menu.Item>
         </Menu.SubMenu>
       </Menu>
