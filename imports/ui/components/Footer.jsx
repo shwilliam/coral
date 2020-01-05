@@ -11,6 +11,7 @@ const footerStyles = {
   alignItems: 'center',
   justifyContent: 'center',
   padding: 0,
+  zIndex: 999,
 }
 
 const footerContent = {
