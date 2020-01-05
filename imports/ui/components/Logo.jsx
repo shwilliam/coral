@@ -6,6 +6,7 @@ const Logo = () => {
   return (
     <div className={css(styles.logoContainer)}>
       <h1 className={css(styles.logo)}>coral</h1>
+      <span className={css(styles.blinkingCursor)}>_</span>
     </div>
   )
 }
