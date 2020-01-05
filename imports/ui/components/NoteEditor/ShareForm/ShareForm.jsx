@@ -3,6 +3,8 @@ import {Meteor} from 'meteor/meteor'
 import {Select, Form} from 'antd'
 import {withUsers} from '../../../hocs'
 import {message} from 'antd'
+import {css} from 'aphrodite'
+import styles from './ShareForm.styles'
 
 const ShareForm = ({
   noteId,
@@ -22,11 +24,7 @@ const ShareForm = ({
   }
 
   return (
-    <Form
-      layout="horizontal"
-      {...props}
-      style={{width: '70%', margin: '0 auto', paddingTop: '20px'}}
-    >
+    <Form layout="horizontal" {...props} className={css(styles.form)}>
       <Form.Item labelCol={{span: 6}} wrapperCol={{span: 16}}>
         {form.getFieldDecorator('collaborators', {
           initialValue: collaborators

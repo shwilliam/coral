@@ -1,16 +1,12 @@
 import {StyleSheet} from 'aphrodite'
 
 const styles = StyleSheet.create({
-  mainEditor: {
+  form: {
     '@media (min-width: 480px)': {
       width: '90%',
-      margin: '0 auto',
-      border: 0,
-      fontSize: '5px',
     },
-    width: '85%',
+    width: '70%',
     margin: '0 auto',
-    border: 0,
   },
 })
 
