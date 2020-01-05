@@ -2,15 +2,15 @@ import {StyleSheet} from 'aphrodite'
 
 const styles = StyleSheet.create({
   mainEditor: {
-    '@media (max-width: 480px)': {
-      width: '85%',
+    '@media (min-width: 480px)': {
+      width: '90%',
       margin: '0 auto',
       border: 0,
+      fontSize: '5px',
     },
-    width: '90%',
+    width: '85%',
     margin: '0 auto',
     border: 0,
-    fontSize: '5px',
   },
 })
 
