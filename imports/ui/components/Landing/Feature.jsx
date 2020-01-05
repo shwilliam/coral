@@ -6,9 +6,10 @@ const Feature = ({
   imgSrc,
   imgAlt,
   imgStyle,
+  featureStyles,
   ...props
 }) => (
-  <section {...props}>
+  <section className={featureStyles} {...props}>
     <h2>{title}</h2>
     <p>{description}</p>
     <img className={imgStyle} src={imgSrc} alt={imgAlt} />

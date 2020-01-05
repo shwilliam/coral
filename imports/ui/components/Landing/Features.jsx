@@ -4,7 +4,7 @@ import styles from './Landing.styles'
 import Feature from './Feature'
 
 const Features = () => (
-  <section className={css(styles.container)}>
+  <section className={css([styles.container, styles.features])}>
     <Feature
       title="Use it everywhere"
       description="Coral works on desktop, tablet, and mobile, so you can write
@@ -12,6 +12,7 @@ const Features = () => (
       imgSrc="/sizes.png"
       imgAlt="desktop, tablet & mobile look"
       imgStyle={css(styles.landingImgs)}
+      featureStyles={css(styles.feature)}
     />
     <Feature
       title="Gorgeous settings"
@@ -21,6 +22,7 @@ const Features = () => (
       imgSrc="/themes.png"
       imgAlt="light, dark and solarized mode"
       imgStyle={css(styles.landingImgs)}
+      featureStyles={css(styles.feature)}
     />
     <Feature
       title="Collaborate with your team"
@@ -28,6 +30,7 @@ const Features = () => (
       imgSrc="/collaborators.svg"
       imgAlt="collaborators"
       imgStyle={css(styles.landingImgs)}
+      featureStyles={css(styles.feature)}
     />
   </section>
 )
