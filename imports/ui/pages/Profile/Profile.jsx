@@ -1,17 +1,17 @@
-import React, {useState} from 'react'
-import withUser from '../../hocs/withUser'
-import {withUsers, withNotes} from '../../hocs'
+import React from 'react'
+import {useHistory} from 'react-router'
 import {css} from 'aphrodite'
-import {Skeleton, Icon, List, Card, Typography, Tabs} from 'antd'
-const {Title, Text} = Typography
-const {TabPane} = Tabs
+import {withUser, withUsers, withNotes} from '../../hocs'
+import {useTheme} from '../../hooks'
 import Gravatar from 'react-gravatar'
+import {Icon, List, Card, Typography, Tabs, Radio} from 'antd'
+const {Text} = Typography
+const {TabPane} = Tabs
 import {Layout} from '../../components'
 import EditableProfileInfo from '../../components/EditableProfileInfo'
 import ChangePasswordForm from '../../components/ChangePasswordForm'
-import {useHistory} from 'react-router'
 import ProfileTab from '../../components/ProfileTab'
-import styles from '../Profile/Profile.styles'
+import styles from './Profile.styles'
 
 const Profile = ({
   users,
@@ -23,8 +23,8 @@ const Profile = ({
   sharedNotes,
   author,
 }) => {
-  const [loading, setLoading] = useState(false)
   const history = useHistory()
+  const [theme, setTheme] = useTheme()
 
   return user ? (
     <Layout>
@@ -34,7 +34,7 @@ const Profile = ({
         type="arrow-left"
       />
       <main className={css(styles.container)}>
-        <Card className={css(styles.card)} loading={loading}>
+        <Card className={css(styles.card)}>
           <Gravatar
             className={css(styles.gravatar)}
             default="monsterid"
@@ -44,7 +44,6 @@ const Profile = ({
             className={css(styles.info)}
             iconType="user"
             onSave={'users.updateUserName'}
-            value={profileUsername}
           />
           <EditableProfileInfo
             className={css(styles.info)}
@@ -54,6 +53,19 @@ const Profile = ({
             value={email}
           />
           <ChangePasswordForm />
+          <section className={css(styles.dashed)}>
+            <Radio.Group
+              defaultValue={theme}
+              buttonStyle="solid"
+              size="small"
+              style={{whiteSpace: 'nowrap'}}
+              onChange={e => setTheme(e.target.value)}
+            >
+              <Radio.Button value="dark">Dark</Radio.Button>
+              <Radio.Button value="light">Light</Radio.Button>
+              <Radio.Button value="solarized">Solarized</Radio.Button>
+            </Radio.Group>
+          </section>
           <section className={css(styles.dashed)}>
             <Text strong>
               Your collaborators <Icon type="team" />
@@ -93,8 +105,6 @@ const Profile = ({
         </Card>
       </main>
     </Layout>
-  ) : (
-    <p>loading...</p>
-  )
+  ) : null
 }
 export default withUser(withUsers(withNotes(Profile)))

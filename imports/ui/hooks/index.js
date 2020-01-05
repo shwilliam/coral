@@ -1,3 +1,4 @@
-import usePdfDownload from './usePdfDownload.js'
+import usePdfDownload from './usePdfDownload'
+import useTheme from './useTheme'
 
-export {usePdfDownload}
+export {usePdfDownload, useTheme}
