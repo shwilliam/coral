@@ -2,12 +2,11 @@ import React from 'react'
 import {useHistory} from 'react-router'
 import {css} from 'aphrodite'
 import {withUser, withUsers, withNotes} from '../../hocs'
-import {useTheme} from '../../hooks'
 import Gravatar from 'react-gravatar'
-import {Icon, List, Card, Typography, Tabs, Radio} from 'antd'
+import {Icon, List, Card, Typography, Tabs} from 'antd'
 const {Text} = Typography
 const {TabPane} = Tabs
-import {Layout} from '../../components'
+import {Layout, ThemeToggle} from '../../components'
 import EditableProfileInfo from '../../components/EditableProfileInfo'
 import ChangePasswordForm from '../../components/ChangePasswordForm'
 import ProfileTab from '../../components/ProfileTab'
@@ -24,7 +23,6 @@ const Profile = ({
   author,
 }) => {
   const history = useHistory()
-  const [theme, setTheme] = useTheme()
 
   return user ? (
     <Layout>
@@ -54,17 +52,7 @@ const Profile = ({
           />
           <ChangePasswordForm />
           <section className={css(styles.dashed)}>
-            <Radio.Group
-              defaultValue={theme}
-              buttonStyle="solid"
-              size="small"
-              style={{whiteSpace: 'nowrap'}}
-              onChange={e => setTheme(e.target.value)}
-            >
-              <Radio.Button value="dark">Dark</Radio.Button>
-              <Radio.Button value="light">Light</Radio.Button>
-              <Radio.Button value="solarized">Solarized</Radio.Button>
-            </Radio.Group>
+            <ThemeToggle />
           </section>
           <section className={css(styles.dashed)}>
             <Text strong>
