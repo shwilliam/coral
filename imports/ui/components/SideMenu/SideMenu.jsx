@@ -2,10 +2,18 @@ import React, {useState} from 'react'
 import {Meteor} from 'meteor/meteor'
 import {useHistory} from 'react-router'
 import {Menu, Icon, Layout} from 'antd'
-import {withNotes} from '../hocs'
-import {activeNote} from '../../api/notes'
+import {withNotes} from '../../hocs'
+import {useTheme} from '../../hooks'
+import {activeNote} from '../../../api/notes'
+import {
+  sideMenuLightStyles,
+  sideMenuDarkStyles,
+  sideMenuContentLightStyles,
+  sideMenuContentDarkStyles,
+} from './SideMenu.styles'
 
 const SideMenu = ({notes, sharedNotes, favoriteNotes, ...props}) => {
+  const [theme] = useTheme()
   const history = useHistory()
   const [open, setOpen] = useState(false)
   const toggleMenu = () => setOpen(s => !s)
@@ -17,10 +25,21 @@ const SideMenu = ({notes, sharedNotes, favoriteNotes, ...props}) => {
       collapsible
       collapsed={open}
       onCollapse={toggleMenu}
-      style={{minHeight: '100vh'}}
+      style={
+        theme === 'light' ? sideMenuLightStyles : sideMenuDarkStyles
+      }
       {...props}
     >
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+      <Menu
+        theme="dark"
+        mode="inline"
+        defaultSelectedKeys={['1']}
+        style={
+          theme === 'light'
+            ? sideMenuContentLightStyles
+            : sideMenuContentDarkStyles
+        }
+      >
         <Menu.Item
           key="new-note"
           title="new-note"
