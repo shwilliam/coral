@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   menu: {
     '@media (max-width: 480px)': {
       width: 'max-content',
-      margin: '0 auto',
+      margin: '5px auto',
     },
   },
   menuButton: {
