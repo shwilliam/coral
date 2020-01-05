@@ -2,6 +2,7 @@ import React from 'react'
 import {Meteor} from 'meteor/meteor'
 import {useHistory} from 'react-router'
 import {css} from 'aphrodite'
+import {useTheme} from '../../../hooks'
 import {PageHeader, Typography, message} from 'antd'
 const {Paragraph} = Typography
 import DeleteNoteButton from '../../DeleteNoteButton'
@@ -16,6 +17,7 @@ const Header = ({
   collaborators,
   ...props
 }) => {
+  const [theme] = useTheme()
   const history = useHistory()
 
   const onSave = newTitle => {
@@ -34,7 +36,11 @@ const Header = ({
       title={
         <Paragraph
           editable={{onChange: onSave}}
-          className={css(styles.title)}
+          className={
+            theme === 'light'
+              ? css(styles.title)
+              : css([styles.title, styles.titleDark])
+          }
         >
           {title}
         </Paragraph>
