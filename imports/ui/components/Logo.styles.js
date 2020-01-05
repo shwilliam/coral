@@ -12,7 +12,7 @@ const typing = {
 const blinkCursor = {
   from: {borderColor: 'transparent'},
   to: {borderColor: 'transparent'},
-  '100%': {borderColor: '#1890ff'},
+  '100%': {borderColor: '#5DB1FF'},
 }
 
 const styles = StyleSheet.create({
@@ -24,16 +24,16 @@ const styles = StyleSheet.create({
   },
   logo: {
     fontSize: '38px',
-    maxWidth: '120px',
+    maxWidth: '125px',
     overflow: 'hidden',
-    borderRight: '.15em solid #1890ff',
+    borderRight: '6px solid #a2d2ff',
     whiteSpace: 'nowrap',
     margin: '20px auto',
     letterSpacing: '.15em',
     transition: 'ease-in-out',
     animationName: [typing, blinkCursor],
-    animationDuration: '2.5s',
-    animationIterationCount: 'infinite',
+    animationDuration: '3.5s',
+    animationIterationCount: 1.5,
   },
 })
 
