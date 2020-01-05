@@ -42,20 +42,23 @@ const Header = ({
         </Paragraph>
       }
       extra={[
-        <DeleteNoteButton
-          key="note-delete"
-          noteId={noteId}
-          collaborators={collaborators}
-          type="default"
-        />,
-        <FavoriteNoteButton key="note-favorite" noteId={noteId} />,
-        <Button
-          key="note-download"
-          onClick={() => downloadPdf(noteContent)}
-          type="primary"
-        >
-          {isMobile ? 'PDF' : 'Save as PDF'}
-        </Button>,
+        <div className={css(styles.menu)}>
+          <DeleteNoteButton
+            key="note-delete"
+            noteId={noteId}
+            collaborators={collaborators}
+            type="default"
+          />
+
+          <FavoriteNoteButton key="note-favorite" noteId={noteId} />
+          <Button
+            key="note-download"
+            onClick={() => downloadPdf(noteContent)}
+            type="primary"
+          >
+            {isMobile ? 'PDF' : 'Save as PDF'}
+          </Button>
+        </div>,
       ]}
       {...props}
     />
