@@ -1,7 +1,9 @@
 import React from 'react'
+import {css} from 'aphrodite'
+import styles from './Logo.styles'
 
 const Logo = () => {
-  return <h1 style={{textAlign: 'center'}}>coral</h1>
+  return <h1 className={css(styles.logo)}>coral</h1>
 }
 
 export default Logo
