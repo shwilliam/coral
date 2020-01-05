@@ -1,16 +1,18 @@
 import React from 'react'
 import {Meteor} from 'meteor/meteor'
-import {Icon, Typography} from 'antd'
+import {useTheme} from '../../hooks'
+import {Icon, Typography, message} from 'antd'
 const {Paragraph} = Typography
-import {message} from 'antd'
+import {textDarkBg} from './EditableText.styles'
 
-const EditableProfileInfo = ({
-  style,
+const EditableText = ({
   iconType,
   value,
   onSave,
   type = 'text',
+  ...props
 }) => {
+  const [theme] = useTheme()
   const onUpdate = newValue => {
     if (!newValue.length) {
       message.error("This field can't be empty!")
@@ -25,9 +27,10 @@ const EditableProfileInfo = ({
   }
   return (
     <Paragraph
-      style={style}
       type={type}
       editable={{onChange: onUpdate}}
+      style={theme === 'light' ? {} : textDarkBg}
+      {...props}
     >
       <Icon style={{paddingRight: '0.5rem'}} type={iconType} />
       {value}
@@ -35,4 +38,4 @@ const EditableProfileInfo = ({
   )
 }
 
-export default EditableProfileInfo
+export default EditableText

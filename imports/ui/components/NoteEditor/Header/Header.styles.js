@@ -8,6 +8,9 @@ const styles = StyleSheet.create({
   title: {
     margin: '0px 5px',
   },
+  titleDark: {
+    color: 'rgba(255, 255, 255, 0.65)',
+  },
   menu: {
     width: 'max-content',
     margin: '5px auto',

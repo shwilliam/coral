@@ -8,6 +8,10 @@ const styles = StyleSheet.create({
     },
   },
 
+  textDarkBg: {
+    color: 'rgba(255, 255, 255, 0.65)',
+  },
+
   backButton: {
     fontSize: '1.3rem',
     margin: '2rem',
@@ -25,6 +29,11 @@ const styles = StyleSheet.create({
       margin: '1rem 0 24px 0',
       minHeight: '500px',
     },
+  },
+
+  cardDark: {
+    borderColor: 'rgba(255, 255, 255, 0.65)',
+    backgroundColor: 'rgba(255, 255, 255, 0.04)',
   },
 
   tabCard: {

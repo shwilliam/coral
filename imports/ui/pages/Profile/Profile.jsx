@@ -1,17 +1,17 @@
-import React, {useState} from 'react'
-import withUser from '../../hocs/withUser'
-import {withUsers, withNotes} from '../../hocs'
+import React from 'react'
+import {useHistory} from 'react-router'
 import {css} from 'aphrodite'
-import {Skeleton, Icon, List, Card, Typography, Tabs} from 'antd'
-const {Title, Text} = Typography
+import {withUser, withUsers, withNotes} from '../../hocs'
+import {useTheme} from '../../hooks'
+import {Icon, List, Card, Typography, Tabs} from 'antd'
+const {Text} = Typography
 const {TabPane} = Tabs
 import Gravatar from 'react-gravatar'
-import {Layout} from '../../components'
-import EditableProfileInfo from '../../components/EditableProfileInfo'
+import {Layout, ThemeToggle} from '../../components'
+import EditableText from '../../components/EditableText'
 import ChangePasswordForm from '../../components/ChangePasswordForm'
-import {useHistory} from 'react-router'
 import ProfileTab from '../../components/ProfileTab'
-import styles from '../Profile/Profile.styles'
+import styles from './Profile.styles'
 
 const Profile = ({
   users,
@@ -23,7 +23,7 @@ const Profile = ({
   sharedNotes,
   author,
 }) => {
-  const [loading, setLoading] = useState(false)
+  const [theme] = useTheme()
   const history = useHistory()
 
   return user ? (
@@ -34,19 +34,24 @@ const Profile = ({
         type="arrow-left"
       />
       <main className={css(styles.container)}>
-        <Card className={css(styles.card)} loading={loading}>
+        <Card
+          className={
+            theme === 'light'
+              ? css(styles.card)
+              : css([styles.card, styles.cardDark])
+          }
+        >
           <Gravatar
             className={css(styles.gravatar)}
             default="monsterid"
             email={email}
           />
-          <EditableProfileInfo
+          <EditableText
             className={css(styles.info)}
             iconType="user"
             onSave={'users.updateUserName'}
-            value={profileUsername}
           />
-          <EditableProfileInfo
+          <EditableText
             className={css(styles.info)}
             iconType="mail"
             onSave={'users.updateEmail'}
@@ -55,27 +60,60 @@ const Profile = ({
           />
           <ChangePasswordForm />
           <section className={css(styles.dashed)}>
-            <Text strong>
+            <ThemeToggle />
+          </section>
+          <section className={css(styles.dashed)}>
+            <Text
+              strong
+              className={
+                theme === 'light' ? {} : css(styles.textDarkBg)
+              }
+            >
               Your collaborators <Icon type="team" />
             </Text>
             {users
               .filter(({_id}) => !(author === _id))
               .map(({_id, username}) =>
                 username === profileUsername ? null : (
-                  <List.Item key={_id}>{username}</List.Item>
+                  <List.Item
+                    key={_id}
+                    className={
+                      theme === 'light' ? {} : css(styles.textDarkBg)
+                    }
+                  >
+                    {username}
+                  </List.Item>
                 ),
               )}
           </section>
           <section className={css(styles.dashed)}>
-            <Text strong>
+            <Text
+              strong
+              className={
+                theme === 'light' ? {} : css(styles.textDarkBg)
+              }
+            >
               Your favorite notes <Icon type="star" />
             </Text>
             {favoriteNotes.map(({_id, title}) => (
-              <List.Item key={_id}>{title}</List.Item>
+              <List.Item
+                key={_id}
+                className={
+                  theme === 'light' ? {} : css(styles.textDarkBg)
+                }
+              >
+                {title}
+              </List.Item>
             ))}
           </section>
         </Card>
-        <Card className={css(styles.card, styles.tabCard)}>
+        <Card
+          className={
+            theme === 'light'
+              ? css([styles.card, styles.tabCard])
+              : css([styles.card, styles.cardDark, styles.tabCard])
+          }
+        >
           <Tabs defaultActiveKey="1">
             <TabPane tab="Your notes" key="1">
               <ProfileTab
@@ -93,8 +131,6 @@ const Profile = ({
         </Card>
       </main>
     </Layout>
-  ) : (
-    <p>loading...</p>
-  )
+  ) : null
 }
 export default withUser(withUsers(withNotes(Profile)))

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Router, Route, Switch, Redirect} from 'react-router'
+import {Router as BrowserRouter, Route, Switch} from 'react-router'
 const createBrowserHistory = require('history').createBrowserHistory
 import Home from '../pages/Home'
 import FourOhFour from '../pages/FourOhFour'
@@ -11,8 +11,8 @@ import ProtectedRoute from './ProtectedRoute'
 
 const browserHistory = createBrowserHistory()
 
-const Routes = () => (
-  <Router history={browserHistory}>
+const Router = () => (
+  <BrowserRouter history={browserHistory}>
     <Switch>
       <ProtectedRoute exact path="/" component={Home} />
       <Route exact path="/welcome" component={Welcome} />
@@ -21,7 +21,7 @@ const Routes = () => (
       <ProtectedRoute exact path="/profile" component={Profile} />
       <ProtectedRoute component={FourOhFour} />
     </Switch>
-  </Router>
+  </BrowserRouter>
 )
 
-export default Routes
+export default Router
