@@ -48,9 +48,9 @@ const styles = StyleSheet.create({
     },
   },
   landingImgs: {
-    width: '100%',
+    height: '250px',
+    width: 'auto',
     margin: '2rem 0',
-    height: 'auto',
     textAlign: 'center',
   },
   features: {
@@ -67,7 +67,6 @@ const styles = StyleSheet.create({
       padding: '1.5rem 0',
     },
   },
-  developers: {},
   devImgs: {
     borderRadius: '50%',
     width: '80%',
