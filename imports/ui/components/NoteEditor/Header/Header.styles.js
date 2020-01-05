@@ -9,16 +9,14 @@ const styles = StyleSheet.create({
     margin: '0px 5px',
   },
   menu: {
-    '@media (max-width: 480px)': {
-      width: 'max-content',
-      margin: '5px auto',
-    },
+    width: 'max-content',
+    margin: '5px auto',
   },
   menuButton: {
-    '@media (max-width: 480px)': {
-      margin: '0px 5px',
+    '@media (min-width: 480px)': {
+      marginLeft: '10px',
     },
-    marginLeft: '10px',
+    margin: '0px 5px',
   },
 })
 
