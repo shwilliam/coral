@@ -48,13 +48,19 @@ const Header = ({
             noteId={noteId}
             collaborators={collaborators}
             type="default"
+            className={css(styles.menuButton)}
           />
 
-          <FavoriteNoteButton key="note-favorite" noteId={noteId} />
+          <FavoriteNoteButton
+            key="note-favorite"
+            noteId={noteId}
+            className={css(styles.menuButton)}
+          />
           <Button
             key="note-download"
             onClick={() => downloadPdf(noteContent)}
             type="primary"
+            className={css(styles.menuButton)}
           >
             {isMobile ? 'PDF' : 'Save as PDF'}
           </Button>
