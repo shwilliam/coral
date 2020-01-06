@@ -2,6 +2,7 @@ import React from 'react'
 import {useTheme} from '../../hooks'
 import {List, Typography} from 'antd'
 const {Text} = Typography
+
 import {textDarkBg} from './ProfileTab.styles'
 
 const ProfileTab = ({noteType, style, ...props}) => {
@@ -23,11 +24,24 @@ const ProfileTab = ({noteType, style, ...props}) => {
               itemLayout="horizontal"
               {...props}
             >
-              <List.Item>
-                <List.Item.Meta
-                  title={note.title}
-                  description={content}
-                />
+              <List.Item
+                style={{
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
+                }}
+              >
+                <Text
+                  type="strong"
+                  style={theme === 'dark' ? textDarkBg : {}}
+                >
+                  {note.title}
+                </Text>
+                <Text
+                  type="secondary"
+                  style={theme === 'dark' ? textDarkBg : {}}
+                >
+                  {content}
+                </Text>
               </List.Item>
               <List.Item>
                 <Text
