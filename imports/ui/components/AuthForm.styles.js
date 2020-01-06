@@ -1,6 +1,13 @@
 import {StyleSheet} from 'aphrodite'
 
 const styles = StyleSheet.create({
+  logoContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    height: '50px',
+    width: '130px',
+    margin: '25px auto',
+  },
   formContainer: {
     height: '100vh',
     display: 'flex',
