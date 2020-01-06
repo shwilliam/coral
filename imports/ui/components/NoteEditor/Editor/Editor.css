@@ -21,3 +21,7 @@
   margin: 20px 0;
   border: none;
 }
+
+.ant-menu-item-selected {
+  background-color: transparent !important;
+}

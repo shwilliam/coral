@@ -32,6 +32,11 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
   },
+  logoContainerCollapsed: {
+    display: 'flex',
+    alignItems: 'center',
+    width: '35px',
+  },
   logoSidemenu: {
     height: '100%',
     width: '90%',
@@ -39,6 +44,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    margin: '0 auto',
+    transition: 'ease-in',
   },
 })
 
