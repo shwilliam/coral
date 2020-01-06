@@ -5,13 +5,7 @@ import {Icon, Typography, message} from 'antd'
 const {Paragraph} = Typography
 import {textDarkBg} from './EditableText.styles'
 
-const EditableText = ({
-  iconType,
-  value,
-  onSave,
-  type = 'text',
-  ...props
-}) => {
+const EditableText = ({value, onSave, type = 'text', ...props}) => {
   const [theme] = useTheme()
   const onUpdate = newValue => {
     if (!newValue.length) {
@@ -32,7 +26,6 @@ const EditableText = ({
       style={theme === 'light' ? {} : textDarkBg}
       {...props}
     >
-      <Icon style={{paddingRight: '0.5rem'}} type={iconType} />
       {value}
     </Paragraph>
   )
