@@ -28,12 +28,17 @@ export const sideMenuContentStyles = {
 }
 
 const styles = StyleSheet.create({
+  logoContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
   logoSidemenu: {
     height: '100%',
     width: '90%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
   },
 })
 

@@ -6,12 +6,12 @@ import {withNotes} from '../../hocs'
 import {useTheme} from '../../hooks'
 import {activeNote} from '../../../api/notes'
 import {css} from 'aphrodite'
-import Logo from '../Logo'
 import styles from '../SideMenu/SideMenu.styles'
 import {
   sideMenuStyles,
   sideMenuContentStyles,
 } from './SideMenu.styles'
+import LogoSidemenu from '../LogoSidemenu'
 
 const SideMenu = ({notes, sharedNotes, favoriteNotes, ...props}) => {
   const [theme] = useTheme()
@@ -40,8 +40,8 @@ const SideMenu = ({notes, sharedNotes, favoriteNotes, ...props}) => {
           title="logo"
           className={css(styles.logoSidemenu)}
         >
-          <span>
-            <Logo />
+          <span className={css(styles.logoContainer)}>
+            <LogoSidemenu />
           </span>
         </Menu.Item>
         <Menu.Item
