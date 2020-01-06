@@ -91,12 +91,12 @@ Meteor.methods({
     )
       throw new Meteor.Error('not-authorized')
 
+    const collaborators = note.collaborators
+    collaborators.splice(note.collaborators.indexOf(id), 1)
+
     Notes.update(id, {
       $set: {
-        collaborators: note.collaborators.splice(
-          note.collaborators.indexOf(id),
-          1,
-        ),
+        collaborators,
       },
     })
   },
