@@ -12,7 +12,9 @@ const Header = () => {
     <header className={css(styles.container)}>
       <nav>
         <ul className={css(styles.navBar)}>
-          <Logo />
+          <div className={css(styles.logo)}>
+            <Logo />
+          </div>
           <li>
             <Button
               onClick={() => history.push('/get-started')}

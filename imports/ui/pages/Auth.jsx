@@ -14,7 +14,9 @@ const Auth = () => {
 
   return (
     <div className={css(styles.formContainer)}>
-      <Logo />
+      <div className={css(styles.logoContainer)}>
+        <Logo />
+      </div>
       <AuthForm />
     </div>
   )

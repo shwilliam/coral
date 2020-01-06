@@ -9,9 +9,15 @@ const styles = StyleSheet.create({
       width: '80%',
     },
   },
+  logo: {
+    display: 'flex',
+    alignItems: 'center',
+  },
   navBar: {
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    margin: 0,
     listStyleType: 'none',
     padding: '1rem',
   },
@@ -52,10 +58,10 @@ const styles = StyleSheet.create({
     width: '100%',
     margin: '2rem 0',
     textAlign: 'center',
-    '@media (min-width: 480px)' :{
+    '@media (min-width: 480px)': {
       height: '250px',
-      width: 'auto'
-    }
+      width: 'auto',
+    },
   },
   features: {
     '@media (min-width: 480px)': {
@@ -74,8 +80,8 @@ const styles = StyleSheet.create({
   devImgs: {
     borderRadius: '50%',
     '@media (max-width: 480px)': {
-      width: '80%'
-    }
+      width: '80%',
+    },
   },
   devLinks: {
     fontSize: '2.25rem',
