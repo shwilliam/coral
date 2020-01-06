@@ -61,10 +61,8 @@ const Profile = ({
             type="email"
             value={email}
           />
-          <ChangePasswordForm />
-          <section className={css(styles.dashed)}>
-            <ThemeToggle />
-          </section>
+          <ChangePasswordForm className={css(styles.action)} />
+          <ThemeToggle className={css(styles.action)} />
           <section className={css(styles.dashed)}>
             <Text
               strong
@@ -113,7 +111,12 @@ const Profile = ({
         <Card
           className={
             theme === 'dark'
-              ? css([styles.card, styles.cardDark, styles.tabCard])
+              ? css([
+                  styles.center,
+                  styles.card,
+                  styles.cardDark,
+                  styles.tabCard,
+                ])
               : theme === 'solarized'
               ? css([
                   styles.card,
