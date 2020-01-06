@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: '50px',
     width: '130px',
-    margin: '25px auto',
+    // margin: '25px auto',
   },
   logo: {
     fontFamily: 'Quicksand',
