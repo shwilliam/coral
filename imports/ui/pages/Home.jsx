@@ -1,9 +1,6 @@
 import React from 'react'
-import {withUser} from '../hocs'
-import {NewNoteForm, Layout} from '../components'
+import {Layout} from '../components'
 
-const Home = ({user}) => (
-  <Layout>{user ? <NewNoteForm /> : <div>loading...</div>}</Layout>
-)
+const Home = () => <Layout />
 
-export default withUser(Home)
+export default Home
