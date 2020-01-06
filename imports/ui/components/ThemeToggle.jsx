@@ -7,7 +7,7 @@ const ThemeToggle = props => {
 
   return (
     <Radio.Group
-      defaultValue={theme}
+      value={theme}
       buttonStyle="solid"
       size="medium"
       style={{whiteSpace: 'nowrap'}}
