@@ -39,9 +39,7 @@ const SideMenu = ({notes, sharedNotes, favoriteNotes, ...props}) => {
             Meteor.call(
               'notes.insert',
               'Untitled',
-              (e, id) =>
-                console.log(id) ||
-                (!e && history.push(`/note/${id}`)),
+              (e, id) => !e && history.push(`/note/${id}`),
             )
           }
         >
