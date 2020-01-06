@@ -46,7 +46,7 @@ const Header = ({
         </Paragraph>
       }
       extra={[
-        <div className={css(styles.menu)}>
+        <div key="note-actions" className={css(styles.menu)}>
           <DeleteNoteButton
             key="note-delete"
             noteId={noteId}
