@@ -35,7 +35,15 @@ const SideMenu = ({notes, sharedNotes, favoriteNotes, ...props}) => {
         <Menu.Item
           key="new-note"
           title="new-note"
-          onClick={() => history.push('/')}
+          onClick={() =>
+            Meteor.call(
+              'notes.insert',
+              'Untitled',
+              (e, id) =>
+                console.log(id) ||
+                (!e && history.push(`/note/${id}`)),
+            )
+          }
         >
           <span>
             <Icon type="plus-circle" theme="outlined" />
