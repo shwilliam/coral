@@ -36,7 +36,7 @@ export const splashContentContainerStyles = {
   height: '50%',
   width: '70%',
   maxWidth: '350px',
-  opacity: '100%',
+  opacity: '80%',
   paddingBottom: '80px',
 }
 
