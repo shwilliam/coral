@@ -132,7 +132,13 @@ const Profile = ({
                   noteType={notes}
                 />
               ) : (
-                'no notes'
+                <Text
+                  className={
+                    theme === 'dark' ? css(styles.textDarkBg) : {}
+                  }
+                >
+                  No notes
+                </Text>
               )}
             </TabPane>
             <TabPane tab="Shared notes" key="2">
@@ -142,7 +148,13 @@ const Profile = ({
                   noteType={sharedNotes}
                 />
               ) : (
-                'no shared notes'
+                <Text
+                  className={
+                    theme === 'dark' ? css(styles.textDarkBg) : {}
+                  }
+                >
+                  No shared notes
+                </Text>
               )}
             </TabPane>
           </Tabs>
