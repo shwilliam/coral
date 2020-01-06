@@ -21,7 +21,7 @@ Meteor.methods({
 
     if (!this.userId) throw new Meteor.Error('not-authorized')
 
-    Notes.insert({
+    return Notes.insert({
       title,
       createdAt: new Date(),
       author: this.userId,
