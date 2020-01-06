@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     width: '35px',
+    transition: 'ease-in-out',
   },
   logoSidemenu: {
     height: '100%',
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     margin: '0 auto',
-    transition: 'ease-in',
+    transition: 'ease-in-out',
   },
 })
 

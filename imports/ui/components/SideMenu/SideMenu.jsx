@@ -37,7 +37,13 @@ const SideMenu = ({notes, sharedNotes, favoriteNotes, ...props}) => {
         style={sideMenuContentStyles[theme]}
       >
         <Menu.Item className={css(styles.logoSidemenu)}>
-          <span className={css(styles.logoContainer)}>
+          <span
+            className={
+              !open
+                ? css(styles.logoContainer)
+                : css(styles.logoContainerCollapsed)
+            }
+          >
             <LogoSidemenu />
           </span>
         </Menu.Item>
