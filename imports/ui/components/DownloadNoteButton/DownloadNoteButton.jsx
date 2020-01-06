@@ -1,10 +1,7 @@
 import React from 'react'
 import {Button} from 'antd'
 import {usePdfDownload, useTheme} from '../../hooks'
-import {
-  buttonLightStyles,
-  buttonDarkStyles,
-} from './DownloadNoteButton.styles'
+import {buttonStyles} from './DownloadNoteButton.styles'
 
 const isMobile = window.innerWidth < 480
 
@@ -20,7 +17,8 @@ const DownloadNoteButton = ({
     <Button
       onClick={() => downloadPdf(noteContent)}
       type={type}
-      style={theme === 'light' ? buttonLightStyles : buttonDarkStyles}
+      style={buttonStyles[theme]}
+      {...props}
     >
       {isMobile ? 'PDF' : 'Save as PDF'}
     </Button>

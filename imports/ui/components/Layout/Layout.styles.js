@@ -1,14 +1,26 @@
-const contentContainerStyles = {
+const contentContainerSharedStyles = {
   minHeight: 'auto',
 }
 
-export const contentContainerLightStyles = {
-  backgroundColor: '#fff',
-  ...contentContainerStyles,
+export const contentContainerStyles = {
+  light: {
+    backgroundColor: '#fff',
+    ...contentContainerSharedStyles,
+  },
+  dark: {
+    backgroundColor: '#000',
+    color: '#fff',
+    ...contentContainerSharedStyles,
+  },
+  solarized: {
+    backgroundColor: '#fdf6e3',
+    color: '#586e75',
+    ...contentContainerSharedStyles,
+  },
 }
 
-export const contentContainerDarkStyles = {
-  backgroundColor: '#000',
-  color: '#fff',
-  ...contentContainerStyles,
+export const layoutContainerStyles = {
+  fullHeight: {
+    minHeight: '100vh',
+  },
 }

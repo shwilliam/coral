@@ -1,18 +1,26 @@
-const sideMenuStyles = {
+const sideMenuSharedStyles = {
   minHeight: '100vh',
 }
 
-export const sideMenuDarkStyles = {
-  backgroundColor: '#0a0a0a',
-  ...sideMenuStyles,
+export const sideMenuStyles = {
+  light: {
+    ...sideMenuSharedStyles,
+  },
+  dark: {
+    backgroundColor: '#0a0a0a',
+    ...sideMenuSharedStyles,
+  },
+  solarized: {
+    backgroundColor: '#002140',
+  },
 }
 
-export const sideMenuLightStyles = {
-  ...sideMenuStyles,
+export const sideMenuContentStyles = {
+  light: {},
+  dark: {
+    backgroundColor: '#0a0a0a',
+  },
+  solarized: {
+    backgroundColor: '#002140',
+  },
 }
-
-export const sideMenuContentDarkStyles = {
-  backgroundColor: '#0a0a0a',
-}
-
-export const sideMenuContentLightStyles = {}

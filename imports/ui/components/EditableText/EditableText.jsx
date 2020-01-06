@@ -23,7 +23,7 @@ const EditableText = ({value, onSave, type = 'text', ...props}) => {
     <Paragraph
       type={type}
       editable={{onChange: onUpdate}}
-      style={theme === 'light' ? {} : textDarkBg}
+      style={theme === 'dark' ? textDarkBg : {}}
       {...props}
     >
       {value}

@@ -6,10 +6,8 @@ import {withNotes} from '../../hocs'
 import {useTheme} from '../../hooks'
 import {activeNote} from '../../../api/notes'
 import {
-  sideMenuLightStyles,
-  sideMenuDarkStyles,
-  sideMenuContentLightStyles,
-  sideMenuContentDarkStyles,
+  sideMenuStyles,
+  sideMenuContentStyles,
 } from './SideMenu.styles'
 
 const SideMenu = ({notes, sharedNotes, favoriteNotes, ...props}) => {
@@ -25,20 +23,14 @@ const SideMenu = ({notes, sharedNotes, favoriteNotes, ...props}) => {
       collapsible
       collapsed={open}
       onCollapse={toggleMenu}
-      style={
-        theme === 'light' ? sideMenuLightStyles : sideMenuDarkStyles
-      }
+      style={sideMenuStyles[theme]}
       {...props}
     >
       <Menu
         theme="dark"
         mode="inline"
         defaultSelectedKeys={['1']}
-        style={
-          theme === 'light'
-            ? sideMenuContentLightStyles
-            : sideMenuContentDarkStyles
-        }
+        style={sideMenuContentStyles[theme]}
       >
         <Menu.Item
           key="new-note"

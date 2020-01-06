@@ -1,7 +1,7 @@
 import {useContext} from 'react'
 import {ThemeContext} from '../context'
 
-const THEMES = ['dark', 'light']
+const THEMES = ['dark', 'light', 'solarized']
 
 const useTheme = () => {
   const {theme, setTheme: setThemeContext} = useContext(ThemeContext)
