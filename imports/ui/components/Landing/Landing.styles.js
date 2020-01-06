@@ -10,6 +10,11 @@ const styles = StyleSheet.create({
     },
   },
   logo: {
+    '@media (min-width: 480px)': {
+      display: 'flex',
+      alignItems: 'center',
+      width: 'auto',
+    },
     display: 'flex',
     alignItems: 'center',
   },
