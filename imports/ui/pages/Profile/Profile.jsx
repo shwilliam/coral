@@ -48,13 +48,11 @@ const Profile = ({
           />
           <EditableText
             className={css(styles.info)}
-            iconType="user"
             onSave={'users.updateUserName'}
             value={profileUsername}
           />
           <EditableText
             className={css(styles.info)}
-            iconType="mail"
             onSave={'users.updateEmail'}
             type="email"
             value={email}
