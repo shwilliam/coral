@@ -51,7 +51,6 @@ const Header = ({
             key="note-delete"
             noteId={noteId}
             collaborators={collaborators}
-            type="default"
             className={css(styles.menuButton)}
           />
           <FavoriteNoteButton

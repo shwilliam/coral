@@ -18,6 +18,7 @@ const DownloadNoteButton = ({
       onClick={() => downloadPdf(noteContent)}
       type={type}
       style={buttonStyles[theme]}
+      {...props}
     >
       {isMobile ? 'PDF' : 'Save as PDF'}
     </Button>
