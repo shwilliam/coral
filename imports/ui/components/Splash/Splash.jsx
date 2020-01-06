@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Joyride from 'react-joyride'
 import {useTheme} from '../../hooks'
-import {Typography, Button} from 'antd'
+import {Typography} from 'antd'
 import {
   splashTextStyles,
   splashContainerStyles,
@@ -11,7 +11,6 @@ import {
 
 const Splash = ({children, ...props}) => {
   const [theme] = useTheme()
-  const [run, setRun] = useState(true)
   const [steps, setSteps] = useState([
     {
       target: '.anticon.anticon-plus-circle',
