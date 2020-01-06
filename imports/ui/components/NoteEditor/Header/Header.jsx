@@ -64,7 +64,7 @@ const Header = ({
             key="note-download"
             noteContent={noteContent}
             className={css(styles.menuButton)}
-          />,
+          />
         </div>,
       ]}
       {...props}

@@ -15,15 +15,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   form: {
-    '@media (max-width: 480px)': {
-      maxWidth: '280px',
+    '@media (min-width: 480px)': {
+      maxWidth: '325px',
+      width: '325px',
     },
-    maxWidth: '325px',
     margin: '0 auto',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     textAlign: 'center',
+    maxWidth: '280px',
   },
   button: {
     width: '100%',
