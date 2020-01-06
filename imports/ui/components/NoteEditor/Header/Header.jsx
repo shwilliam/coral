@@ -37,9 +37,9 @@ const Header = ({
         <Paragraph
           editable={{onChange: onSave}}
           className={
-            theme === 'light'
-              ? css(styles.title)
-              : css([styles.title, styles.titleDark])
+            theme === 'dark'
+              ? css([styles.title, styles.titleDark])
+              : css(styles.title)
           }
         >
           {title}
@@ -54,7 +54,6 @@ const Header = ({
             type="default"
             className={css(styles.menuButton)}
           />
-
           <FavoriteNoteButton
             key="note-favorite"
             noteId={noteId}
@@ -64,7 +63,7 @@ const Header = ({
             key="note-download"
             noteContent={noteContent}
             className={css(styles.menuButton)}
-          />,
+          />
         </div>,
       ]}
       {...props}

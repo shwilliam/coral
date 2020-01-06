@@ -29,7 +29,7 @@ const EditableText = ({
     <Paragraph
       type={type}
       editable={{onChange: onUpdate}}
-      style={theme === 'light' ? {} : textDarkBg}
+      style={theme === 'dark' ? textDarkBg : {}}
       {...props}
     >
       <Icon style={{paddingRight: '0.5rem'}} type={iconType} />

@@ -2,10 +2,7 @@ import React from 'react'
 import {Meteor} from 'meteor/meteor'
 import {useTheme} from '../../hooks'
 import {Modal, Button} from 'antd'
-import {
-  buttonLightStyles,
-  buttonDarkStyles,
-} from './DeleteNoteButton.styles'
+import {buttonStyles} from './DeleteNoteButton.styles'
 
 const DeleteNoteButton = ({
   noteId,
@@ -41,7 +38,7 @@ const DeleteNoteButton = ({
       onClick={onDelete}
       icon={icon}
       type={type}
-      style={theme === 'light' ? buttonLightStyles : buttonDarkStyles}
+      style={buttonStyles[theme]}
       {...props}
     >
       {children}
