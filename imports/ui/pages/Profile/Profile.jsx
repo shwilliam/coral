@@ -36,9 +36,11 @@ const Profile = ({
       <main className={css(styles.container)}>
         <Card
           className={
-            theme === 'light'
-              ? css(styles.card)
-              : css([styles.card, styles.cardDark])
+            theme === 'dark'
+              ? css([styles.card, styles.cardDark])
+              : theme === 'solarized'
+              ? css([styles.card, styles.cardSolarized])
+              : css(styles.card)
           }
         >
           <Gravatar
@@ -67,7 +69,7 @@ const Profile = ({
             <Text
               strong
               className={
-                theme === 'light' ? {} : css(styles.textDarkBg)
+                theme === 'dark' ? css(styles.textDarkBg) : {}
               }
             >
               Your collaborators <Icon type="team" />
@@ -79,7 +81,7 @@ const Profile = ({
                   <List.Item
                     key={_id}
                     className={
-                      theme === 'light' ? {} : css(styles.textDarkBg)
+                      theme === 'dark' ? css(styles.textDarkBg) : {}
                     }
                   >
                     {username}
@@ -91,7 +93,7 @@ const Profile = ({
             <Text
               strong
               className={
-                theme === 'light' ? {} : css(styles.textDarkBg)
+                theme === 'dark' ? css(styles.textDarkBg) : {}
               }
             >
               Your favorite notes <Icon type="star" />
@@ -100,7 +102,7 @@ const Profile = ({
               <List.Item
                 key={_id}
                 className={
-                  theme === 'light' ? {} : css(styles.textDarkBg)
+                  theme === 'dark' ? css(styles.textDarkBg) : {}
                 }
               >
                 {title}
@@ -110,9 +112,15 @@ const Profile = ({
         </Card>
         <Card
           className={
-            theme === 'light'
-              ? css([styles.card, styles.tabCard])
-              : css([styles.card, styles.cardDark, styles.tabCard])
+            theme === 'dark'
+              ? css([styles.card, styles.cardDark, styles.tabCard])
+              : theme === 'solarized'
+              ? css([
+                  styles.card,
+                  styles.cardSolarized,
+                  styles.tabCard,
+                ])
+              : css([styles.card, styles.tabCard])
           }
         >
           <Tabs defaultActiveKey="1">

@@ -32,7 +32,7 @@ const ProfileTab = ({noteType, style, ...props}) => {
               <List.Item>
                 <Text
                   type="secondary"
-                  style={theme === 'light' ? {} : textDarkBg}
+                  style={theme === 'dark' ? textDarkBg : {}}
                 >
                   {date}
                 </Text>

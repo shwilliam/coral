@@ -36,6 +36,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.04)',
   },
 
+  cardSolarized: {
+    borderColor: 'rgba(255, 255, 255, 0.65)',
+    backgroundColor: '#eee8d5',
+  },
+
   tabCard: {
     '@media (min-width: 600px)': {
       width: '66%',
