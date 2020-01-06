@@ -3,5 +3,6 @@ import NoteEditor from './NoteEditor'
 import Notes from './Notes'
 import Layout from './Layout'
 import ThemeToggle from './ThemeToggle'
+import Splash from './Splash'
 
-export {AuthForm, NoteEditor, Notes, Layout, ThemeToggle}
+export {AuthForm, NoteEditor, Notes, Layout, ThemeToggle, Splash}
