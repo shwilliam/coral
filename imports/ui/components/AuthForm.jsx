@@ -51,7 +51,6 @@ const AuthForm = ({form, ...props}) => {
     <Form onSubmit={onSubmit} {...props} className={css(styles.form)}>
       {isSignUp ? (
         <FormField
-          // label="Username"
           aria-label="Username"
           title="Username"
           name="username"
@@ -67,7 +66,6 @@ const AuthForm = ({form, ...props}) => {
       ) : null}
 
       <FormField
-        // label="Email"
         aria-label="Email"
         title="Email"
         name="email"
@@ -88,7 +86,6 @@ const AuthForm = ({form, ...props}) => {
       />
 
       <FormField
-        // label="Password"
         aria-label="Password"
         title="Password"
         name="password"
@@ -104,7 +101,6 @@ const AuthForm = ({form, ...props}) => {
 
       {isSignUp ? (
         <FormField
-          // label="Confirm password"
           aria-label="Confirm password"
           title="Confirm password"
           name="passwordConfirm"
