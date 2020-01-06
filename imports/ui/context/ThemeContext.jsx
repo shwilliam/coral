@@ -1,16 +1,23 @@
-import React, {createContext, useState} from 'react'
+import React, {createContext, useState, useEffect} from 'react'
+import {withUser} from '../hocs'
 
 const ThemeContext = createContext()
 
-const ThemeContextProvider = ({children, ...props}) => {
-  const [theme, setTheme] = useState('dark')
+const ThemeContextProvider = withUser(
+  ({user, children, ...props}) => {
+    const [theme, setTheme] = useState('light')
 
-  return (
-    <ThemeContext.Provider value={{theme, setTheme}} {...props}>
-      {children}
-    </ThemeContext.Provider>
-  )
-}
+    useEffect(() => {
+      if (user && user.theme) setTheme(user.theme)
+    }, [user])
+
+    return (
+      <ThemeContext.Provider value={{theme, setTheme}} {...props}>
+        {children}
+      </ThemeContext.Provider>
+    )
+  },
+)
 
 export default ThemeContext
 export {ThemeContextProvider}

@@ -53,6 +53,19 @@ Meteor.methods({
 
     Accounts.setPassword(this.userId, newPassword, {logout: false})
   },
+  'users.changeTheme'(theme) {
+    check(theme, String)
+
+    if (!this.userId) throw new Meteor.Error('not-authorized')
+
+    const favorites = Meteor.user().favorites || []
+
+    Meteor.users.update(this.userId, {
+      $set: {
+        theme,
+      },
+    })
+  },
 })
 
 Meteor.users.allow({
