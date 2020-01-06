@@ -168,9 +168,11 @@ Meteor.methods({
     if (!favorites.includes(id))
       throw new Meteor.Error('not-favorite')
 
+    favorites.splice(favorites.indexOf(id), 1)
+
     Meteor.users.update(this.userId, {
       $set: {
-        favorites: favorites.splice(1, favorites.indexOf(id)),
+        favorites,
       },
     })
   },
