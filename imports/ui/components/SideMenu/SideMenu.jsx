@@ -5,6 +5,9 @@ import {Menu, Icon, Layout} from 'antd'
 import {withNotes} from '../../hocs'
 import {useTheme} from '../../hooks'
 import {activeNote} from '../../../api/notes'
+import {css} from 'aphrodite'
+import Logo from '../Logo'
+import styles from '../SideMenu/SideMenu.styles'
 import {
   sideMenuStyles,
   sideMenuContentStyles,
@@ -32,6 +35,15 @@ const SideMenu = ({notes, sharedNotes, favoriteNotes, ...props}) => {
         defaultSelectedKeys={['1']}
         style={sideMenuContentStyles[theme]}
       >
+        <Menu.Item
+          key="logo"
+          title="logo"
+          className={css(styles.logoSidemenu)}
+        >
+          <span>
+            <Logo />
+          </span>
+        </Menu.Item>
         <Menu.Item
           key="new-note"
           title="new-note"

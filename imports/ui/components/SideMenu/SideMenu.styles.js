@@ -1,3 +1,5 @@
+import {StyleSheet} from 'aphrodite'
+
 const sideMenuSharedStyles = {
   minHeight: '100vh',
 }
@@ -24,3 +26,15 @@ export const sideMenuContentStyles = {
     backgroundColor: '#002140',
   },
 }
+
+const styles = StyleSheet.create({
+  logoSidemenu: {
+    height: '100%',
+    width: '90%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+})
+
+export default styles
